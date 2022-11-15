@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <form class="filter-form">
+    <h3 class="filter-header">Filter challenges</h3>
+
+    <button type="button" class="filter-close">[close]</button>
+
+    <h4 class="filter-header-small">By type</h4>
+    <label> Include online challenges
+      <input type="checkbox" name="type:online">
+    </label>
+    <label> Include on-site challenges
+      <input type="checkbox" name="type:onsite">
+    </label>
+
+    <h4 class="filter-header-small">By rating</h4>
+    <input type="radio" name="rating:min" id="1" value="1">
+    <input type="radio" name="rating:min" id="2" value="2">
+    <input type="radio" name="rating:min" id="3" value="3">
+    <input type="radio" name="rating:min" id="4" value="4">
+    <input type="radio" name="rating:min" id="5" value="5">
+    to
+    <input type="radio" name="rating:max" id="1" value="1">
+    <input type="radio" name="rating:max" id="2" value="2">
+    <input type="radio" name="rating:max" id="3" value="3">
+    <input type="radio" name="rating:max" id="4" value="4">
+    <input type="radio" name="rating:max" id="5" value="5">
+
+    <h4 class="filter-header-small">By tags</h4>
+
+    <label>Web
+      <input type="checkbox" name="tag:web"></label>
+    <label>Cryptography
+      <input type="checkbox" name="tag:crypto">
+    </label>
+    <label>Linux
+      <input type="checkbox" name="tag:linux">
+    </label>
+    <label>Coding
+      <input type="checkbox" name="tag:coding">
+    </label>
+
+    <h4 class="filter-header-small">Or type to search for keyword</h4>
+    <input type="search" placeholder="Start typing to filter">
+
+  </form>
+
+</body>
+
+</html>
+
+<!-- 
+  1. Definiera
+
+  Filter challenges popup.
+  Filtrera på: By type, By rating, By tags, search keyword
+  Formulär som submittas när något ändras
+  Visar rum som stämmer med filtreringen
+  Om inga rum stämmer, visa "No matching challenges"
+
+  2. Separera
+
+  Skriv HTML
+  Skriv CSS
+  Vad behöver jag för information från formuläret?
+  -> Event listener "change" för form
+  -> FormData
+
+
+  3. Experimentera
+
+  Input types - type: checkbox, search for keyword: search, 
+  rating: radio buttons
+
+  4. Kombinera
+
+
+-->

@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: Roboto;
   font-size: 18px;
 }
 @media (min-width: 1000px) {
-  html, body {
+  html,
+  body {
     font-size: 24px;
   }
 }
@@ -483,4 +485,103 @@ footer a:hover {
   footer .footer-social {
     grid-column: 10/12;
   }
+}
+
+.filter-form {
+  padding: 1em;
+  max-width: 80vw;
+  border: 1px solid black;
+  margin-inline: auto;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}
+.filter-form .filter-header {
+  grid-column: 1/3;
+}
+.filter-form .filter-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.filter-form .filter-rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.filter-form .filter-rating .filter-rating-stars-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.filter-form .filter-rating-stars {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  position: relative;
+}
+.filter-form .filter-rating-stars input {
+  display: none;
+}
+.filter-form .filter-rating-stars label {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 23px;
+  height: 26px;
+  background-image: url(star-inactive.png);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  accent-color: hotpink;
+  background-color: #fff;
+  border: none;
+  color: transparent;
+  position: relative;
+}
+.filter-form .filter-rating-stars input:checked ~ label, .filter-form .filter-rating-stars input:checked ~ label ~ label {
+  width: 23px;
+  height: 26px;
+  background-image: url(star-active.png);
+  background-size: 20px;
+  background-repeat: no-repeat;
+}
+.filter-form .filter-tags input[type=checkbox] {
+  display: none;
+}
+.filter-form .filter-tags label {
+  padding: 0.2em 0.4em;
+  border: 2px solid transparent;
+}
+.filter-form .filter-tags input:checked + label {
+  background-color: rgba(54, 118, 157, 0.5);
+  border: 2px solid #36769D;
+  border-radius: 8px;
+  padding: 0.2em 0.4em;
+}
+.filter-form .filter-search {
+  grid-column: 2;
+}
+.filter-form .filter-search input {
+  border: 2px solid #36769D;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+  width: 90%;
+  font: inherit;
+  font-size: 18px;
 }

@@ -507,6 +507,10 @@ footer a:hover {
   }
 }
 
+#output {
+  padding: 3em;
+}
+
 .filter-form {
   padding: 1em;
   max-width: 80vw;

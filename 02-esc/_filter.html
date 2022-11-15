@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="static/main.css">
+  <script src="filter.js" defer></script>
 
   <title>Filter challenges</title>
 </head>
@@ -15,7 +16,7 @@
   <form class="filter-form">
     <h3 class="filter-header">Filter challenges</h3>
 
-    <button type="button" class="filter-close">[close]</button>
+    <button type="button" class="filter-close" aria-label="Close filter modal"></button>
 
     <div class="filter-type">
       <h4 class="filter-header-small">By type</h4>
@@ -43,7 +44,7 @@
           <input type="radio" name="rating:min" id="rating-min-1" value="1">
           <label for="rating-min-1"> </label>
         </div>
-        to
+        <small>to</small>
         <div class="filter-rating-stars">
           <input type="radio" name="rating:max" id="rating-max-5" value="5">
           <label for="rating-max-5"> </label>
@@ -73,7 +74,7 @@
 
     <div class="filter-search">
       <h4 class="filter-header-small">Or type to search for keyword</h4>
-      <input type="search" placeholder="Start typing to filter">
+      <input type="search" name="search" placeholder="Start typing to filter">
     </div>
 
   </form>

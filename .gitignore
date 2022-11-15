@@ -1,2 +1,5 @@
 *.swp
 .DS_Store
+/classes
+/exercises
+/01-todo

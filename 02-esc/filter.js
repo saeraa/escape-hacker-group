@@ -35,12 +35,46 @@ function doNotReload(e) {
 }
 
 function filterResults(e) {
+	filteredData = [];
 	const formData = new FormData(form);
 	for (const [key, value] of formData) {
-		console.log(`${key}: ${value}\n`);
-	}
+		if (value !== "") {
+			console.log(`${key}: ${value}\n`);
+		}
 
-	// go through the array of data, if matches, add to filteredData
+		dummyData.forEach((entry) => {
+			// boolean addToArray = true
+
+			// by Type:
+			// if (type:online: on) && (entry.type = online), addToArray = true
+			// if (type:onsite: on) && (entry.type = onsite), addToArray = true
+			// if typeOnline and entryType is NOT online, addToArray = false
+
+			// if type:online:on AND entry.type matches EITHER type:online:on OR type:onsite:on
+
+			// search functionality
+			// go through the array of data, if any entry's title or description contains the string from the search field, add to filteredData
+			if (key == "search") {
+				if (entry.title.includes(value) || entry.description.includes(value)) {
+					filteredData.push(entry);
+				}
+			}
+
+			// rating:
+			// check each entry if rating is greater than rating:min
+			// check each entry if rating is smaller than rating:max
+			//
+
+			//! this does not work:
+			// if (
+			// 	key == "rating:min" &&
+			// 	+value < +entry.rating &&
+			// 	+key.next().value < +entry.rating // key has no access to next() function here
+			// ) {
+			// 	console.log("value: ", value, "entry.rating: ", entry.rating);
+			// }
+		});
+	}
 
 	// type:online: on
 	// type:onsite: on

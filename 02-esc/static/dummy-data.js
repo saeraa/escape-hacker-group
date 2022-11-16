@@ -7,7 +7,7 @@ export default [
 		max_participants: "3",
 		rating: "4",
 		image: "",
-		tags: ["exciting", "creative", "intense"]
+		tags: ["web", "crypto", "linux"]
 	},
 	{
 		title: "room two",
@@ -17,7 +17,7 @@ export default [
 		max_participants: "6",
 		rating: "4",
 		image: "",
-		tags: ["exciting", "creative", "fabulous"]
+		tags: ["coding", "web", "crypto"]
 	},
 	{
 		title: "room three",
@@ -27,6 +27,6 @@ export default [
 		max_participants: "5",
 		rating: "3",
 		image: "",
-		tags: ["exciting", "scary", "intense"]
+		tags: ["linux", "coding", "web"]
 	}
 ];

@@ -90,7 +90,7 @@ function filterResults(e) {
 
 			// check search input
 			if (key == "search") {
-				const valueArray = value.split(/[ ,]+/);
+				const valueArray = value.toLowerCase().split(/[ ,]+/);
 
 				valueArray.forEach((searchTerm) => {
 					const index = titleAndDescription.findIndex((element) => {

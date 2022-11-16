@@ -37,44 +37,59 @@ function doNotReload(e) {
 function filterResults(e) {
 	filteredData = [];
 	const formData = new FormData(form);
-	for (const [key, value] of formData) {
-		if (value !== "") {
-			console.log(`${key}: ${value}\n`);
-		}
 
-		dummyData.forEach((entry) => {
-			// boolean addToArray = true
+	dummyData.forEach((entry) => {
+		// If an entry matches these criteria, add to array of entries to display
 
-			// by Type:
-			// if (type:online: on) && (entry.type = online), addToArray = true
-			// if (type:onsite: on) && (entry.type = onsite), addToArray = true
-			// if typeOnline and entryType is NOT online, addToArray = false
+		// if rating selected: exclude if rating is smaller than min, or bigger than max
+		// if tags selected: tags exist in entry.tag[]
+		// if search term: exclude if title/description does not include the search term
+		// if type selected: type:online matches OR type onsite matches
 
-			// if type:online:on AND entry.type matches EITHER type:online:on OR type:onsite:on
+		let searchMatches = true;
+		let ratingMatches = true;
 
-			// search functionality
-			// go through the array of data, if any entry's title or description contains the string from the search field, add to filteredData
-			if (key == "search") {
-				if (entry.title.includes(value) || entry.description.includes(value)) {
-					filteredData.push(entry);
-				}
+		let typeMatches = true;
+		let tagsMatches = true;
+
+		for (const [key, value] of formData) {
+			// if (value !== "") {
+			// 	console.log(`${key}: ${value}\n`);
+			// }
+
+			// typeMatches = true if typeSelected && entry.type
+			// is typeSelected? //* typeSelected =	[type:online: on OR type:onsite: on]
+			// yes = is type online? is entry.type == online? true
+			// yes = is type onsite? is entry.type == onsite? true
+
+			//TODO: This needs rewriting. If both options are selected, no entries are shown.
+			if (key == "type:online" && entry.type != "online") {
+				typeMatches = false;
+			}
+			if (key == "type:onsite" && entry.type != "on-site") {
+				typeMatches = false;
 			}
 
-			// rating:
-			// check each entry if rating is greater than rating:min
-			// check each entry if rating is smaller than rating:max
-			//
+			if (
+				(key == "rating:min" && +entry.rating < +value) ||
+				(key == "rating:max" && +entry.rating > +value)
+			) {
+				ratingMatches = false;
+			}
 
-			//! this does not work:
-			// if (
-			// 	key == "rating:min" &&
-			// 	+value < +entry.rating &&
-			// 	+key.next().value < +entry.rating // key has no access to next() function here
-			// ) {
-			// 	console.log("value: ", value, "entry.rating: ", entry.rating);
-			// }
-		});
-	}
+			if (key == "search") {
+				if (
+					!entry.title.includes(value) &&
+					!entry.description.includes(value)
+				) {
+					searchMatches = false;
+				}
+			}
+		}
+		if (typeMatches && tagsMatches && searchMatches && ratingMatches) {
+			filteredData.push(entry);
+		}
+	});
 
 	// type:online: on
 	// type:onsite: on
@@ -88,3 +103,25 @@ function filterResults(e) {
 
 	displayData(filteredData);
 }
+
+/* 
+
+
+
+tagsMatches = true if 
+tag:web: on && entry.tags.contains(web)
+tag:crypto: on && entry.tags.contains(crypto)
+tag:linux: on && entry.tags.contains(linux)
+tag:coding: on && entry.tags.contains(coding)
+
+OR if !tag:web && !tag:crypto && !tag:coding && !tag:linux
+*/
+
+// boolean addToArray = true
+
+// by Type:
+// if (type:online: on) && (entry.type = online), addToArray = true
+// if (type:onsite: on) && (entry.type = onsite), addToArray = true
+// if typeOnline and entryType is NOT online, addToArray = false
+
+// if type:online:on AND entry.type matches EITHER type:online:on OR type:onsite:on

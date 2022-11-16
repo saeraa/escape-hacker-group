@@ -12,6 +12,7 @@ function displayData(array) {
 	}
 	let dataString = "";
 	array.forEach((data) => {
+		// placeholder room data output
 		dataString += `<p>
     <b>${data.title}</b><br /> 
     ${data.min_participants} - ${data.max_participants} participants<br />
@@ -31,7 +32,12 @@ form.addEventListener("submit", doNotReload);
 searchInput.addEventListener("keyup", filterResults);
 
 function doNotReload(e) {
+	// do not want the form to reload the browser window if submitted
 	e.preventDefault();
+}
+
+function closeFilterModal() {
+	// this function should restore all filters and use the original array to display the rooms
 }
 
 function filterResults(e) {
@@ -48,21 +54,25 @@ function filterResults(e) {
 
 		let searchMatches = true;
 		let ratingMatches = true;
-
 		let typeMatches = true;
 		let tagsMatches = true;
 
+		let titleAndDescription = entry.title + " " + entry.description;
+		titleAndDescription = titleAndDescription.split(/[ ,]+/);
+		// splits string using regex on a space or a comma
+
 		for (const [key, value] of formData) {
-			// if (value !== "") {
-			// 	console.log(`${key}: ${value}\n`);
-			// }
+			// check tags
+			if (
+				(key == "tag:web" && !entry.tags.includes("web")) ||
+				(key == "tag:crypto" && !entry.tags.includes("crypto")) ||
+				(key == "tag:linux" && !entry.tags.includes("linux")) ||
+				(key == "tag:coding" && !entry.tags.includes("coding"))
+			) {
+				tagsMatches = false;
+			}
 
-			// typeMatches = true if typeSelected && entry.type
-			// is typeSelected? //* typeSelected =	[type:online: on OR type:onsite: on]
-			// yes = is type online? is entry.type == online? true
-			// yes = is type onsite? is entry.type == onsite? true
-
-			//TODO: This needs rewriting. If both options are selected, no entries are shown.
+			// check types of rooms
 			if (key == "type:online" && entry.type != "online") {
 				typeMatches = false;
 			}
@@ -70,6 +80,7 @@ function filterResults(e) {
 				typeMatches = false;
 			}
 
+			// check rating
 			if (
 				(key == "rating:min" && +entry.rating < +value) ||
 				(key == "rating:max" && +entry.rating > +value)
@@ -77,51 +88,34 @@ function filterResults(e) {
 				ratingMatches = false;
 			}
 
+			// check search input
 			if (key == "search") {
-				if (
-					!entry.title.includes(value) &&
-					!entry.description.includes(value)
-				) {
-					searchMatches = false;
-				}
+				const valueArray = value.split(/[ ,]+/);
+
+				valueArray.forEach((searchTerm) => {
+					const index = titleAndDescription.findIndex((element) => {
+						if (element.includes(searchTerm)) {
+							return true;
+						}
+					});
+
+					if (index == -1) {
+						searchMatches = false;
+					}
+				});
 			}
 		}
+
+		// if both onsite and online are clicked
+		if (formData.has("type:onsite") && formData.has("type:online")) {
+			typeMatches = true;
+		}
+
+		// add the room to the displayArray if it matches all criteria
 		if (typeMatches && tagsMatches && searchMatches && ratingMatches) {
 			filteredData.push(entry);
 		}
 	});
 
-	// type:online: on
-	// type:onsite: on
-	// rating:min: 5
-	// rating:max: 5
-	// tag:web: on
-	// tag:crypto: on
-	// tag:linux: on
-	// tag:coding: on
-	// search: he
-
 	displayData(filteredData);
 }
-
-/* 
-
-
-
-tagsMatches = true if 
-tag:web: on && entry.tags.contains(web)
-tag:crypto: on && entry.tags.contains(crypto)
-tag:linux: on && entry.tags.contains(linux)
-tag:coding: on && entry.tags.contains(coding)
-
-OR if !tag:web && !tag:crypto && !tag:coding && !tag:linux
-*/
-
-// boolean addToArray = true
-
-// by Type:
-// if (type:online: on) && (entry.type = online), addToArray = true
-// if (type:onsite: on) && (entry.type = onsite), addToArray = true
-// if typeOnline and entryType is NOT online, addToArray = false
-
-// if type:online:on AND entry.type matches EITHER type:online:on OR type:onsite:on

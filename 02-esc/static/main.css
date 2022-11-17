@@ -484,3 +484,51 @@ footer a:hover {
     grid-column: 10/12;
   }
 }
+
+.modal {
+  background-color: #011827;
+  color: white;
+}
+.modal .input-field {
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.booking-step-1 {
+  margin-left: 1.5rem;
+  font-weight: bold;
+}
+.booking-step-1 h2 {
+  font-weight: 400;
+}
+.booking-step-1 .booking-date-label {
+  display: block;
+}
+.booking-step-1 button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.booking-step-2 {
+  margin-left: 1.5rem;
+  font-weight: bold;
+}
+.booking-step-2 label {
+  display: block;
+  margin: 1rem 0 0 0;
+}
+.booking-step-2 input {
+  display: block;
+}
+
+.booking-step-3 {
+  text-align: center;
+  padding: 50vh 0;
+  font-weight: bold;
+}
+.booking-step-3 a {
+  color: white;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,59 @@
+.modal {
+    background-color: $c-darkblue;
+    color: white;
+
+    .input-field {
+        height: 2rem;
+        border-radius: 5px;
+    }
+
+}
+
+.booking-step-1 {
+    // display: none;
+    margin-left: 1.5rem;
+    font-weight: bold;
+    
+
+    h2 {
+        font-weight: 400;
+    }
+    
+    .booking-date-label {
+        display: block;
+    }
+
+    button {
+       position: absolute;
+       bottom: 0;
+       right: 0;
+    }
+
+}
+
+.booking-step-2 {
+    // display: none;
+    margin-left: 1.5rem;
+    font-weight: bold;
+    
+    label {
+        display: block;
+        margin: 1rem 0 0 0;
+    }
+
+    input {
+        display: block;
+    }
+    
+}
+
+.booking-step-3 {
+    text-align: center;
+    padding: 50vh 0;
+    font-weight: bold;
+    // display: none;
+
+    a {
+        color: white;
+    }
+}

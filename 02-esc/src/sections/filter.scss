@@ -4,6 +4,16 @@
 
 .filter-form {
 
+  .filter-clear {
+    font-size: .7em;
+    display: inline-block;
+    max-width: 200px;
+    max-height: 80px;
+    -ms-flex-item-align: end;
+    align-self: end;
+    justify-self: end;
+  }
+
   label {
     cursor: pointer;
   }

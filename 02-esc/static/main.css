@@ -522,6 +522,15 @@ footer a:hover {
   position: relative;
   gap: 1.5em;
 }
+.filter-form .filter-clear {
+  font-size: 0.7em;
+  display: inline-block;
+  max-width: 200px;
+  max-height: 80px;
+  -ms-flex-item-align: end;
+  align-self: end;
+  justify-self: end;
+}
 .filter-form label {
   cursor: pointer;
 }

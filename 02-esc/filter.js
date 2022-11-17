@@ -1,9 +1,9 @@
 const form = document.querySelector("form");
 const searchInput = document.querySelector("input[type='search']");
 const outputElement = document.querySelector("#output");
-const closeBtn = document.querySelector(".filter-close");
+const clearBtn = document.querySelector(".filter-clear");
 
-closeBtn.addEventListener("click", closeFilterModal);
+clearBtn.addEventListener("click", clearFilter);
 form.addEventListener("change", filterResults);
 form.addEventListener("submit", doNotReload);
 searchInput.addEventListener("keyup", filterResults);
@@ -70,7 +70,7 @@ function doNotReload(e) {
 	e.preventDefault();
 }
 
-function closeFilterModal() {
+function clearFilter() {
 	// this function should restore all filters and use the original array to display the rooms
 	form.reset();
 	displayData(dataFromAPI);

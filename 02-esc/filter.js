@@ -112,7 +112,7 @@ function filterResults(e) {
 			if (key == "type:online" && entry.type != "online") {
 				typeMatches = false;
 			}
-			if (key == "type:onsite" && entry.type != "on-site") {
+			if (key == "type:onsite" && entry.type != "onsite") {
 				typeMatches = false;
 			}
 

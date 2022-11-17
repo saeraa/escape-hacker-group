@@ -504,10 +504,10 @@ footer a:hover {
 .booking-step-1 .booking-date-label {
   display: block;
 }
-.booking-step-1 button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.booking-step-1 .button {
+  position: relative;
+  margin-top: 20vh;
+  margin-left: 40vw;
 }
 
 .booking-step-2 {
@@ -520,6 +520,11 @@ footer a:hover {
 }
 .booking-step-2 input {
   display: block;
+}
+.booking-step-2 .button {
+  position: relative;
+  margin-top: 20vh;
+  margin-left: 40vw;
 }
 
 .booking-step-3 {

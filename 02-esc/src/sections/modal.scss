@@ -23,16 +23,16 @@
         display: block;
     }
 
-    button {
-       position: absolute;
-       bottom: 0;
-       right: 0;
+    .button {
+        position: relative;
+        margin-top: 20vh;
+        margin-left: 40vw;
     }
 
-}
+  }
 
 .booking-step-2 {
-    // display: none;
+    //display: none;
     margin-left: 1.5rem;
     font-weight: bold;
     
@@ -44,7 +44,14 @@
     input {
         display: block;
     }
-    
+
+    .button {
+        position: relative;
+        margin-top: 20vh;
+        margin-left: 40vw; 
+    }
+
+ 
 }
 
 .booking-step-3 {

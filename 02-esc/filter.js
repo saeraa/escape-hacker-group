@@ -1,9 +1,12 @@
-// example dummy data
-// import dummyData from "/02-esc/static/dummy-data.js";
-
 const form = document.querySelector("form");
 const searchInput = document.querySelector("input[type='search']");
 const outputElement = document.querySelector("#output");
+const closeBtn = document.querySelector(".filter-close");
+
+closeBtn.addEventListener("click", closeFilterModal);
+form.addEventListener("change", filterResults);
+form.addEventListener("submit", doNotReload);
+searchInput.addEventListener("keyup", filterResults);
 
 // filtered data to be shown
 let filteredData = [];
@@ -11,6 +14,7 @@ let filteredData = [];
 // original data array to be populated form the API
 let dataFromAPI = [];
 
+// adding all tags to a Set, don't need duplicate tags
 let tagsCollection = new Set();
 
 async function getFromApi() {
@@ -61,12 +65,6 @@ function displayData(array) {
 	outputElement.innerHTML = dataString;
 }
 
-//displayData(dummyData);
-
-form.addEventListener("change", filterResults);
-form.addEventListener("submit", doNotReload);
-searchInput.addEventListener("keyup", filterResults);
-
 function doNotReload(e) {
 	// do not want the form to reload the browser window if submitted
 	e.preventDefault();
@@ -74,6 +72,8 @@ function doNotReload(e) {
 
 function closeFilterModal() {
 	// this function should restore all filters and use the original array to display the rooms
+	form.reset();
+	displayData(dataFromAPI);
 }
 
 function filterResults(e) {

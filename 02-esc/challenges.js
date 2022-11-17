@@ -1,4 +1,4 @@
-/* Objekt ska skapas med värden som kommer via API*/
+
 
 const challengeCard = {
     title: "" ,
@@ -7,15 +7,23 @@ const challengeCard = {
     minParticipants: "" ,
     maxParticipants: "" ,
     rating: "" ,
-    url: "" ,
-    label: ""
-
-
+    urlPicture: "" ,
+    labelList: ""
 };
 
+function createChallengeCard (fromAPI) {
+     
+    challengeCard = "API";
 
-function createChallengeCard () {
-    // Skapa objektet challengeCard från API
 
 
+    function publishChallengeCard () {
+
+        let cardList = document.getElementById('challenge-item')
+
+        // Append
+        
+
+
+    };
 };

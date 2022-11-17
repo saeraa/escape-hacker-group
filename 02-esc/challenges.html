@@ -24,44 +24,79 @@
     </nav>
     <section class="hero">
         <img alt="Hacker in front of screens" src="static/hero.png">
-        <!--<div class="hero-cta">
+        <div class="hero-cta">
             <a class="button primary" href="">Online challenges</a>
             <a class="button secondary" href="">On-site challenges</a>
-        </div>-->
+        </div>
     </section>
-    <!--<section class="testimonials">
-        <ul class="testimonial-list">
-            <li class="testimonial-item">
-                <figure>
-                    <img alt="John Doe" src="static/johndoe.png">
-                    <blockquote>This is a quote about how amazing this place is
-                        and how much fun me and my friends had
-                        when we tried it</blockquote>
-                    <figcaption>John Doe, visited us in September 2021
-                    </figcaption>
-                </figure>
-            </li>
-            <li class="testimonial-item">
-                <figure>
-                    <img alt="John Doe" src="static/johndoe.png">
-                    <blockquote>This is a quote about how amazing this place is
-                        and how much fun me and my friends had
-                        when we tried it</blockquote>
-                    <figcaption>John Doe, visited us in September 2021
-                    </figcaption>
-                </figure>
-            </li>
-        </ul>
-    </section>-->
+    
 
 
-    <!-------------- De 3 högst rankade ska visas på startsidan --------------------------------->
+    <!-------------- Kom ihåg: De 3 högst rankade ska visas på startsidan --------------------------------->
+
+    <!--
+
+    1. Definiera
+    Ladda in alla challenges till challenges.html via API.
+    Initiering från index.html (måste känna till js) via menyn och knapparna.
+    Listan challenge-list växer dynamiskt i antal mha challenges.js (i vilken ordning bör de visas från start?).
+    Var tredje challenge har knappen "Take challenge online" (med start på den första).
+
+    2. Separera
+    Vilken HTML behöver göras i challenge-list i challenge.html för att göra  möjliggöra dynamisk tillväxt.
+    Behöver något göras i CSS?
+    Skapa mall för objekt challengeCard i challenges.js
+    Skapa funktion som skapar objekten i challenges.js och presenterar de i challenges.html
+    
+
+    -->
 
 
     <section class="challenges">
         <h2>Popular challenges right now</h2>
         <ul class="challenge-list">
-            <li class="challenge-item">
+            <li class="challenge-item" id="challenge-item">
+
+
+
+
+
+
+
+
+                <img class="challenge-image" alt="Hacker" src="static/hero.png">
+                <h3 class="challenge-title">Title of room (on-site)</h3>
+                <ul role="meter" class="rating" aria-label="rating"
+                    arial-valuemin="0" aria-valuemax="5" aria-valuenow="4"
+                    aria-valuetext="4 out of 5">
+
+                    <li class="rating-star active"></li>
+                    <li class="rating-star active"></li>
+                    <li class="rating-star active"></li>
+                    <li class="rating-star active"></li>
+                    <li class="rating-star"></li>
+                </ul>
+                <small class="challenge-meta">2-6 participants</small>
+                <p class="challenge-description">
+                    Praeterea, ex culpa non invenies unum aut non accusatis
+                    unum. Et nihil inuitam. Nemo nocere tibi
+                    erit, et non inimicos, et
+                </p>
+                <button class="button primary">Book this room</button>
+            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--<li class="challenge-item">
                 <img class="challenge-image" alt="Hacker" src="static/hero.png">
                 <h3 class="challenge-title">Title of room (on-site)</h3>
                 <ul role="meter" class="rating" aria-label="rating"
@@ -102,73 +137,23 @@
                     erit, et non inimicos, et
                 </p>
                 <button class="button primary">Book this room</button>
-            </li>
-            <li class="challenge-item">
-                <img class="challenge-image" alt="Hacker" src="static/hero.png">
-                <h3 class="challenge-title">Title of room (on-site)</h3>
-                <ul role="meter" class="rating" aria-label="rating"
-                    arial-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                    aria-valuetext="4 out of 5">
-
-                    <li class="rating-star active"></li>
-                    <li class="rating-star active"></li>
-                    <li class="rating-star active"></li>
-                    <li class="rating-star active"></li>
-                    <li class="rating-star"></li>
-                </ul>
-                <small class="challenge-meta">2-6 participants</small>
-                <p class="challenge-description">
-                    Praeterea, ex culpa non invenies unum aut non accusatis
-                    unum. Et nihil inuitam. Nemo nocere tibi
-                    erit, et non inimicos, et
-                </p>
-                <button class="button primary">Book this room</button>
-            </li>
+            </li>-->
         </ul>
 
-        <!--<div class="challenges-cta">
+
+        
+
+
+
+
+
+
+
+
+
+        <div class="challenges-cta">
             <a class="button primary" href="">Online challenges</a>
             <a class="button secondary" href="">On-site challenges</a>
-        </div>-->
-    </section>
-
-    <section class="story">
-        <p>
-            Quodsi haberent magnalia inter potentiam et divitias, et non illam
-            quidem haec eo spectant haec quoque vos
-            omnino desit illud quo solo felicitatis libertatisque perficiuntur.
-        </p>
-        <a class="button primary" href="">Read the full story</a>
-    </section>
-
-    <section class="usps">
-        <div class="usp">
-            <img class="usp-image" alt="Two friends in front of a computer"
-                src="static/usp1.png">
-            <div class="usp-info">
-                <h2 class="usp-title">Play with your friends or build your team
-                    stronger at work</h2>
-                <p class="usp-intro">
-                    Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-                    nihil inuitam. Nemo nocere tibi erit,
-                    et non inimicos, et
-                </p>
-                <button class="button primary">Book on-site today</button>
-            </div>
-        </div>
-        <div class="usp">
-            <img class="usp-image" alt="Single person in front of computer"
-                src="static/usp2.png">
-            <div class="usp-info">
-            <h2 class="usp-title">Play online or visit our venue for one of our
-                25 escape rooms</h2>
-            <p class="usp-intro">
-                Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-                nihil inuitam. Nemo nocere tibi erit,
-                et non inimicos, et
-            </p>
-            <button class="button primary">Book on-site today</button>
-        </div>
         </div>
     </section>
 

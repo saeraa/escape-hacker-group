@@ -155,8 +155,3 @@ function filterResults(e) {
 
 	displayData(filteredData);
 }
-
-console.log("A");
-const date = new Date();
-console.log("B", date);
-console.log("C");

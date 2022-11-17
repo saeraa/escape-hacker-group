@@ -1,9 +1,45 @@
-import dummyData from "/02-esc/static/dummy-data.js";
+// example dummy data
+// import dummyData from "/02-esc/static/dummy-data.js";
 
 const form = document.querySelector("form");
 const searchInput = document.querySelector("input[type='search']");
 const outputElement = document.querySelector("#output");
+
+// filtered data to be shown
 let filteredData = [];
+
+// original data array to be populated form the API
+let dataFromAPI = [];
+
+let tagsCollection = new Set();
+
+async function getFromApi() {
+	const res = await fetch(
+		"https://lernia-sjj-assignments.vercel.app/api/challenges"
+	);
+	const data = await res.json();
+	data.challenges.forEach((challenge) => {
+		dataFromAPI.push(challenge);
+		challenge.labels.forEach((label) => {
+			tagsCollection.add(label);
+		});
+		displayData(dataFromAPI);
+		addLabelsToDOM();
+	});
+}
+
+window.addEventListener("load", getFromApi);
+
+function addLabelsToDOM() {
+	let labelString = "";
+	tagsCollection.forEach((label) => {
+		labelString += `
+		<input type="checkbox" name="tags:${label}" id="tags:${label}">
+		<label for="tags:${label}">${label}</label>
+		`;
+	});
+	document.querySelector("#tags").innerHTML = labelString;
+}
 
 function displayData(array) {
 	if (array.length == 0) {
@@ -15,17 +51,17 @@ function displayData(array) {
 		// placeholder room data output
 		dataString += `<p>
     <b>${data.title}</b><br /> 
-    ${data.min_participants} - ${data.max_participants} participants<br />
+    ${data.minParticipants} - ${data.maxParticipants} participants<br />
     rating: ${data.rating}<br />
     ${data.description} <br />
     type: ${data.type}<br />
-    tags: ${data.tags}<br />
+    tags: ${data.labels}<br />
     </p>`;
 	});
 	outputElement.innerHTML = dataString;
 }
 
-displayData(dummyData);
+//displayData(dummyData);
 
 form.addEventListener("change", filterResults);
 form.addEventListener("submit", doNotReload);
@@ -44,7 +80,8 @@ function filterResults(e) {
 	filteredData = [];
 	const formData = new FormData(form);
 
-	dummyData.forEach((entry) => {
+	//dummyData.forEach((entry) => {
+	dataFromAPI.forEach((entry) => {
 		// If an entry matches these criteria, add to array of entries to display
 
 		// if rating selected: exclude if rating is smaller than min, or bigger than max
@@ -64,10 +101,9 @@ function filterResults(e) {
 		for (const [key, value] of formData) {
 			// check tags
 			if (
-				(key == "tag:web" && !entry.tags.includes("web")) ||
-				(key == "tag:crypto" && !entry.tags.includes("crypto")) ||
-				(key == "tag:linux" && !entry.tags.includes("linux")) ||
-				(key == "tag:coding" && !entry.tags.includes("coding"))
+				key.includes("tags:") &&
+				!entry.labels.includes(key.substring(5))
+				// only check the "javascript" part of "tags:javascript", for example
 			) {
 				tagsMatches = false;
 			}
@@ -119,3 +155,8 @@ function filterResults(e) {
 
 	displayData(filteredData);
 }
+
+console.log("A");
+const date = new Date();
+console.log("B", date);
+console.log("C");

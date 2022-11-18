@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="static/main.css">
+    <link rel="stylesheet" type="text/css" href="challenges_all.css">
     <title>[ESC] Hacker Escape Rooms</title>
 </head>
 
@@ -22,13 +23,7 @@
             <li class="main-menu-item"><a href="">Contact us </a></li>
         </menu>
     </nav>
-    <section class="hero">
-        <img alt="Hacker in front of screens" src="static/hero.png">
-        <div class="hero-cta">
-            <a class="button primary" href="">Online challenges</a>
-            <a class="button secondary" href="">On-site challenges</a>
-        </div>
-    </section>
+    
     
 
 
@@ -40,8 +35,7 @@
     Initiering från index.html (känna till js) via menyn och knapparna.
     Ladda in alla challenges till challenges.html via API i JS.
     Listan (challenge-list) växer dynamiskt i antal mha challenges.js (i vilken ordning bör de visas från start?).
-    Var tredje challenge har knappen "Take challenge online" (med start på den första).
-
+    
     2. Separera
     Vilken HTML behöver göras i challenge-list i challenge.html för att göra  möjliggöra dynamisk tillväxt.
     Behöver något göras i CSS?
@@ -54,29 +48,24 @@
     textsträng och lägga in i något elements innerHTML, eller om man skapar alla noder avskiljt med createElement() 
     så kan man ju createElement men inte appenda förrän man har allt"
 
-    
-
     -->
 
 
-    <section class="challenges">
-        <h2>Popular challenges right now</h2>
+    
+        <h2>Our Challenges</h2>
+        <button class="btnFilterChallenges" id="btnFilterChallenges">Filter Challenges</button>
+
+
+        <button class="testBtn">Test JS</button>
+        
+        
+        <section class="challenges"> 
         <ul class="challenge-list">
             <li class="challenge-item" id="challenge-item">
-
-
-
-
-
-
-
-
                 <img class="challenge-image" alt="Hacker" src="static/hero.png">
                 <h3 class="challenge-title">Title of room (on-site)</h3>
                 <ul role="meter" class="rating" aria-label="rating"
-                    arial-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                    aria-valuetext="4 out of 5">
-
+                    arial-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-valuetext="4 out of 5">
                     <li class="rating-star active"></li>
                     <li class="rating-star active"></li>
                     <li class="rating-star active"></li>
@@ -102,14 +91,11 @@
 
 
 
-
-            <!--<li class="challenge-item">
+            <li class="challenge-item" id="challenge-item">
                 <img class="challenge-image" alt="Hacker" src="static/hero.png">
                 <h3 class="challenge-title">Title of room (on-site)</h3>
                 <ul role="meter" class="rating" aria-label="rating"
-                    arial-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                    aria-valuetext="4 out of 5">
-
+                    arial-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-valuetext="4 out of 5">
                     <li class="rating-star active"></li>
                     <li class="rating-star active"></li>
                     <li class="rating-star active"></li>
@@ -124,13 +110,11 @@
                 </p>
                 <button class="button primary">Book this room</button>
             </li>
-            <li class="challenge-item">
+            <li class="challenge-item" id="challenge-item">
                 <img class="challenge-image" alt="Hacker" src="static/hero.png">
                 <h3 class="challenge-title">Title of room (on-site)</h3>
                 <ul role="meter" class="rating" aria-label="rating"
-                    arial-valuemin="0" aria-valuemax="5" aria-valuenow="4"
-                    aria-valuetext="4 out of 5">
-
+                    arial-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-valuetext="4 out of 5">
                     <li class="rating-star active"></li>
                     <li class="rating-star active"></li>
                     <li class="rating-star active"></li>
@@ -144,26 +128,15 @@
                     erit, et non inimicos, et
                 </p>
                 <button class="button primary">Book this room</button>
-            </li>-->
+            </li>
         </ul>
-
-
-        
-
-
-
-
-
-
-
-
-
-        <div class="challenges-cta">
-            <a class="button primary" href="">Online challenges</a>
-            <a class="button secondary" href="">On-site challenges</a>
-        </div>
     </section>
 
+    
+    
+    
+    
+    
     <footer>
         <div class="footer-summary">
             <h2>[Esc] Hacker Escape Rooms</h2>
@@ -197,8 +170,8 @@
             document.querySelector('.main-nav').classList.toggle('open');
         })
     </script>
+    <script src='challenges.js'></script>
 </body>
-
 </html>
 
 

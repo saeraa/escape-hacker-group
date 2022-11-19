@@ -28,32 +28,42 @@ let resultFromAPI = [];
         //console.log(resultFromAPI[2].title);
 
         let challenges = document.getElementById('challenge-list')
-        let testVisning = document.getElementById('.challenge-title') 
+        
 
         
 
         for (i = 0; i < resultFromAPI.length; i++) {
-             let title = resultFromAPI[i].title; 
+            let id = resultFromAPI[i].id;
+            let type = resultFromAPI[i].type;
             
-             console.log(title); 
+            let image = resultFromAPI[i].image; // Kolla hur en skriver url:en så att det funkar
             
-            
-            // Enligt nedan kan en ju inte hålla på - tips?
-            /*
-            let card = document.createElement("li");
-            let id = document.createElement("span");
-            o.s.v. för att sen appenda
-            */
 
-           
-            // Jag har testat lite men hade inte så mycket tid idag men har återställt allt nu som det var. Jag testar mera morgon såklart.
-
-            // Det här kommer att gå bra tillslut. 
+            let rating = resultFromAPI[i].rating;
             
-        } 
-       
-        
-        
-        
-       
+            let title = resultFromAPI[i].title; 
+            let setTitle = document.querySelector('.challenge-title');
+            setTitle.innerHTML = title;
+
+            let minParticipants = resultFromAPI[i].minParticipants;
+            let maxParticipants = resultFromAPI[i].maxParticipants;
+
+            let description = resultFromAPI[i].description;
+            let setDescription = document.querySelector('.challenge-description');
+            setDescription.innerHTML = description;
+            
+            
+            
+            console.log(rating);
+                
+        }    
     };
+
+    /* 
+    Jag har inte haft tid att greja i princip nånting idag. Men det funkar att visa titel och beskrivning.
+    Jag ska klura lite på hur vi får upp bilderna på rätt sätt + hur vi visar antal deltagare (min-max) imorgon, söndag.
+
+    Om du känner att du vill klura på något, så kan du fundera lite på hur vi kan göra med stjärnorna och hur vi 
+    presenterar det (alltså bara om du känner ett behov av att göra nåt). Annars tar vi det i veckan
+    som kommer, det fixar vi.
+    */

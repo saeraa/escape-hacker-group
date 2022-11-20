@@ -34,9 +34,9 @@ let resultFromAPI = [];
 
         for (i = 0; i < resultFromAPI.length; i++) {
             let id = resultFromAPI[i].id;
-            let type = resultFromAPI[i].type;
+            let type = resultFromAPI[i].type;          
             
-            let image = resultFromAPI[i].image; // Kolla hur en skriver url:en så att det funkar
+            let image = resultFromAPI[i].image; // Kolla hur en skriver url:en så att det funkar              
             
 
             let rating = resultFromAPI[i].rating;

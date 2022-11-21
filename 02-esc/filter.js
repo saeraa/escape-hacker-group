@@ -1,12 +1,13 @@
 const form = document.querySelector("form");
 const searchInput = document.querySelector("input[type='search']");
-const outputElement = document.querySelector("#output");
+const outputElement = document.querySelector("#output"); // placeholder element for output
 const clearBtn = document.querySelector(".filter-clear");
 
 clearBtn.addEventListener("click", clearFilter);
-form.addEventListener("change", filterResults);
 form.addEventListener("submit", doNotReload);
+form.addEventListener("change", filterResults);
 searchInput.addEventListener("keyup", filterResults);
+window.addEventListener("load", getFromApi);
 
 // filtered data to be shown
 let filteredData = [];
@@ -32,8 +33,6 @@ async function getFromApi() {
 	});
 }
 
-window.addEventListener("load", getFromApi);
-
 function addLabelsToDOM() {
 	let labelString = "";
 	tagsCollection.forEach((label) => {
@@ -47,7 +46,8 @@ function addLabelsToDOM() {
 
 function displayData(array) {
 	if (array.length == 0) {
-		outputElement.innerHTML = "<h2>No matching challenges.</h2>";
+		outputElement.innerHTML =
+			"<p class='filter-error'>No matching challenges.</p>";
 		return;
 	}
 	let dataString = "";
@@ -77,13 +77,11 @@ function clearFilter() {
 }
 
 function filterResults(e) {
-	filteredData = [];
-	const formData = new FormData(form);
+	filteredData = []; // reset array so it can be repopulated after the filter is applied
+	const formData = new FormData(form); // get the data from the inputs
 
-	//dummyData.forEach((entry) => {
 	dataFromAPI.forEach((entry) => {
 		// If an entry matches these criteria, add to array of entries to display
-
 		// if rating selected: exclude if rating is smaller than min, or bigger than max
 		// if tags selected: tags exist in entry.tag[]
 		// if search term: exclude if title/description does not include the search term
@@ -97,6 +95,7 @@ function filterResults(e) {
 		let titleAndDescription = entry.title + " " + entry.description;
 		titleAndDescription = titleAndDescription.split(/[ ,]+/);
 		// splits string using regex on a space or a comma
+		// so we later can search for single words
 
 		for (const [key, value] of formData) {
 			// check tags
@@ -127,7 +126,7 @@ function filterResults(e) {
 			// check search input
 			if (key == "search") {
 				const valueArray = value.toLowerCase().split(/[ ,]+/);
-
+				// putting the input into one array and comparing it to the titleAndDescription array created above. findIndex returns -1 if no matching input is found
 				valueArray.forEach((searchTerm) => {
 					const index = titleAndDescription.findIndex((element) => {
 						if (element.includes(searchTerm)) {

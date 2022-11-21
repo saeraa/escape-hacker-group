@@ -49,8 +49,19 @@ const challenge_list = document.querySelector('.challenge-list');
             setRating.innerHTML =  `${rating}`;
             challenge_item.appendChild(setRating);
 
+            // Add ratingStar to site
+            // fortsätter imorgon med rating star problemet
+            // Jag har lokaliserat den tomma rutan och knappen, det är ju själva sectionen
+            // class "challenges" som är problemet. 
 
             
+
+
+
+
+
+
+
 
             let setTitle = document.createElement("h3");
             setTitle.classList.add('.challenge-title');

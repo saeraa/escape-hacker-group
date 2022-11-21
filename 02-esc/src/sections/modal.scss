@@ -8,6 +8,40 @@
     }
 
 }
+//Make modal cover page -- start
+.modal-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $c-darkblue;
+    color: white;
+    position:fixed;
+    top: 1rem;
+    left: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1001;
+}
+
+.bookingStep1Content {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+#firstButton {
+   margin-top: 40px; 
+}
+
+.bookingStep2Content {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.bookingStep3Content {
+    margin-left: 0px;
+}
+//Make modal cover page -- end
 
 .booking-step-1 {
     // display: none;

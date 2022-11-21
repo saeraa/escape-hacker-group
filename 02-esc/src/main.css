@@ -173,8 +173,20 @@ header h1 {
     right: 1em;
     bottom: 1em;
     z-index: 1000;
-    animation: main-menu_reveal 0.3s 0.2s;
-    animation-fill-mode: backwards;
+    -webkit-animation: main-menu_reveal 0.3s 0.2s;
+            animation: main-menu_reveal 0.3s 0.2s;
+    -webkit-animation-fill-mode: backwards;
+            animation-fill-mode: backwards;
+  }
+  @-webkit-keyframes main-menu_reveal {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
   @keyframes main-menu_reveal {
     from {
@@ -227,7 +239,8 @@ header h1 {
 .hero img {
   width: 100%;
   min-height: 40vh;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 @media (min-width: 600px) {
   .hero img {
@@ -283,7 +296,8 @@ header h1 {
 .testimonial-item figure {
   display: grid;
   grid-template-columns: 74px auto;
-  column-gap: 1em;
+  -moz-column-gap: 1em;
+       column-gap: 1em;
 }
 .testimonial-item figure blockquote {
   margin: 0;
@@ -410,7 +424,8 @@ header h1 {
   margin: 0 0 2rem;
 }
 .usps .usp .usp-image {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .usps .usp .usp-title,
 .usps .usp .usp-intro,
@@ -487,7 +502,8 @@ footer a:hover {
 
 .modal {
   background-color: #011827;
-  color: white;
+  color: rgb(255, 255, 255);
+  z-index: 100;
 }
 .modal .input-field {
   height: 2rem;
@@ -495,36 +511,7 @@ footer a:hover {
 }
 
 .modal-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #011827;
-  color: white;
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 1001;
-}
-
-.bookingStep1Content {
-  margin-left: 30px;
-  margin-right: 10px;
-}
-
-#firstButton {
-  margin-top: 40px;
-}
-
-.bookingStep2Content {
-  margin-left: 30px;
-  margin-right: 10px;
-}
-
-.bookingStep3Content {
-  margin-left: 0px;
+  font-size: 2em;
 }
 
 .booking-step-1 {
@@ -567,6 +554,4 @@ footer a:hover {
 }
 .booking-step-3 a {
   color: white;
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

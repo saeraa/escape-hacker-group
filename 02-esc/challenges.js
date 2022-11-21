@@ -1,11 +1,11 @@
 
-// Testknapp för att kolla att data laddas från API
+
 const testBtn = document.querySelector(".testBtn");
 testBtn.addEventListener("click", getChallengesAPI);
 
-// Array för att spara ned data från API
 let resultFromAPI = []; 
 
+const challenge_list = document.querySelector('.challenge-list');
 
     async function getChallengesAPI() {
         const resultList = await fetch(
@@ -15,55 +15,74 @@ let resultFromAPI = [];
     
         result.challenges.forEach((challenge) => {
             resultFromAPI.push(challenge);
-            //console.log(challenge.description);   
-            //console.log(resultFromAPI);
             });
 
-            // Anropar funktion för att bygga upp listan och visa på challenges.html
             showAllChallenges(resultFromAPI);
         };
     
 
     function showAllChallenges (resultFromAPI) {
-        //console.log(resultFromAPI[2].title);
-
-        let challenges = document.getElementById('challenge-list')
-        
-
-        
-
+    
         for (i = 0; i < resultFromAPI.length; i++) {
             let id = resultFromAPI[i].id;
             let type = resultFromAPI[i].type;
-            
-            let image = resultFromAPI[i].image; // Kolla hur en skriver url:en så att det funkar
-            
-
-            let rating = resultFromAPI[i].rating;
-            
             let title = resultFromAPI[i].title; 
-            let setTitle = document.querySelector('.challenge-title');
-            setTitle.innerHTML = title;
-
+            let description = resultFromAPI[i].description;
             let minParticipants = resultFromAPI[i].minParticipants;
             let maxParticipants = resultFromAPI[i].maxParticipants;
+            let rating = resultFromAPI[i].rating;
+            let image = resultFromAPI[i].image; 
+            let labels = resultFromAPI[i].labels;
 
-            let description = resultFromAPI[i].description;
-            let setDescription = document.querySelector('.challenge-description');
-            setDescription.innerHTML = description;
+            let challenge_item = document.createElement("li");
+            challenge_item.classList.add('.challenge-item');
             
+            let setImage = document.createElement("img");
+            setImage.classList.add('.challenge-image');
+            setImage.src = image;
+            challenge_item.append(setImage);
+
+            /*let setRating = document.createElement("ul");
+            setRating.classList.add('.challenge-rating');
+            setRating.*/
+
+            let setTitle = document.createElement("h3");
+            setTitle.classList.add('.challenge-title');
+            setTitle.textContent = title;
+            challenge_item.appendChild(setTitle);
+
+            let setParticipants = document.createElement("small");
+            setParticipants.classList.add('.challenge-meta');
+            setParticipants.innerHTML = `${minParticipants} - ${maxParticipants} participants`;
+            challenge_item.appendChild(setParticipants);
+
+            let setDescription = document.createElement("p");
+            setDescription.classList.add('.challenge-description');
+            setDescription.textContent = description;
+            challenge_item.appendChild(setDescription);
+
+            let btnBook = document.createElement("button");
+            btnBook.classList.add('.btnBook');
+
+                // Varför funkar inte if-satsen?
+                if (resultFromAPI.type = 'onsite') {
+                    btnBook.textContent = 'Take challenge online';
+                } else {
+                    btnBook.textContent = 'Book this room';
+                }
+
+            challenge_item.appendChild(btnBook);
+
+            btnBook.addEventListener("click", function(){
+                console.log('Knapptryck');
+            });
             
+    
+            challenge_list.appendChild(challenge_item);
             
-            console.log(rating);
-                
-        }    
+
+            console.log(title);
+      
     };
 
-    /* 
-    Jag har inte haft tid att greja i princip nånting idag. Men det funkar att visa titel och beskrivning.
-    Jag ska klura lite på hur vi får upp bilderna på rätt sätt + hur vi visar antal deltagare (min-max) imorgon, söndag.
-
-    Om du känner att du vill klura på något, så kan du fundera lite på hur vi kan göra med stjärnorna och hur vi 
-    presenterar det (alltså bara om du känner ett behov av att göra nåt). Annars tar vi det i veckan
-    som kommer, det fixar vi.
-    */
+}  

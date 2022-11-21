@@ -9,6 +9,12 @@ h2 {
     margin-left: 46%;  
 }
 
+/*.challenge-list {
+    list-style: none;
+    display:grid;
+    column-span: 3;
+}*/
+
 
 
 

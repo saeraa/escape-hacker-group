@@ -26,6 +26,12 @@ const challenge_list = document.querySelector('.challenge-list');
         for (i = 0; i < resultFromAPI.length; i++) {
             let id = resultFromAPI[i].id;
             let type = resultFromAPI[i].type;
+            
+            let image = resultFromAPI[i].image; // Kolla hur en skriver url:en så att det funkar
+            
+
+            let rating = resultFromAPI[i].rating;
+            
             let title = resultFromAPI[i].title; 
             let description = resultFromAPI[i].description;
             let minParticipants = resultFromAPI[i].minParticipants;

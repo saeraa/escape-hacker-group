@@ -1,7 +1,10 @@
 const openModalBtn = document.querySelector('.open-modal-btn');
 openModalBtn.addEventListener("click", openModal);
 
-
+let customerName;
+let eMail;
+let time;
+let participants;
 
 
 
@@ -30,7 +33,6 @@ function openModal() {
     function openModalStepTwo(e) {
 
         e.preventDefault();
-        console.log('modal two opened');
 
         modalDiv.innerHTML = `
             <div class="bookingStep2Content">
@@ -55,14 +57,24 @@ function openModal() {
             </div>
         `;
     
+    function getBookingInformationFromForm() {
+
+        customerName = document.querySelector('#name').value;
+        eMail = document.querySelector('#e-mail').value;
+        time = document.querySelector('#time').value;
+        participants = parseInt(document.querySelector('#participants').value);
+    }
+    
+         
     let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
-    openModalStepThreeBtn.addEventListener("click", 
-    openModalStepThree);
+    openModalStepThreeBtn.addEventListener("click", getBookingInformationFromForm);
+    openModalStepThreeBtn.addEventListener("click", makeBooking);
+    
+    openModalStepThreeBtn.addEventListener("click", openModalStepThree);
 
     function openModalStepThree(e) {
 
         e.preventDefault();
-        console.log('modal three opened');
 
         modalDiv.innerHTML = `
         <div class="bookingStep3Content">
@@ -73,5 +85,27 @@ function openModal() {
 
     }
 }
+}
+
+
+async function makeBooking() {
+
+const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        challenge: 12,
+        name: customerName,
+        email: eMail,
+        date: "2022-12-12",
+        time: time,
+        participants: participants,
+    }),
+});
+const data = await res.json();
+console.log(data);
+
 }
 

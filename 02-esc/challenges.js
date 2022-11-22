@@ -75,33 +75,30 @@ let resultFromAPI = [];
             let setRating_star_5 = document.createElement("li");
             setRating_star_5.classList.add('rating-star');
             setRating.appendChild(setRating_star_5);
-
-
             
-            /* Tråkig if-sats, men den borde fungera. Måste kunna byta klass på stjärnorna dock,
-               men hajar inte riktigt då det är "space" i klassnamnet och får felmeddelande om det. */
-
-            /*if (rating == 1 & < 2) {
-                setRating_star_1.classList.add('rating-star active');  
-            } else if (rating == 2 & < 3) {
-                setRating_star_1.classList.add('rating-star active');
-                setRating_star_2.classList.add('rating-star active');
-            } else if (rating == 3 & < 4) {
-                setRating_star_1.classList.add('rating-star active');
-                setRating_star_2.classList.add('rating-star active');
-                setRating_star_3.classList.add('rating-star active');
-            } else if (rating == 4 & < 5) {
-                setRating_star_1.classList.add('rating-star active');
-                setRating_star_2.classList.add('rating-star active');
-                setRating_star_3.classList.add('rating-star active');
-                setRating_star_4.classList.add('rating-star active');
+            if (rating < 1) {
+                setRating_star_1.classList.add('rating-star');
+            } else if (rating == 1 || rating < 2) {
+                setRating_star_1.classList.add('active');
+            } else if (rating == 2  || rating < 3) {
+                setRating_star_1.classList.add('rating-star', 'active');
+                setRating_star_2.classList.add('rating-star', 'active');    
+            } else if (rating == 3  || rating < 4) {
+                setRating_star_1.classList.add('rating-star', 'active');
+                setRating_star_2.classList.add('rating-star', 'active');
+                setRating_star_3.classList.add('rating-star', 'active');
+            } else if (rating == 4  || rating < 5) {
+                setRating_star_1.classList.add('rating-star', 'active');
+                setRating_star_2.classList.add('rating-star', 'active');
+                setRating_star_3.classList.add('rating-star', 'active');
+                setRating_star_4.classList.add('rating-star', 'active');
             } else {
-                setRating_star_1.classList.add('rating-star active');
-                setRating_star_2.classList.add('rating-star active');
-                setRating_star_3.classList.add('rating-star active');
-                setRating_star_4.classList.add('rating-star active');
-                setRating_star_5.classList.add('rating-star active'); 
-            }*/
+                setRating_star_1.classList.add('rating-star', 'active');
+                setRating_star_2.classList.add('rating-star', 'active');
+                setRating_star_3.classList.add('rating-star', 'active');
+                setRating_star_4.classList.add('rating-star', 'active');
+                setRating_star_5.classList.add('rating-star', 'active'); 
+            }
             
             
             challenge_item.appendChild(setRating);

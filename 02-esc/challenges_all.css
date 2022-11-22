@@ -9,11 +9,6 @@ h2 {
     margin-left: 46%;  
 }
 
-/*.challenge-list {
-    list-style: none;
-    display:grid;
-    column-span: 3;
-}*/
 
 
 
@@ -31,18 +26,3 @@ h2 {
 
 
 
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-@import "variables.scss";
-@import "misc.scss";
-@import "mixins.scss";
-@import "sections/header.scss";
-@import "sections/main-nav.scss";
-@import "sections/hero.scss";
-@import "sections/testimonials.scss";
-@import "sections/challenges.scss";
-@import "sections/story.scss";
-@import "sections/usps.scss";
-@import "sections/footer.scss";
-@import "sections/modal.scss";

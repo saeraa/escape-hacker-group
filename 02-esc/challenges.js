@@ -64,13 +64,14 @@ const challenge_list = document.querySelector('.challenge-list');
             let btnBook = document.createElement("button");
             btnBook.classList.add('.btnBook');
 
+            btnBook.textContent = type;
+
                 
-                if (resultFromAPI.type = 'onsite') {
+                /*if (type = 'onsit') {
                     btnBook.textContent = 'Take challenge online';
                 } else {
                     btnBook.textContent = 'Book this room';
-                }
-
+                }*/
             challenge_item.appendChild(btnBook);
 
             btnBook.addEventListener("click", function(){

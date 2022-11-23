@@ -42,9 +42,9 @@ window.onload = getChallengesAPI();
             let setRoomImage = document.createElement("img");
             setRoomImage.classList.add('room-image');
                 if (type == 'onsite') {
-                    setRoomImage.src = "static/iconOnsite.svg";
-                } else {
                     setRoomImage.src = "static/iconOnline.svg";
+                } else {
+                    setRoomImage.src = "static/iconOnsite.svg";
                 }
             challenge_item.append(setRoomImage);
 

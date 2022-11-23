@@ -4,6 +4,7 @@ const testBtn = document.querySelector(".testBtn");
 testBtn.addEventListener("click", getChallengesAPI);
 
 const challenge_list = document.querySelector('.challenge-list');
+/* const challenges_visiility = document.querySelector('.challenges'); */
 
 //const section_challenges = document.querySelector('.challenges');
 
@@ -23,6 +24,7 @@ let resultFromAPI = [];
             });
 
             showAllChallenges(resultFromAPI);
+           /*  challenges_visiility.style.display = 'block'; */
         };
     
 

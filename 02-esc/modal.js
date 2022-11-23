@@ -5,10 +5,10 @@ let customerName;
 let eMail;
 let time;
 let participants;
+let date;
 
-
-
-function openModal() {
+function openModal() { //(e)
+    let idVariabelForModal = 4; //e.target.dataset.id 
     let body = document.querySelector('body');
     let modalDiv = document.createElement('div');
     modalDiv.className = 'modal-div';
@@ -18,22 +18,27 @@ function openModal() {
         <h2>What date would you like to come?</h2>
         <form action="">
             <label class="booking-date-label" for="date">Date</label>
-            <input class="input-field" type="date" name="date">
+            <input id="date" class="input-field" type="date" name="date">
             <input id="firstButton" type="submit" value="Search available times" class="button primary open-modal-step-2">
         </form>
         </div>
     `;
     body.appendChild(modalDiv);
-
+    
+    function getDateFromForm() {
+        date = document.querySelector('#date').value
+        console.log(date);
+        checkAvailableTimes(date, idVariabelForModal);
+    }
 
     let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
+    openModalStepTwoBtn.addEventListener("click", 
+    getDateFromForm);
     openModalStepTwoBtn.addEventListener("click", 
     openModalStepTwo);
 
     function openModalStepTwo(e) {
-
         e.preventDefault();
-
         modalDiv.innerHTML = `
             <div class="bookingStep2Content">
             <h1>Book room "Title of room" (step 2)</h1>
@@ -58,38 +63,30 @@ function openModal() {
         `;
     
     function getBookingInformationFromForm() {
-
         customerName = document.querySelector('#name').value;
         eMail = document.querySelector('#e-mail').value;
         time = document.querySelector('#time').value;
         participants = parseInt(document.querySelector('#participants').value);
     }
-    
          
     let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
     openModalStepThreeBtn.addEventListener("click", getBookingInformationFromForm);
     openModalStepThreeBtn.addEventListener("click", makeBooking);
-    
     openModalStepThreeBtn.addEventListener("click", openModalStepThree);
 
     function openModalStepThree(e) {
-
         e.preventDefault();
-
         modalDiv.innerHTML = `
         <div class="bookingStep3Content">
             <h1>Thank you!</h1>
             <a href="">Back to challenges</a>
          </div>
         `;
-
     }
 }
 }
 
-
 async function makeBooking() {
-
 const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
     method: 'POST',
     headers: {
@@ -106,6 +103,12 @@ const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/r
 });
 const data = await res.json();
 console.log(data);
-
 }
 
+async function checkAvailableTimes(selectedDate, challengeId) {
+    const res = await fetch(`https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${selectedDate}&challenge=${challengeId}`);
+    const data = await res.json();
+    data.slots.forEach(slot => {
+        console.log(slot) 
+})
+}

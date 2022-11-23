@@ -1,7 +1,4 @@
 
-
-
-
 const testBtn = document.querySelector(".testBtn");
 //testBtn.addEventListener("click", getChallengesAPI);
 const challenge_list = document.querySelector('.challenge-list');
@@ -41,6 +38,15 @@ window.onload = getChallengesAPI();
             setImage.classList.add('challenge-image');
             setImage.src = image;
             challenge_item.append(setImage);
+
+            let setRoomImage = document.createElement("img");
+            setRoomImage.classList.add('room-image');
+                if (type == 'onsite') {
+                    setRoomImage.src = "static/iconOnsite.svg";
+                } else {
+                    setRoomImage.src = "static/iconOnline.svg";
+                }
+            challenge_item.append(setRoomImage);
 
             let setRating = document.createElement("ul");
             setRating.classList.add('rating');
@@ -109,6 +115,8 @@ window.onload = getChallengesAPI();
 
             let btnBook = document.createElement("button");
             btnBook.classList.add('btnBook');
+
+            //btnBook.setAttribute("data-id", resultFromAPI.id);
                 
                 if (type == 'onsite') {
                     btnBook.textContent = 'Take challenge online';
@@ -118,13 +126,13 @@ window.onload = getChallengesAPI();
             challenge_item.appendChild(btnBook);
 
             btnBook.addEventListener("click", function(){
-                console.log('Knapptryck');
+                console.log(id);
             });
-            
+
     
             challenge_list.appendChild(challenge_item);
             
-           //console.log(rating);
+            console.log(title);
       
     };
 

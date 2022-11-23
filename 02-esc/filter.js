@@ -1,4 +1,6 @@
-const form = document.querySelector("form");
+import { getDataFromAPI } from "./getDataFromAPI.js";
+
+const form = document.querySelector(".filter-form");
 const searchInput = document.querySelector("input[type='search']");
 const outputElement = document.querySelector("#output"); // placeholder element for output
 const clearBtn = document.querySelector(".filter-clear");
@@ -7,7 +9,7 @@ clearBtn.addEventListener("click", clearFilter);
 form.addEventListener("submit", doNotReload);
 form.addEventListener("change", filterResults);
 searchInput.addEventListener("keyup", filterResults);
-window.addEventListener("load", getFromApi);
+window.addEventListener("load", setupData);
 
 // filtered data to be shown
 let filteredData = [];
@@ -18,19 +20,16 @@ let dataFromAPI = [];
 // adding all tags to a Set, don't need duplicate tags
 let tagsCollection = new Set();
 
-async function getFromApi() {
-	const res = await fetch(
-		"https://lernia-sjj-assignments.vercel.app/api/challenges"
-	);
-	const data = await res.json();
-	data.challenges.forEach((challenge) => {
-		dataFromAPI.push(challenge);
+async function setupData() {
+	const data = await getDataFromAPI();
+	dataFromAPI = data;
+	dataFromAPI.forEach((challenge) => {
 		challenge.labels.forEach((label) => {
 			tagsCollection.add(label);
 		});
-		displayData(dataFromAPI);
-		addLabelsToDOM();
 	});
+	displayData(dataFromAPI);
+	addLabelsToDOM();
 }
 
 function addLabelsToDOM() {

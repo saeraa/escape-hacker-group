@@ -74,6 +74,7 @@ header > h1{
 
     color: #000000;
     font-weight: lighter;
+    margin-top: -80px;
     
 }
 
@@ -102,13 +103,87 @@ h2 {
 /*********************************************** Beginning of cards styling ***************************************************/
 
 
+.move{
+
+    position: relative;
+}
+
 .btnBook{
+
+    position: relative;
+    right: -6rem;
+    margin-bottom: 1rem;
+    padding: 5px;
+    border-radius: 8px;
+    
 
     background-color: blue;
     color: white;
     
     
 }
+
+.challenge-item{
+
+    position: relative;
+}
+
+.challenges h3, small, p{
+
+    
+  
+    justify-content: left;
+    font-size: small;
+    
+    
+}
+
+.challenges h3{
+
+    position: relative;
+    top: -95px;
+    
+}
+
+.challenge-meta{
+
+    position: relative;
+    top: -80px;
+}
+
+
+
+.challenge-item small{
+
+    position: absolute;
+    top: 17rem;
+}
+
+.challenge-item p{
+
+   position: absolute;
+   top: 18rem;
+   
+
+   
+}
+
+.challenge-item li{
+
+   position: relative;
+   top: -60px;
+   left: 15px;
+   
+   
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -137,6 +212,11 @@ footer{
 
     color: #000000;
     font-weight: lighter;
+}
+
+.footer-summary h2{
+
+    margin-left: -11rem;
 }
 
 /* creating color and font-weight */

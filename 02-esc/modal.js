@@ -6,9 +6,10 @@ let eMail;
 let time;
 let participants;
 let date;
+let idVariabelForModal;
 
 function openModal() { //(e)
-    let idVariabelForModal = 4; //e.target.dataset.id 
+    idVariabelForModal = 4; //e.target.dataset.id 
     let body = document.querySelector('body');
     let modalDiv = document.createElement('div');
     modalDiv.className = 'modal-div';
@@ -93,10 +94,10 @@ const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/r
         'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-        challenge: 12,
+        challenge: idVariabelForModal,
         name: customerName,
         email: eMail,
-        date: "2022-12-12",
+        date: date,
         time: time,
         participants: participants,
     }),

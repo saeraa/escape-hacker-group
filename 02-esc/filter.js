@@ -1,14 +1,14 @@
 import { getDataFromAPI } from "./getDataFromAPI.js";
 
-const form = document.querySelector(".filter-form");
-const searchInput = document.querySelector("input[type='search']");
+const filterForm = document.querySelector(".filter-form");
+const searchFilterInput = document.querySelector("input[type='search']");
 const outputElement = document.querySelector("#output"); // placeholder element for output
-const clearBtn = document.querySelector(".filter-clear");
+const clearFilterBtn = document.querySelector(".filter-clear");
 
-clearBtn.addEventListener("click", clearFilter);
-form.addEventListener("submit", doNotReload);
-form.addEventListener("change", filterResults);
-searchInput.addEventListener("keyup", filterResults);
+clearFilterBtn.addEventListener("click", clearFilter);
+filterForm.addEventListener("submit", doNotReload);
+filterForm.addEventListener("change", filterResults);
+searchFilterInput.addEventListener("keyup", filterResults);
 window.addEventListener("load", setupData);
 
 // filtered data to be shown
@@ -71,13 +71,13 @@ function doNotReload(e) {
 
 function clearFilter() {
 	// this function should restore all filters and use the original array to display the rooms
-	form.reset();
+	filterForm.reset();
 	displayData(dataFromAPI);
 }
 
 function filterResults(e) {
 	filteredData = []; // reset array so it can be repopulated after the filter is applied
-	const formData = new FormData(form); // get the data from the inputs
+	const formData = new FormData(filterForm); // get the data from the inputs
 
 	dataFromAPI.forEach((entry) => {
 		// If an entry matches these criteria, add to array of entries to display

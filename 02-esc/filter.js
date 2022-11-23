@@ -7,8 +7,8 @@ const clearFilterBtn = document.querySelector(".filter-clear");
 
 clearFilterBtn.addEventListener("click", clearFilter);
 filterForm.addEventListener("submit", doNotReload);
-filterForm.addEventListener("change", filterResults);
-searchFilterInput.addEventListener("keyup", filterResults);
+filterForm.addEventListener("change", useAllFilters);
+searchFilterInput.addEventListener("keyup", useAllFilters);
 window.addEventListener("load", setupData);
 
 // filtered data to be shown
@@ -22,6 +22,7 @@ let tagsCollection = new Set();
 
 async function setupData() {
 	const data = await getDataFromAPI();
+	console.log(data);
 	dataFromAPI = data;
 	dataFromAPI.forEach((challenge) => {
 		challenge.labels.forEach((label) => {
@@ -75,78 +76,91 @@ function clearFilter() {
 	displayData(dataFromAPI);
 }
 
-function filterResults(e) {
+function filterRating(entry, formData) {
+	if (
+		(formData.has("rating:min") &&
+			+entry.rating < +formData.get("rating:min")) ||
+		(formData.has("rating:max") && +entry.rating > +formData.get("rating:max"))
+	) {
+		return false;
+	} else return true;
+}
+
+function filterLabels(entry, key) {
+	// check tags
+	if (
+		key.includes("tags:") &&
+		!entry.labels.includes(key.substring(5))
+		// only check the "javascript" part of "tags:javascript", for example
+	) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function filterType(entry, formData) {
+	if (formData.has("type:onsite") && formData.has("type:online")) {
+		return true;
+	} else if (formData.has("type:online") && entry.type != "online") {
+		return false;
+	} else if (formData.has("type:onsite") && entry.type != "onsite") {
+		return false;
+	} else return true;
+}
+
+function filterSearch(entry, value) {
+	const titleAndDescription = entry.title
+		.concat(" ", entry.description)
+		.toLowerCase()
+		.split(/[ ,]+/);
+	const valueArray = value.toLowerCase().split(/[ ,]+/);
+
+	const trueOrFalse = valueArray.every((value) => {
+		const match = titleAndDescription.find((element) => {
+			if (element.includes(value)) {
+				//Check if the element contains the substring
+				return true;
+			}
+		});
+		return match;
+	});
+
+	if (trueOrFalse) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function useAllFilters(e) {
 	filteredData = []; // reset array so it can be repopulated after the filter is applied
 	const formData = new FormData(filterForm); // get the data from the inputs
 
 	dataFromAPI.forEach((entry) => {
-		// If an entry matches these criteria, add to array of entries to display
-		// if rating selected: exclude if rating is smaller than min, or bigger than max
-		// if tags selected: tags exist in entry.tag[]
-		// if search term: exclude if title/description does not include the search term
-		// if type selected: type:online matches OR type onsite matches
-
 		let searchMatches = true;
 		let ratingMatches = true;
 		let typeMatches = true;
-		let tagsMatches = true;
+		let labelMatches = true;
 
-		let titleAndDescription = entry.title + " " + entry.description;
-		titleAndDescription = titleAndDescription.split(/[ ,]+/);
-		// splits string using regex on a space or a comma
-		// so we later can search for single words
+		ratingMatches = filterRating(entry, formData);
 
 		for (const [key, value] of formData) {
-			// check tags
-			if (
-				key.includes("tags:") &&
-				!entry.labels.includes(key.substring(5))
-				// only check the "javascript" part of "tags:javascript", for example
-			) {
-				tagsMatches = false;
-			}
+			if (value !== "") {
+				labelMatches = filterLabels(entry, key);
+				if (!labelMatches) break;
 
-			// check types of rooms
-			if (key == "type:online" && entry.type != "online") {
-				typeMatches = false;
-			}
-			if (key == "type:onsite" && entry.type != "onsite") {
-				typeMatches = false;
-			}
+				typeMatches = filterType(entry, formData);
 
-			// check rating
-			if (
-				(key == "rating:min" && +entry.rating < +value) ||
-				(key == "rating:max" && +entry.rating > +value)
-			) {
-				ratingMatches = false;
+				if (key == "search") {
+					searchMatches = filterSearch(entry, value);
+					if (!searchMatches) break;
+				}
 			}
-
-			// check search input
-			if (key == "search") {
-				const valueArray = value.toLowerCase().split(/[ ,]+/);
-				// putting the input into one array and comparing it to the titleAndDescription array created above. findIndex returns -1 if no matching input is found
-				valueArray.forEach((searchTerm) => {
-					const index = titleAndDescription.findIndex((element) => {
-						if (element.includes(searchTerm)) {
-							return true;
-						}
-					});
-
-					if (index == -1) {
-						searchMatches = false;
-					}
-				});
-			}
-		}
-
-		// if both onsite and online are clicked
-		if (formData.has("type:onsite") && formData.has("type:online")) {
-			typeMatches = true;
 		}
 
 		// add the room to the displayArray if it matches all criteria
-		if (typeMatches && tagsMatches && searchMatches && ratingMatches) {
+		if (typeMatches && labelMatches && searchMatches && ratingMatches) {
 			filteredData.push(entry);
 		}
 	});

@@ -1,5 +1,3 @@
-window.addEventListener("load", getDataFromAPI);
-
 let dataFromAPI = [];
 
 async function getDataFromAPI() {

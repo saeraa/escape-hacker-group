@@ -1,18 +1,15 @@
 
-
 const testBtn = document.querySelector(".testBtn");
-testBtn.addEventListener("click", getChallengesAPI);
-
+//testBtn.addEventListener("click", getChallengesAPI);
 const challenge_list = document.querySelector('.challenge-list');
-/* const challenges_visiility = document.querySelector('.challenges'); */
+// const challenges_visiility = document.querySelector('.challenges'); 
 
 //const section_challenges = document.querySelector('.challenges');
 
 
 let resultFromAPI = []; 
 
-
-
+window.onload = getChallengesAPI();
     async function getChallengesAPI() {
         const resultList = await fetch(
             "https://lernia-sjj-assignments.vercel.app/api/challenges"
@@ -24,10 +21,9 @@ let resultFromAPI = [];
             });
 
             showAllChallenges(resultFromAPI);
-           /*  challenges_visiility.style.display = 'block'; */
+           //  challenges_visiility.style.display = 'block'; 
         };
     
-
     function showAllChallenges (resultFromAPI) {
     
         for (i = 0; i < resultFromAPI.length; i++) {
@@ -41,9 +37,6 @@ let resultFromAPI = [];
             let image = resultFromAPI[i].image; 
             let labels = resultFromAPI[i].labels;
 
-            /*let challenge_list = document.createElement("ul");
-            challenge_list.classList.add('challenge-list');*/
-
             let challenge_item = document.createElement("li");
             challenge_item.classList.add('challenge-item');
             
@@ -52,12 +45,19 @@ let resultFromAPI = [];
             setImage.src = image;
             challenge_item.append(setImage);
 
+            let setRoomImage = document.createElement("img");
+            setRoomImage.classList.add('room-image');
+                if (type == 'onsite') {
+                    setRoomImage.src = "static/iconOnline.svg";
+                } else {
+                    setRoomImage.src = "static/iconOnsite.svg";
+                }
+            challenge_item.append(setRoomImage);
+
             let setRating = document.createElement("ul");
             setRating.classList.add('rating');
 
-
-
-            /* Dålig lösning. Hade en loop för skapandet av listelementet, men tröttnade... */
+            /* I måpn av tid på slutet, fixa loop */
             let setRating_star_1 = document.createElement("li");
             setRating_star_1.classList.add('rating-star');
             setRating.appendChild(setRating_star_1);
@@ -83,43 +83,27 @@ let resultFromAPI = [];
             } else if (rating == 1 || rating < 2) {
                 setRating_star_1.classList.add('active');
             } else if (rating == 2  || rating < 3) {
-                setRating_star_1.classList.add('rating-star', 'active');
-                setRating_star_2.classList.add('rating-star', 'active');    
+                setRating_star_1.classList.add('active');
+                setRating_star_2.classList.add('active');    
             } else if (rating == 3  || rating < 4) {
-                setRating_star_1.classList.add('rating-star', 'active');
-                setRating_star_2.classList.add('rating-star', 'active');
-                setRating_star_3.classList.add('rating-star', 'active');
+                setRating_star_1.classList.add('active');
+                setRating_star_2.classList.add('active');
+                setRating_star_3.classList.add('active');
             } else if (rating == 4  || rating < 5) {
-                setRating_star_1.classList.add('rating-star', 'active');
-                setRating_star_2.classList.add('rating-star', 'active');
-                setRating_star_3.classList.add('rating-star', 'active');
-                setRating_star_4.classList.add('rating-star', 'active');
+                setRating_star_1.classList.add('active');
+                setRating_star_2.classList.add('active');
+                setRating_star_3.classList.add('active');
+                setRating_star_4.classList.add('active');
             } else {
-                setRating_star_1.classList.add('rating-star', 'active');
-                setRating_star_2.classList.add('rating-star', 'active');
-                setRating_star_3.classList.add('rating-star', 'active');
-                setRating_star_4.classList.add('rating-star', 'active');
-                setRating_star_5.classList.add('rating-star', 'active'); 
+                setRating_star_1.classList.add('active');
+                setRating_star_2.classList.add('active');
+                setRating_star_3.classList.add('active');
+                setRating_star_4.classList.add('active');
+                setRating_star_5.classList.add('active'); 
             }
             
-            
             challenge_item.appendChild(setRating);
             
-            // Payriks:
-            /*Add setRating-number to site
-
-            let setRating = document.createElement("ul");
-            setRating.classList.add('rating');
-            setRating.innerHTML =  `${rating}`;
-            challenge_item.appendChild(setRating);
-
-            // Add ratingStar to site
-            // fortsätter imorgon med rating star problemet
-            // Jag har lokaliserat den tomma rutan och knappen, det är ju själva sectionen
-            // class "challenges" som är problemet.*/ 
-
-
-
             let setTitle = document.createElement("h3");
             setTitle.classList.add('challenge-title');
             setTitle.textContent = title;
@@ -137,6 +121,8 @@ let resultFromAPI = [];
 
             let btnBook = document.createElement("button");
             btnBook.classList.add('btnBook');
+
+            //btnBook.setAttribute("data-id", resultFromAPI.id);
                 
                 if (type == 'onsite') {
                     btnBook.textContent = 'Take challenge online';
@@ -146,15 +132,16 @@ let resultFromAPI = [];
             challenge_item.appendChild(btnBook);
 
             btnBook.addEventListener("click", function(){
-                console.log('Knapptryck');
+                console.log(id);
             });
-            
+
     
             challenge_list.appendChild(challenge_item);
             
-
-            console.log(rating);
+            console.log(title);
       
     };
+
+
 
 }  

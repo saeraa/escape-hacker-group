@@ -68,7 +68,6 @@ describe("Filter tests", () => {
 		expect(result).toBeFalsy();
 	});
 
-	//! Implement below tests with converted FormData -> object
 	it.skip("filterRating should exclude results that are greater than the max rating specified", () => {
 		// filterRating(entry, formData)
 		const entry = {
@@ -79,6 +78,25 @@ describe("Filter tests", () => {
 	it.skip("filterRating should exclude results that are lesser than the min rating specified", () => {
 		// filterRating(entry, formData)
 	});
-	it.skip("filterType should exclude onsite results if only the online box is ticked", () => {});
-	it.skip("filterType should exclude online results if only the online box is ticked", () => {});
+	it("filterType should exclude onsite results if only the online box is ticked", () => {
+		// filterType(entry, formData)
+		const entry = { type: "onsite" };
+		const formData = { "type:online": "yes" };
+		const result = filterType(entry, formData);
+		expect(result).toBeFalsy();
+	});
+	it("filterType should exclude online results if only the onsite box is ticked", () => {
+		// filterType(entry, formData)
+		const entry = { type: "online" };
+		const formData = { "type:onsite": "yes" };
+		const result = filterType(entry, formData);
+		expect(result).toBeFalsy();
+	});
+	it("filterType should show the results if both boxes are ticked", () => {
+		// filterType(entry, formData)
+		const entry = { type: "online" };
+		const formData = { "type:onsite": "yes", "type:online": "yes" };
+		const result = filterType(entry, formData);
+		expect(result).toBeTruthy();
+	});
 });

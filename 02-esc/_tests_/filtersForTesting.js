@@ -1,15 +1,15 @@
 export function filterRating(entry, formData) {
 	if (
-		(formData.has("rating:min") &&
-			+entry.rating < +formData.get("rating:min")) ||
-		(formData.has("rating:max") && +entry.rating > +formData.get("rating:max"))
+		(formData.hasOwnProperty("rating:min") &&
+			+entry.rating < +formData["rating:min"]) ||
+		(formData.hasOwnProperty("rating:max") &&
+			+entry.rating > +formData["rating:max"])
 	) {
 		return false;
 	} else return true;
 }
 
 export function filterLabels(entry, key) {
-	// check tags
 	if (
 		key.includes("tags:") &&
 		!entry.labels.includes(key.substring(5))
@@ -22,14 +22,18 @@ export function filterLabels(entry, key) {
 }
 
 export function filterType(entry, formData) {
-	if (formData.has("type:onsite") && formData.has("type:online")) {
+	if (
+		formData.hasOwnProperty("type:onsite") &&
+		formData.hasOwnProperty("type:online")
+	) {
 		return true;
-	} else if (formData.has("type:online") && entry.type != "online") {
+	} else if (formData.hasOwnProperty("type:online") && entry.type != "online") {
 		return false;
-	} else if (formData.has("type:onsite") && entry.type != "onsite") {
+	} else if (formData.hasOwnProperty("type:onsite") && entry.type != "onsite") {
 		return false;
 	} else return true;
 }
+
 export function filterSearch(entry, value) {
 	const titleAndDescription = entry.title
 		.concat(" ", entry.description)

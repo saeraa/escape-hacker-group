@@ -42,6 +42,7 @@ async function getChallengesAPI() {
 	});
 	showAllChallenges(resultFromAPI);
 	addLabelsToDOM(tagsCollection);
+	console.log({ resultFromAPI });
 	//  challenges_visiility.style.display = 'block';
 }
 

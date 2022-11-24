@@ -7,6 +7,7 @@ let time;
 let participants;
 let date;
 let idVariabelForModal;
+let availableTimes;
 
 function openModal() { //(e)
     idVariabelForModal = 4; //e.target.dataset.id 
@@ -25,18 +26,10 @@ function openModal() { //(e)
         </div>
     `;
     body.appendChild(modalDiv);
-    
-    function getDateFromForm() {
-        date = document.querySelector('#date').value
-        console.log(date);
-        checkAvailableTimes(date, idVariabelForModal);
-    }
 
     let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
-    openModalStepTwoBtn.addEventListener("click", 
-    getDateFromForm);
-    openModalStepTwoBtn.addEventListener("click", 
-    openModalStepTwo);
+    openModalStepTwoBtn.addEventListener("click", getDateFromForm);
+    openModalStepTwoBtn.addEventListener("click", openModalStepTwo);
 
     function openModalStepTwo(e) {
         e.preventDefault();
@@ -49,7 +42,8 @@ function openModal() { //(e)
                 <label for="e-mail">E-mail</label>
                 <input class="input-field" type="email" id="e-mail" name="e-mail">
                 <label for="time">What time?</label>
-                <input class="input-field" type="time" name="time" id="time">
+                <select class="input-field" name="time" id="time">
+                </select>
                 <label for="participants">How many participants?</label>
                 <select class="input-field" name="participants" id="participants">
                     <option value="2">2 participants</option>
@@ -61,15 +55,8 @@ function openModal() { //(e)
                 <input class="button primary open-modal-step-3" type="submit" value="Submit booking">
             </form>
             </div>
-        `;
-    
-    function getBookingInformationFromForm() {
-        customerName = document.querySelector('#name').value;
-        eMail = document.querySelector('#e-mail').value;
-        time = document.querySelector('#time').value;
-        participants = parseInt(document.querySelector('#participants').value);
-    }
-         
+        `;   
+        
     let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
     openModalStepThreeBtn.addEventListener("click", getBookingInformationFromForm);
     openModalStepThreeBtn.addEventListener("click", makeBooking);
@@ -85,6 +72,34 @@ function openModal() { //(e)
         `;
     }
 }
+}
+
+function getDateFromForm() {
+    date = document.querySelector('#date').value
+    checkAvailableTimes(date, idVariabelForModal);
+}
+
+async function checkAvailableTimes(selectedDate, challengeId) {
+    const res = await fetch(`https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${selectedDate}&challenge=${challengeId}`);
+    const data = await res.json();
+    data.slots.forEach(slot => {
+        showAvailableTimes(slot); 
+})
+}
+
+function showAvailableTimes(slot) {
+    slot = slot;
+    let option = document.createElement('option');
+    option.innerHTML = slot;
+    let select = document.querySelector('#time');
+    select.appendChild(option);
+}
+
+function getBookingInformationFromForm() {
+    customerName = document.querySelector('#name').value;
+    eMail = document.querySelector('#e-mail').value;
+    time = document.querySelector('#time').value;
+    participants = parseInt(document.querySelector('#participants').value);
 }
 
 async function makeBooking() {
@@ -106,10 +121,3 @@ const data = await res.json();
 console.log(data);
 }
 
-async function checkAvailableTimes(selectedDate, challengeId) {
-    const res = await fetch(`https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${selectedDate}&challenge=${challengeId}`);
-    const data = await res.json();
-    data.slots.forEach(slot => {
-        console.log(slot) 
-})
-}

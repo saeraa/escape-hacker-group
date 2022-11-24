@@ -1,0 +1,100 @@
+.modal {
+    background-color: $c-darkblue;
+    color: white;
+
+    .input-field {
+        height: 2rem;
+        border-radius: 5px;
+    }
+
+}
+//Make modal cover page -- start
+.modal-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $c-darkblue;
+    color: white;
+    position:fixed;
+    top: 1rem;
+    left: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1001;
+}
+
+.bookingStep1Content {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+#firstButton {
+   margin-top: 40px; 
+}
+
+.bookingStep2Content {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.bookingStep3Content {
+    margin-left: 0px;
+}
+//Make modal cover page -- end
+
+.booking-step-1 {
+    // display: none;
+    margin-left: 1.5rem;
+    font-weight: bold;
+    
+
+    h2 {
+        font-weight: 400;
+    }
+    
+    .booking-date-label {
+        display: block;
+    }
+
+    .button {
+        position: relative;
+        margin-top: 20vh;
+        margin-left: 40vw;
+    }
+
+  }
+
+.booking-step-2 {
+    //display: none;
+    margin-left: 1.5rem;
+    font-weight: bold;
+    
+    label {
+        display: block;
+        margin: 1rem 0 0 0;
+    }
+
+    input {
+        display: block;
+    }
+
+    .button {
+        position: relative;
+        margin-top: 20vh;
+        margin-left: 40vw; 
+    }
+
+ 
+}
+
+.booking-step-3 {
+    text-align: center;
+    padding: 50vh 0;
+    font-weight: bold;
+    // display: none;
+
+    a {
+        color: white;
+    }
+}

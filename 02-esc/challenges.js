@@ -21,7 +21,7 @@ window.onload = getChallengesAPI();
     
     function showAllChallenges (resultFromAPI) {
     
-        for (i = 0; i < resultFromAPI.length; i++) {
+        for (let i = 0; i < resultFromAPI.length; i++) {
             let id = resultFromAPI[i].id;
             let type = resultFromAPI[i].type;
             let rating = resultFromAPI[i].rating;
@@ -117,7 +117,7 @@ window.onload = getChallengesAPI();
             let btnBook = document.createElement("button");
             btnBook.classList.add('btnBook');
 
-            //btnBook.setAttribute("data-id", resultFromAPI.id); Kan man skicka med ID on-click?
+            btnBook.setAttribute("data-id", id); 
                 
                 if (type == 'onsite') {
                     btnBook.textContent = 'Take challenge online';
@@ -128,6 +128,7 @@ window.onload = getChallengesAPI();
 
             btnBook.addEventListener("click", function(){
                 console.log(id);
+                // referens till bokningsfunktion
             });
 
     

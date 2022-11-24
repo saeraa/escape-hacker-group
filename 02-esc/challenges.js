@@ -1,4 +1,5 @@
 
+import { getDataFromAPI } from "./getDataFromAPI.js";
 const testBtn = document.querySelector(".testBtn");
 //testBtn.addEventListener("click", getChallengesAPI);
 const challenge_list = document.querySelector('.challenge-list');
@@ -10,15 +11,9 @@ const challenge_list = document.querySelector('.challenge-list');
 let resultFromAPI = []; 
 
 window.onload = getChallengesAPI();
+
     async function getChallengesAPI() {
-        const resultList = await fetch(
-            "https://lernia-sjj-assignments.vercel.app/api/challenges"
-        );
-         const result = await resultList.json(); 
-    
-        result.challenges.forEach((challenge) => {
-            resultFromAPI.push(challenge);
-            });
+       resultFromAPI = await getDataFromAPI();
 
             showAllChallenges(resultFromAPI);
            //  challenges_visiility.style.display = 'block'; 
@@ -122,7 +117,7 @@ window.onload = getChallengesAPI();
             let btnBook = document.createElement("button");
             btnBook.classList.add('btnBook');
 
-            //btnBook.setAttribute("data-id", resultFromAPI.id);
+            //btnBook.setAttribute("data-id", resultFromAPI.id); Kan man skicka med ID on-click?
                 
                 if (type == 'onsite') {
                     btnBook.textContent = 'Take challenge online';

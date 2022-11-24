@@ -1,8 +1,19 @@
-#output {
-  padding: 3em;
-}
-
 .filter-form {
+
+  padding: 1em;
+  max-width: 80vw;
+  border: 1px solid black;
+  margin-inline: auto;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+  position: relative;
+  gap: 1.5em;
+  display: none;
+
+  &.open {
+    display: grid;
+  }
 
   .filter-clear {
     font-size: .7em;
@@ -17,16 +28,6 @@
   label {
     cursor: pointer;
   }
-
-  padding: 1em;
-  max-width: 80vw;
-  border: 1px solid black;
-  margin-inline: auto;
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: 1fr;
-  position: relative;
-  gap: 1.5em;
 
   @media (min-width: $bp-medium) {
     grid-template-columns: repeat(2, 1fr);

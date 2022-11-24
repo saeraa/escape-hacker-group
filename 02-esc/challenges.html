@@ -6,22 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="static/main.css">
-    <link rel="stylesheet" type="text/css" href="challenges_all.css">
+    <!-- <link rel="stylesheet" type="text/css" href="challenges_all.css"> -->
     <title>[ESC] Hacker Escape Rooms</title>
 </head>
 
 <!-- creating extra header for a color box -->
 
 <body>
-    <header class="header-line">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-    </header>
-    <span class="esc-dot"></span>
     <header>
-        
-        <h1>[ESP] Hacker Escape Rooms</h1>
+        <h1>Hacker Escape Rooms</h1>
     </header>
     <nav class="main-nav">
         <button class="main-nav-toggle"></button>
@@ -29,46 +22,77 @@
             <li class="main-menu-item"><a href="">Play online</a></li>
             <li class="main-menu-item"><a href="">Play on-site</a></li>
             <li class="main-menu-item"><a href="">The story</a></li>
-            <li class="main-menu-item"><a href="">Contact us </a></li>
+            <li class="main-menu-item"><a href="">Contact us</a></li>
         </menu>
     </nav>
-    
+
 
     <!-------------- Kom ihåg: De 3 högst rankade ska visas på startsidan --------------------------------->
 
 
-        <h2>Our Challenges</h2>
-        <button class="btnFilterChallenges" id="btnFilterChallenges">Filter Challenges</button>
+    <h2>Our Challenges</h2>
+    <button class="btnFilterChallenges" id="btnFilterChallenges">Filter Challenges</button>
 
-        <!--<button class="testBtn">Test JS</button>-->
+    <form class="filter-form">
+        <h3 class="filter-header">Filter challenges</h3>
+        <button type="button" class="filter-close" aria-label="Close filter modal"></button>
+        <div class="filter-type">
+            <h4 class="filter-header-small">By type</h4>
+            <label><input type="checkbox" name="type:online">
+                Include online challenges </label>
+            <label><input type="checkbox" name="type:onsite">
+                Include on-site challenges </label>
+        </div>
+        <div class="filter-rating">
+            <h4 class="filter-header-small">By rating</h4>
+            <div class="filter-rating-stars-container">
+                <div class="filter-rating-stars">
+                    <input type="radio" name="rating:min" id="rating-min-5" value="5">
+                    <label for="rating-min-5"> </label>
+                    <input type="radio" name="rating:min" id="rating-min-4" value="4">
+                    <label for="rating-min-4"> </label>
+                    <input type="radio" name="rating:min" id="rating-min-3" value="3">
+                    <label for="rating-min-3"> </label>
+                    <input type="radio" name="rating:min" id="rating-min-2" value="2">
+                    <label for="rating-min-2"> </label>
+                    <input type="radio" name="rating:min" id="rating-min-1" value="1">
+                    <label for="rating-min-1"> </label>
+                </div>
+                <small>to</small>
+                <div class="filter-rating-stars">
+                    <input type="radio" name="rating:max" id="rating-max-5" value="5">
+                    <label for="rating-max-5"> </label>
+                    <input type="radio" name="rating:max" id="rating-max-4" value="4">
+                    <label for="rating-max-4"> </label>
+                    <input type="radio" name="rating:max" id="rating-max-3" value="3">
+                    <label for="rating-max-3"> </label>
+                    <input type="radio" name="rating:max" id="rating-max-2" value="2">
+                    <label for="rating-max-2"> </label>
+                    <input type="radio" name="rating:max" id="rating-max-1" value="1">
+                    <label for="rating-max-1"> </label>
+                </div>
+            </div>
+        </div>
+        <div class="filter-tags">
+            <h4 class="filter-header-small">By tags</h4>
+            <div id="tags"></div>
+        </div>
+        <div class="filter-search">
+            <h4 class="filter-header-small">Or type to search for keyword</h4>
+            <input type="search" name="search" placeholder="Start typing to filter">
+        </div>
+        <button type="button" class="filter-clear button primary">Clear filters</button>
+    </form>
 
-        <section class="challenges hide_card">
-            <ul class="challenge-list">
-                <li class="challenge-item">
-                    <img class="challenge-image">
-                    <img class="room-image">
-                    <ul role="meter" class="rating" aria-label="rating"
-                    arial-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-valuetext="4 out of 5">
-                    <li class="rating-star active"></li>
-                    <li class="rating-star active"></li>
-                    <li class="rating-star active"></li>
-                    <li class="rating-star active"></li>
-                    <li class="rating-star"></li>
-                </ul>
-                    
-                    <h3 class="challenge-title"></h3>
-                    <small class="challenge-meta"></small>
-                    <p class="challenge-description"></p>
-                    
-                    <div class="move">
-                    <button class="btnBook"></button>
-                    </div>
-                </li>
-            </ul>
-        </section>
-        
-        
-        <!--<section class="challenges"> 
+    <!--<button class="testBtn">Test JS</button>-->
+
+    <section class="challenges">
+        <ul class="challenge-list">
+        </ul>
+    </section>
+
+
+    <!--<section class="challenges"> 
         <ul class="challenge-list">
             <li class="challenge-item" id="challenge-item">
                 <img class="challenge-image" alt="Hacker" src="static/hero.png">                  
@@ -94,7 +118,7 @@
 
     <footer>
         <div class="footer-summary">
-            <With love to Sarah2>[Esc] Hacker Escape Rooms</h2>
+            <h2>[Esc] Hacker Escape Rooms</h2>
             <p>
                 Quodsi haberent magnalia inter potentiam et divitias, et non
                 illam quidem haec eo spectant haec quoque vos omnino desit illud
@@ -126,10 +150,8 @@
         })
     </script>
     <script src='challenges.js' type="module"></script>
-    
+    <script src='filter.js' type="module"></script>
+
 </body>
+
 </html>
-
-
-
-

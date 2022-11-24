@@ -2,6 +2,23 @@ import { getDataFromAPI } from "./getDataFromAPI.js";
 
 const outputElement = document.querySelector("#output"); // placeholder element for output
 
+const openFilterBtn = document.querySelector("#btnFilterChallenges");
+const closeFilterBtn = document.querySelector(".filter-close");
+
+openFilterBtn.addEventListener("click", () => {
+	filterForm.classList.toggle("open");
+	if (filterForm.classList.contains("open")) {
+		openFilterBtn.style.display = "none";
+	}
+});
+
+closeFilterBtn.addEventListener("click", () => {
+	filterForm.classList.toggle("open");
+	if (!filterForm.classList.contains("open")) {
+		openFilterBtn.style.display = "block";
+	}
+});
+
 const filterForm = document.querySelector(".filter-form");
 const searchFilterInput = document.querySelector("input[type='search']");
 const clearFilterBtn = document.querySelector(".filter-clear");

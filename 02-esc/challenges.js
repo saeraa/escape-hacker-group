@@ -158,7 +158,7 @@ function showAllChallenges(resultFromAPI) {
 		challenge_item.appendChild(setDescription);
 
 		let btnBook = document.createElement("button");
-		btnBook.classList.add("btnBook");
+		btnBook.classList.add("btnBook", "button", "primary");
 
 		btnBook.setAttribute("data-id", id);
 

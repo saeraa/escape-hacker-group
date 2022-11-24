@@ -16,6 +16,15 @@ img {
     max-width: 100%;
 }
 
+.btnFilterChallenges {
+    background-color: #ffff;
+    color: #87CEFA;
+    border: 1px solid lightblue;
+    padding: 0.5rem 0.5rem;
+    margin: 1rem auto;
+    display: block;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 @import "misc.scss";

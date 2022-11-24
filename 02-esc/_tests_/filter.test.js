@@ -68,7 +68,7 @@ describe("Filter tests", () => {
 		expect(result).toBeFalsy();
 	});
 
-	//! These below tests do not work, as the functions require FormData and I do not know how to handle this.
+	//! Implement below tests with converted FormData -> object
 	it.skip("filterRating should exclude results that are greater than the max rating specified", () => {
 		// filterRating(entry, formData)
 		const entry = {

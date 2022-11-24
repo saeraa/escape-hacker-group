@@ -1,8 +1,9 @@
 import { getDataFromAPI } from "./getDataFromAPI.js";
 
+const outputElement = document.querySelector("#output"); // placeholder element for output
+
 const filterForm = document.querySelector(".filter-form");
 const searchFilterInput = document.querySelector("input[type='search']");
-const outputElement = document.querySelector("#output"); // placeholder element for output
 const clearFilterBtn = document.querySelector(".filter-clear");
 
 clearFilterBtn.addEventListener("click", clearFilter);
@@ -11,18 +12,14 @@ filterForm.addEventListener("change", useAllFilters);
 searchFilterInput.addEventListener("keyup", useAllFilters);
 window.addEventListener("load", setupData);
 
-// filtered data to be shown
-let filteredData = [];
-
 // original data array to be populated form the API
 let dataFromAPI = [];
 
-// adding all tags to a Set, don't need duplicate tags
-let tagsCollection = new Set();
-
 async function setupData() {
+	// adding all tags to a Set, don't need duplicate tags
+	let tagsCollection = new Set();
 	const data = await getDataFromAPI();
-	console.log(data);
+	// console.log(data);
 	dataFromAPI = data;
 	dataFromAPI.forEach((challenge) => {
 		challenge.labels.forEach((label) => {
@@ -30,10 +27,10 @@ async function setupData() {
 		});
 	});
 	displayData(dataFromAPI);
-	addLabelsToDOM();
+	addLabelsToDOM(tagsCollection);
 }
 
-function addLabelsToDOM() {
+function addLabelsToDOM(tagsCollection) {
 	let labelString = "";
 	tagsCollection.forEach((label) => {
 		labelString += `
@@ -78,16 +75,16 @@ function clearFilter() {
 
 function filterRating(entry, formData) {
 	if (
-		(formData.has("rating:min") &&
-			+entry.rating < +formData.get("rating:min")) ||
-		(formData.has("rating:max") && +entry.rating > +formData.get("rating:max"))
+		(formData.hasOwnProperty("rating:min") &&
+			+entry.rating < +formData["rating:min"]) ||
+		(formData.hasOwnProperty("rating:max") &&
+			+entry.rating > +formData["rating:max"])
 	) {
 		return false;
 	} else return true;
 }
 
 function filterLabels(entry, key) {
-	// check tags
 	if (
 		key.includes("tags:") &&
 		!entry.labels.includes(key.substring(5))
@@ -100,11 +97,14 @@ function filterLabels(entry, key) {
 }
 
 function filterType(entry, formData) {
-	if (formData.has("type:onsite") && formData.has("type:online")) {
+	if (
+		formData.hasOwnProperty("type:onsite") &&
+		formData.hasOwnProperty("type:online")
+	) {
 		return true;
-	} else if (formData.has("type:online") && entry.type != "online") {
+	} else if (formData.hasOwnProperty("type:online") && entry.type != "online") {
 		return false;
-	} else if (formData.has("type:onsite") && entry.type != "onsite") {
+	} else if (formData.hasOwnProperty("type:onsite") && entry.type != "onsite") {
 		return false;
 	} else return true;
 }
@@ -133,9 +133,22 @@ function filterSearch(entry, value) {
 	}
 }
 
+function getFormData() {
+	// get the data from the inputs and convert to object to make it easier to work with
+	const tempFormData = new FormData(filterForm);
+	let formData = {};
+	for (const [key, value] of tempFormData) {
+		if (value !== "") {
+			formData[key] = value;
+		}
+	}
+	return formData;
+}
+
 function useAllFilters(e) {
-	filteredData = []; // reset array so it can be repopulated after the filter is applied
-	const formData = new FormData(filterForm); // get the data from the inputs
+	let filteredData = []; // reset array so it can be repopulated after the filter is applied
+
+	const formData = getFormData();
 
 	dataFromAPI.forEach((entry) => {
 		let searchMatches = true;
@@ -144,18 +157,15 @@ function useAllFilters(e) {
 		let labelMatches = true;
 
 		ratingMatches = filterRating(entry, formData);
+		typeMatches = filterType(entry, formData);
 
-		for (const [key, value] of formData) {
-			if (value !== "") {
-				labelMatches = filterLabels(entry, key);
-				if (!labelMatches) break;
+		for (const key in formData) {
+			labelMatches = filterLabels(entry, key);
+			if (!labelMatches) break;
 
-				typeMatches = filterType(entry, formData);
-
-				if (key == "search") {
-					searchMatches = filterSearch(entry, value);
-					if (!searchMatches) break;
-				}
+			if (key == "search") {
+				searchMatches = filterSearch(entry, formData[key]);
+				if (!searchMatches) break;
 			}
 		}
 

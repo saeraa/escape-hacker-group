@@ -30,10 +30,18 @@
 
   @media (min-width: $bp-medium) {
     grid-template-columns: repeat(2, 1fr);
+
+    .filter-clear {
+      grid-column: 2;
+    }
   }
 
   @media (min-width: $bp-large) {
     grid-template-columns: repeat(3, 1fr);
+
+    .filter-clear {
+      grid-column: 3;
+    }
   }
 
   .filter-header {

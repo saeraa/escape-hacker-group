@@ -113,18 +113,19 @@ h2 {
 .move{
 
     position: relative;
+    
 }
 
 .btnBook{
 
     position: relative;
-    right: -6rem;
+    right: 20px;
     margin-bottom: 1rem;
     padding: 5px;
     border-radius: 8px;
     
 
-    background-color: blue;
+    background-color: red;
     color: white;
     
     
@@ -150,39 +151,58 @@ h2 {
     position: relative;
     top: -95px;
     
+    
 }
 
-.challenge-meta{
+ .challenge-meta{
 
     position: relative;
     top: -80px;
-}
+} 
 
 
 
-.challenge-item small{
+ .challenge-item small{
 
-    position: absolute;
-    top: 17rem;
-}
+    position: relative;
+    top: -178px;
+    right: -150px;
+    
+} 
 
 .challenge-item p{
 
    position: absolute;
-   top: 18rem;
-   
-
-   
+   top: 15rem;   
 }
 
 .challenge-item li{
 
    position: relative;
-   top: -60px;
-   left: 15px;
+   top: -20px;
+   left: -165px;
+  
    
    
 }
+
+.room-image{
+
+    position: relative;
+    top: -270px;
+    right: -280px;
+    height: 70px;
+    width: 70px;
+   
+}
+ 
+/* .challenge-description{
+
+    position: relative;
+    top: 250px;
+} */
+
+
 
 
 

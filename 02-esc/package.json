@@ -6,16 +6,11 @@
 	"type": "module",
 	"scripts": {
 		"sass": "sass --no-source-map src/main.scss static/main.css",
-		"watch": "sass --no-source-map --watch src/main.scss static/main.css",
-		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+		"watch": "sass --no-source-map --watch src/main.scss static/main.css"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"sass": "^1.56.1"
-	},
-	"devDependencies": {
-		"jest": "^29.3.1",
-		"jest-environment-jsdom": "^29.3.1"
 	}
 }

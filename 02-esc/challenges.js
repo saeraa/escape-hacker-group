@@ -35,7 +35,6 @@ async function getChallengesAPI() {
 	let tagsCollection = new Set();
 	resultFromAPI.length = 0;
 	resultFromAPI = await getDataFromAPI();
-	console.log({ resultFromAPI });
 	resultFromAPI.forEach((challenge) => {
 		challenge.labels.forEach((label) => {
 			tagsCollection.add(label);
@@ -65,7 +64,6 @@ function showAllChallenges(resultFromAPI) {
 		return;
 	}
 
-	console.log({ resultFromAPI });
 	for (let i = 0; i < resultFromAPI.length; i++) {
 		let id = resultFromAPI[i].id;
 		let type = resultFromAPI[i].type;
@@ -172,13 +170,10 @@ function showAllChallenges(resultFromAPI) {
 		challenge_item.appendChild(btnBook);
 
 		btnBook.addEventListener("click", function () {
-			//console.log(id);
 			// referens till bokningsfunktion
 		});
 
 		challenge_list.appendChild(challenge_item);
-
-		//console.log(title);
 	}
 }
 
@@ -266,7 +261,6 @@ function getFormData() {
 }
 
 function useAllFilters(e) {
-	console.log("use all filters");
 	let filteredData = []; // reset array so it can be repopulated after the filter is applied
 
 	const formData = getFormData();

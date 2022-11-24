@@ -94,6 +94,11 @@ function showAllChallenges(resultFromAPI) {
 		}
 		challenge_item.append(setRoomImage);
 
+		let setTitle = document.createElement("h3");
+		setTitle.classList.add("challenge-title");
+		setTitle.textContent = title;
+		challenge_item.appendChild(setTitle);
+
 		let setRating = document.createElement("ul");
 		setRating.classList.add("rating");
 
@@ -143,11 +148,6 @@ function showAllChallenges(resultFromAPI) {
 		}
 
 		challenge_item.appendChild(setRating);
-
-		let setTitle = document.createElement("h3");
-		setTitle.classList.add("challenge-title");
-		setTitle.textContent = title;
-		challenge_item.appendChild(setTitle);
 
 		let setParticipants = document.createElement("small");
 		setParticipants.classList.add("challenge-meta");

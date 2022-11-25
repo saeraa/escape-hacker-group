@@ -9,31 +9,49 @@ let date;
 let idVariabelForModal;
 let availableTimes;
 
-function openModal() { //(e)
-    idVariabelForModal = 4; //e.target.dataset.id 
-    let body = document.querySelector('body');
-    let modalDiv = document.createElement('div');
-    modalDiv.className = 'modal-div';
-    modalDiv.innerHTML = `
+function openModal() {
+	const currentDate = new Date().toLocaleDateString();
+
+	//(e)
+	idVariabelForModal = 4; //e.target.dataset.id
+	let body = document.querySelector("body");
+	let modalDiv = document.createElement("div");
+	modalDiv.className = "modal-div";
+	modalDiv.innerHTML = `
         <div class="bookingStep1Content">
         <h1>Book room "Title of room" (step 1)</h1>
         <h2>What date would you like to come?</h2>
         <form action="">
             <label class="booking-date-label" for="date">Date</label>
-            <input id="date" class="input-field" type="date" name="date">
+            <input id="date" class="input-field" type="date" name="date"
+            min="${currentDate}">
             <input id="firstButton" type="submit" value="Search available times" class="button primary open-modal-step-2">
         </form>
         </div>
     `;
-    body.appendChild(modalDiv);
+	body.appendChild(modalDiv);
 
-    let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
-    openModalStepTwoBtn.addEventListener("click", getDateFromForm);
-    openModalStepTwoBtn.addEventListener("click", openModalStepTwo);
+	let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
 
-    function openModalStepTwo(e) {
-        e.preventDefault();
-        modalDiv.innerHTML = `
+	openModalStepTwoBtn.addEventListener("click", checkModalStepOneInput);
+
+	function checkModalStepOneInput(e) {
+		e.preventDefault();
+		let ok = false;
+
+		if (document.querySelector("#date").value !== "") {
+			ok = true;
+		}
+
+		if (ok) {
+			getDateFromForm(e);
+			openModalStepTwo(e);
+		}
+	}
+
+	function openModalStepTwo(e) {
+		e.preventDefault();
+		modalDiv.innerHTML = `
             <div class="bookingStep2Content">
             <h1>Book room "Title of room" (step 2)</h1>
             <form action="">

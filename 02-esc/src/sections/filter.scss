@@ -13,7 +13,7 @@
   border: 1px solid black;
   margin-inline: auto;
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: 100px, repeat(2, 1fr);
   grid-template-columns: 1fr;
   position: relative;
   gap: 1.5em;

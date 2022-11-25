@@ -284,6 +284,7 @@ function getFormData() {
 }
 
 function useAllFilters(e) {
+	fixRatings();
 	let filteredData = []; // reset array so it can be repopulated after the filter is applied
 
 	const formData = getFormData();
@@ -314,4 +315,28 @@ function useAllFilters(e) {
 	});
 
 	showAllChallenges(filteredData);
+}
+
+let id;
+
+function fixRatings() {
+	// - på stjärnorna bör man inte kunna välja lägre på den högra skalan. till exempel 4 till 2 stjärnor.
+	const stars = document.querySelectorAll("input[type=radio]");
+	stars.forEach((star) => {
+		star.disabled = false;
+	});
+
+	id = null;
+
+	stars.forEach((star) => {
+		if (star.name.includes("min") && star.checked) {
+			id = star.value;
+		}
+		if (star.name.includes("max") && +star.value < +id) {
+			star.disabled = true;
+		}
+		if (star.name.includes("max") && +star.value < +id) {
+			star.checked = false;
+		}
+	});
 }

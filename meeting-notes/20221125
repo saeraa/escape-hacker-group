@@ -1,0 +1,38 @@
+# Möte #3: 20221125 13:00
+
+## 1. mötets öppnande
+- Närvarande: Jakob, Sara, Danne, Olliver, Patrik
+- Frånvarande: (Mattias)
+- Jakob för anteckningar
+
+## 2. Lista på det som är kvar
+Det som är överstryket(~~) är redan gjort och namnet inom parantes har huvudansvar för att jobba med den uppgiften.
+
+### challenges.html
+- CSS: Flytta ikonen på varje rum upp till högra hörnet och förminska den (Sara)
+- CSS: Visa alla korten och ta bort sidoscrollen (Sara)
+- Länka modal.js så den öppnas när man trycker på book this room-knapparna (Danne)
+- ~~loggan ska länka till startsidan~~ 
+- ~~Länkarna i nav-menyn bör inte ladda om sidan~~ 
+- Ikonerna + texten på knapparna är tvärtom vad de ska vara ![🙈](https://discord.com/assets/a5aefa53dd12db3e911bf24b5ab4e478.svg) (Danne)
+
+### index.html 
+- ~~online och on-site knapparna ska länka till challenges-sidan~~ 
+- ~~book on-site today ska länka till challenges sidan~~ 
+- JavaScript för att visa de 3 högst rankade challenges (Patrik)
+- ~~Extra: Play online/Play on-site går till challenges.html med rätt filter applicerat~~
+- kanon om vi kan filtrera så som vi pratade om och kanske då lägga till en knapp för "Show all challenges".(Sara)
+
+### filter 
+- på stjärnorna bör man inte kunna välja lägre på den högra skalan. till exempel 4 till 2 stjärnor. (Sara)
+
+### modal 
+- Validering på datumet (bara välja kommande datum) (Jakob)
+- Fixa länken i slutet (Jakob)
+- Fixa styling (Olliver)
+- göra alla input-fält "required" (Jakob)
+- Eventuellt någon mer form av validering av input från användaren (Olliver)
+
+## 3. Nästa möte
+- Avstämningsmöte på måndag 28/11 kl 10.00
+- Vi har även ett möte inbokat på torsdag 1/12 kl 10.00

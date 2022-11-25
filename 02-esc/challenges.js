@@ -33,18 +33,18 @@ window.addEventListener("load", getChallengesAPI);
 
 function checkToApplyFilter() {
 	const inputs = document.querySelectorAll("input[type=checkbox]");
-	
+
 	if (window.location.hash) {
 		const currentURL = window.location.hash;
 		if (currentURL.includes("online")) {
 			setTimeout(() => {
-				inputs[1].checked = true;
+				inputs[0].checked = true;
 				let event = new Event("change");
 				filterForm.dispatchEvent(event);
 			}, 200);
 		} else if (currentURL.includes("onsite")) {
 			setTimeout(() => {
-				inputs[0].checked = true;
+				inputs[1].checked = true;
 				let event = new Event("change");
 				filterForm.dispatchEvent(event);
 			}, 200);

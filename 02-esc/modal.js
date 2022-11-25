@@ -1,4 +1,4 @@
-const openModalBtn = document.querySelector('.open-modal-btn');
+const openModalBtn = document.querySelector(".open-modal-btn");
 openModalBtn.addEventListener("click", openModal);
 
 let customerName;
@@ -9,31 +9,49 @@ let date;
 let idVariabelForModal;
 let availableTimes;
 
-function openModal() { //(e)
-    idVariabelForModal = 4; //e.target.dataset.id 
-    let body = document.querySelector('body');
-    let modalDiv = document.createElement('div');
-    modalDiv.className = 'modal-div';
-    modalDiv.innerHTML = `
+function openModal() {
+	const currentDate = new Date().toLocaleDateString();
+
+	//(e)
+	idVariabelForModal = 4; //e.target.dataset.id
+	let body = document.querySelector("body");
+	let modalDiv = document.createElement("div");
+	modalDiv.className = "modal-div";
+	modalDiv.innerHTML = `
         <div class="bookingStep1Content">
         <h1>Book room "Title of room" (step 1)</h1>
         <h2>What date would you like to come?</h2>
         <form action="">
             <label class="booking-date-label" for="date">Date</label>
-            <input id="date" class="input-field" type="date" name="date">
+            <input id="date" class="input-field" type="date" name="date"
+            min="${currentDate}">
             <input id="firstButton" type="submit" value="Search available times" class="button primary open-modal-step-2">
         </form>
         </div>
     `;
-    body.appendChild(modalDiv);
+	body.appendChild(modalDiv);
 
-    let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
-    openModalStepTwoBtn.addEventListener("click", getDateFromForm);
-    openModalStepTwoBtn.addEventListener("click", openModalStepTwo);
+	let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
 
-    function openModalStepTwo(e) {
-        e.preventDefault();
-        modalDiv.innerHTML = `
+	openModalStepTwoBtn.addEventListener("click", checkModalStepOneInput);
+
+	function checkModalStepOneInput(e) {
+		e.preventDefault();
+		let ok = false;
+
+		if (document.querySelector("#date").value !== "") {
+			ok = true;
+		}
+
+		if (ok) {
+			getDateFromForm(e);
+			openModalStepTwo(e);
+		}
+	}
+
+	function openModalStepTwo(e) {
+		e.preventDefault();
+		modalDiv.innerHTML = `
             <div class="bookingStep2Content">
             <h1>Book room "Title of room" (step 2)</h1>
             <form action="">
@@ -55,69 +73,94 @@ function openModal() { //(e)
                 <input class="button primary open-modal-step-3" type="submit" value="Submit booking">
             </form>
             </div>
-        `;   
-        
-    let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
-    openModalStepThreeBtn.addEventListener("click", getBookingInformationFromForm);
-    openModalStepThreeBtn.addEventListener("click", makeBooking);
-    openModalStepThreeBtn.addEventListener("click", openModalStepThree);
+        `;
 
-    function openModalStepThree(e) {
-        e.preventDefault();
-        modalDiv.innerHTML = `
+		let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
+
+		openModalStepThreeBtn.addEventListener("click", checkModalStepTwoInput);
+
+		function checkModalStepTwoInput(e) {
+			e.preventDefault();
+			let ok = false;
+
+			let nameInput = document.querySelector("#name");
+			let emailInput = document.querySelector("#e-mail");
+
+			if (nameInput.value == "" || emailInput.value == "") {
+				alert("You gotta fill some stuff out");
+			} else if (nameInput.value == "" && emailInput.value == "") {
+				alert("You gotta fill some stuff out");
+			} else {
+				ok = true;
+			}
+
+			if (ok) {
+				getBookingInformationFromForm(e);
+				makeBooking(e);
+				openModalStepThree(e);
+			}
+		}
+
+		function openModalStepThree(e) {
+			e.preventDefault();
+			modalDiv.innerHTML = `
         <div class="bookingStep3Content">
             <h1>Thank you!</h1>
             <a href="">Back to challenges</a>
          </div>
         `;
-    }
-}
+		}
+	}
 }
 
 function getDateFromForm() {
-    date = document.querySelector('#date').value
-    checkAvailableTimes(date, idVariabelForModal);
+	date = document.querySelector("#date").value;
+	checkAvailableTimes(date, idVariabelForModal);
 }
 
 async function checkAvailableTimes(selectedDate, challengeId) {
-    const res = await fetch(`https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${selectedDate}&challenge=${challengeId}`);
-    const data = await res.json();
-    data.slots.forEach(slot => {
-        showAvailableTimes(slot); 
-})
+	const res = await fetch(
+		`https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${selectedDate}&challenge=${challengeId}`
+	);
+	const data = await res.json();
+	data.slots.forEach((slot) => {
+		showAvailableTimes(slot);
+	});
 }
 
 function showAvailableTimes(slot) {
-    slot = slot;
-    let option = document.createElement('option');
-    option.innerHTML = slot;
-    let select = document.querySelector('#time');
-    select.appendChild(option);
+	slot = slot;
+	let option = document.createElement("option");
+	option.innerHTML = slot;
+	let select = document.querySelector("#time");
+	select.appendChild(option);
 }
 
 function getBookingInformationFromForm() {
-    customerName = document.querySelector('#name').value;
-    eMail = document.querySelector('#e-mail').value;
-    time = document.querySelector('#time').value;
-    participants = parseInt(document.querySelector('#participants').value);
+	customerName = document.querySelector("#name").value;
+	eMail = document.querySelector("#e-mail").value;
+	time = document.querySelector("#time").value;
+	participants = parseInt(document.querySelector("#participants").value);
 }
 
 async function makeBooking() {
-const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        challenge: idVariabelForModal,
-        name: customerName,
-        email: eMail,
-        date: date,
-        time: time,
-        participants: participants,
-    }),
-});
-const data = await res.json();
-console.log(data);
+	const res = await fetch(
+		"https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				challenge: idVariabelForModal,
+				name: customerName,
+				email: eMail,
+				date: date,
+				time: time,
+				participants: participants
+			})
+		}
+	);
+	const data = await res.json();
+	console.log(data);
 }
-

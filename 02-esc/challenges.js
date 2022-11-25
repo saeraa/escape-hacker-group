@@ -31,7 +31,30 @@ let resultFromAPI = [];
 
 window.addEventListener("load", getChallengesAPI);
 
+function checkToApplyFilter() {
+	const inputs = document.querySelectorAll("input[type=checkbox]");
+
+	if (window.location.hash) {
+		const currentURL = window.location.hash;
+		if (currentURL.includes("online")) {
+			setTimeout(() => {
+				inputs[0].checked = true;
+				let event = new Event("change");
+				filterForm.dispatchEvent(event);
+			}, 200);
+		} else if (currentURL.includes("onsite")) {
+			setTimeout(() => {
+				inputs[1].checked = true;
+				let event = new Event("change");
+				filterForm.dispatchEvent(event);
+			}, 200);
+		}
+	}
+}
+
 async function getChallengesAPI() {
+	checkToApplyFilter();
+
 	let tagsCollection = new Set();
 	resultFromAPI.length = 0;
 	resultFromAPI = await getDataFromAPI();

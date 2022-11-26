@@ -9,10 +9,8 @@ let date;
 let idVariabelForModal;
 let availableTimes;
 
-function openModal() {
+function openModal() { //(e)
 	const currentDate = new Date().toLocaleDateString();
-
-	//(e)
 	idVariabelForModal = 4; //e.target.dataset.id
 	let body = document.querySelector("body");
 	let modalDiv = document.createElement("div");
@@ -38,8 +36,19 @@ function openModal() {
 	function checkModalStepOneInput(e) {
 		e.preventDefault();
 		let ok = false;
+        let inputDate = document.querySelector("#date");
+        // let inputDateField = document.querySelector("#date");
+        
+        if (inputDate.value == "") {
+            inputDate.style.border = 'solid 3px red';
+            inputDate.addEventListener("click", normalBorderColor);
+            
+            function normalBorderColor(){ 
+                inputDate.style.border = 'inset 2px rgb(133, 133, 133)';
+            }
+        }     
 
-		if (document.querySelector("#date").value !== "") {
+		if (inputDate.value !== "") {
 			ok = true;
 		}
 
@@ -85,6 +94,8 @@ function openModal() {
 
 			let nameInput = document.querySelector("#name");
 			let emailInput = document.querySelector("#e-mail");
+
+            
 
 			if (nameInput.value == "" || emailInput.value == "") {
 				alert("You gotta fill some stuff out");

@@ -36,19 +36,19 @@ function openModal() { //(e)
 	function checkModalStepOneInput(e) {
 		e.preventDefault();
 		let ok = false;
-        let inputDate = document.querySelector("#date");
+        let dateInput = document.querySelector("#date");
         // let inputDateField = document.querySelector("#date");
         
-        if (inputDate.value == "") {
-            inputDate.style.border = 'solid 3px red';
-            inputDate.addEventListener("click", normalBorderColor);
+        if (dateInput.value == "") {
+            dateInput.style.border = 'solid 3px red';
+            dateInput.addEventListener("click", normalBorderColor);
             
             function normalBorderColor(){ 
-                inputDate.style.border = 'inset 2px rgb(133, 133, 133)';
+                dateInput.style.border = 'inset 2px rgb(133, 133, 133)';
             }
         }     
 
-		if (inputDate.value !== "") {
+		if (dateInput.value !== "") {
 			ok = true;
 		}
 
@@ -95,12 +95,21 @@ function openModal() { //(e)
 			let nameInput = document.querySelector("#name");
 			let emailInput = document.querySelector("#e-mail");
 
-            
+            if (nameInput.value == "") {
 
-			if (nameInput.value == "" || emailInput.value == "") {
-				alert("You gotta fill some stuff out");
-			} else if (nameInput.value == "" && emailInput.value == "") {
-				alert("You gotta fill some stuff out");
+                nameInput.style.border = 'solid 3px red';
+                nameInput.addEventListener("click", normalBorderColor);
+                
+                function normalBorderColor(){ 
+                    nameInput.style.border = 'inset 2px rgb(133, 133, 133)';
+                }
+            } else if (emailInput.value == "") {
+                emailInput.style.border = 'solid 3px red';
+                emailInput.addEventListener("click", normalBorderColor);
+                
+                function normalBorderColor(){ 
+                    emailInput.style.border = 'inset 2px rgb(133, 133, 133)';
+                }   
 			} else {
 				ok = true;
 			}

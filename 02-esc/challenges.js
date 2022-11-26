@@ -36,6 +36,7 @@ searchFilterInput.addEventListener("keyup", useAllFilters);
 
 let resultFromAPI = [];
 
+window.addEventListener("hashchange", checkToApplyFilter);
 window.addEventListener("load", getChallengesAPI);
 
 function checkToApplyFilter() {
@@ -43,16 +44,20 @@ function checkToApplyFilter() {
 
 	if (window.location.hash) {
 		const currentURL = window.location.hash;
-		if (currentURL.includes("online")) {
+		let event = new Event("change");
+		if (currentURL.includes("all")) {
+			filterForm.reset();
+			filterForm.dispatchEvent(event);
+		} else if (currentURL.includes("online")) {
 			setTimeout(() => {
+				if (inputs[1].checked) inputs[1].checked = false;
 				inputs[0].checked = true;
-				let event = new Event("change");
 				filterForm.dispatchEvent(event);
 			}, 200);
 		} else if (currentURL.includes("onsite")) {
 			setTimeout(() => {
+				if (inputs[0].checked) inputs[0].checked = false;
 				inputs[1].checked = true;
-				let event = new Event("change");
 				filterForm.dispatchEvent(event);
 			}, 200);
 		}

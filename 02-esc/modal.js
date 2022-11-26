@@ -11,21 +11,20 @@ let date;
 let idVariabelForModal;
 let minParticipantsVaribelForModal;
 let maxParticipantsVaribaleForModal;
-let availableTimes;
 let modalDiv;
 
 
 // -- MODAL STEP 1 --
 
-export function openModal() { //(e)
-    idVariabelForModal = 4; //e.target.dataset.id 
-    minParticipantsVaribelForModal = 2; // target.dataset?
-    maxParticipantsVaribaleForModal = 8; // target.dataset?
+export function openModal(e) { 
+    const currentDate = new Date().toLocaleDateString();
+    idVariabelForModal = parseInt(e.target.dataset.id); 
+    minParticipantsVaribelForModal = e.target.dataset.minparticipants;
+    maxParticipantsVaribaleForModal = e.target.dataset.maxparticipants;
     let body = document.querySelector('body');
-    let modalDiv = document.createElement('div');
+    modalDiv = document.createElement('div');
     modalDiv.className = 'modal-div';
     modalDiv.innerHTML = `
-
         <div class="bookingStep1Content">
         <h1>Book room "Title of room" (step 1)</h1>
         <h2>What date would you like to come?</h2>
@@ -38,7 +37,7 @@ export function openModal() { //(e)
         </div>
     `;
 	body.appendChild(modalDiv);
-
+   
 	let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
 	openModalStepTwoBtn.addEventListener("click", checkModalStepOneInput);
 }
@@ -92,7 +91,7 @@ function showAvailableTimes(slot) {
 function possibleNumberOfParticipants(min, max) {
     let numberOfOptions = max - min;
     
-    for(i=0; i <= numberOfOptions; i++) {
+    for(let i=0; i <= numberOfOptions; i++) {
         createOptionForParticipants()
         min++;    
     }

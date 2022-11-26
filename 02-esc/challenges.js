@@ -185,8 +185,8 @@ function showAllChallenges(resultFromAPI) {
 		btnBook.classList.add("btnBook", "button", "primary");
 
 		btnBook.setAttribute("data-id", id);
-		btnBook.setAttribute("data-participants", minParticipants);
-		btnBook.setAttribute("data-participants", maxParticipants);
+		btnBook.setAttribute("data-minparticipants", minParticipants);
+		btnBook.setAttribute("data-maxparticipants", maxParticipants);
 
 
 		if (type == "onsite") {
@@ -195,8 +195,6 @@ function showAllChallenges(resultFromAPI) {
 			btnBook.textContent = "Take challenge online";
 		}
 		challenge_item.appendChild(btnBook);
-
-		console.log(btnBook.getAttribute("data-id"));
 
 		btnBook.addEventListener("click", openModal);
 		

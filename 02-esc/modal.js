@@ -7,15 +7,19 @@ let time;
 let participants;
 let date;
 let idVariabelForModal;
+let minParticipantsVaribelForModal;
+let maxParticipantsVaribaleForModal;
 let availableTimes;
 let modalDiv;
 
 
-// -- MODAL STEP 1 -- #8ACFE5
+// -- MODAL STEP 1 --
 
 function openModal() { //(e)
 	const currentDate = new Date().toLocaleDateString();
 	idVariabelForModal = 4; //e.target.dataset.id
+    minParticipantsVaribelForModal = 2; // target.dataset?
+    maxParticipantsVaribaleForModal = 8; // target.dataset?
 	let body = document.querySelector("body");
 	modalDiv = document.createElement("div");
 	modalDiv.className = "modal-div";
@@ -35,28 +39,29 @@ function openModal() { //(e)
 
 	let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
 	openModalStepTwoBtn.addEventListener("click", checkModalStepOneInput);
-
-	function checkModalStepOneInput(e) {
-		e.preventDefault();
-		let ok = false;
-        let dateInput = document.querySelector("#date");
-        
-        if (dateInput.value == "") {
-            dateInput.style.outline = 'solid 2px red';
-            dateInput.addEventListener("click", normalBorderColor);
-            
-            function normalBorderColor(){ 
-                dateInput.style.outline = 'none';
-            }
-
-        } if (dateInput.value !== "") {
-			ok = true;
-		} if (ok) {
-			getDateFromForm(e);
-			openModalStepTwo(e);
-		}
-	}
 }
+
+function checkModalStepOneInput(e) {
+    e.preventDefault();
+    let ok = false;
+    let dateInput = document.querySelector("#date");
+    
+    if (dateInput.value == "") {
+        dateInput.style.outline = 'solid 2px red';
+        dateInput.addEventListener("click", normalBorderColor);
+        
+        function normalBorderColor(){ 
+            dateInput.style.outline = 'none';
+        }
+
+    } if (dateInput.value !== "") {
+        ok = true;
+    } if (ok) {
+        getDateFromForm(e);
+        openModalStepTwo(e);
+    }
+}
+
 
 function getDateFromForm() {
 	date = document.querySelector("#date").value;
@@ -76,11 +81,28 @@ async function checkAvailableTimes(selectedDate, challengeId) {
 // -- MODAL STEP 2 --
 
 function showAvailableTimes(slot) {
-	slot = slot;
 	let option = document.createElement("option");
 	option.innerHTML = slot;
 	let select = document.querySelector("#time");
 	select.appendChild(option);
+}
+
+function possibleNumberOfParticipants(min, max) {
+    let numberOfOptions = max - min;
+    
+    for(i=0; i <= numberOfOptions; i++) {
+        createOptionForParticipants()
+        min++;    
+    }
+
+    function createOptionForParticipants() {
+        let participantsOption = document.createElement("option");
+        participantsOption.innerHTML = `${min} participants`;
+        let participantsSelect = document.querySelector("#participants");
+        participantsSelect.appendChild(participantsOption);
+
+    } 
+
 }
 
 function openModalStepTwo(e) {
@@ -98,16 +120,13 @@ function openModalStepTwo(e) {
             </select>
             <label for="participants">How many participants?</label>
             <select class="input-field" name="participants" id="participants">
-                <option value="2">2 participants</option>
-                <option value="3">3 participants</option>
-                <option value="4">4 participants</option>
-                <option value="5">5 participants</option>
-                <option value="6">6 participants</option>
             </select>
             <input class="button primary open-modal-step-3" type="submit" value="Submit booking">
         </form>
         </div>
     `;
+    
+    possibleNumberOfParticipants(minParticipantsVaribelForModal, maxParticipantsVaribaleForModal);
 
     let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
     openModalStepThreeBtn.addEventListener("click", checkModalStepTwoInput);

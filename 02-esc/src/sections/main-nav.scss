@@ -8,7 +8,7 @@
     display: none;
 }
 
-@media (max-width: $bp-medium) {
+@media (max-width: $bp-medium-large) {
     @mixin burger-menu-line {
         display: block;
         content: "";
@@ -31,14 +31,30 @@
         border-width: 0;
         display: block;
 
+        -webkit-transition: top 0.5s, right 0.5s, -webkit-transform 0.5s;
+
+        transition: top 0.5s, right 0.5s, -webkit-transform 0.5s;
+
+        -o-transition: top 0.5s, right 0.5s, transform 0.5s;
+
         transition: top 0.5s, right 0.5s, transform 0.5s;
+
+        transition: top 0.5s, right 0.5s, transform 0.5s, -webkit-transform 0.5s;
 
         &::before {
             @include burger-menu-line;
             position: relative;
             top: 0.8em;
 
+            -webkit-transition: -webkit-transform 0.5s;
+
+            transition: -webkit-transform 0.5s;
+
+            -o-transition: transform 0.5s;
+
             transition: transform 0.5s;
+
+            transition: transform 0.5s, -webkit-transform 0.5s;
         }
 
         &::after {
@@ -54,6 +70,8 @@
 
     .main-nav {
         background-color: rgba(white, 0);
+        -webkit-transition: background-color 0.5s;
+        -o-transition: background-color 0.5s;
         transition: background-color 0.5s;
     }
 
@@ -70,6 +88,8 @@
 
         .main-nav-toggle {
             z-index: 1001;
+            -webkit-transform: rotate(225deg);
+            -ms-transform: rotate(225deg);
             transform: rotate(225deg);
 
             top: 3em;
@@ -77,6 +97,8 @@
 
             &::before {
                 top: 0;
+                -webkit-transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
                 transform: rotate(90deg);
             }
 
@@ -131,7 +153,7 @@
     }
 }
 
-@media (min-width: $bp-medium) {
+@media (min-width: $bp-medium-large) {
     .main-nav {
         display: block;
         background-color: $c-darkblue;

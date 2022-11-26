@@ -27,8 +27,10 @@ li {
 }
 
 .rating {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    gap: 0.6em;
+    gap: 0.4em;
 
     .rating-star {
         list-style-type: none;

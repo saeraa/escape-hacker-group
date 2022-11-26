@@ -1,4 +1,5 @@
 import { getDataFromAPI } from "./getDataFromAPI.js";
+import { openModal } from "./modal.js";
 
 const challenge_list = document.querySelector(".challenge-list");
 const openFilterBtn = document.querySelector("#btnFilterChallenges");
@@ -109,9 +110,9 @@ function showAllChallenges(resultFromAPI) {
 		let setRoomImage = document.createElement("img");
 		setRoomImage.classList.add("room-image");
 		if (type == "onsite") {
-			setRoomImage.src = "static/iconOnline.svg";
-		} else {
 			setRoomImage.src = "static/iconOnsite.svg";
+		} else {
+			setRoomImage.src = "static/iconOnline.svg";
 		}
 		challenge_item.append(setRoomImage);
 
@@ -184,18 +185,21 @@ function showAllChallenges(resultFromAPI) {
 		btnBook.classList.add("btnBook", "button", "primary");
 
 		btnBook.setAttribute("data-id", id);
+		btnBook.setAttribute("data-participants", minParticipants);
+		btnBook.setAttribute("data-participants", maxParticipants);
+
 
 		if (type == "onsite") {
-			btnBook.textContent = "Take challenge online";
-		} else {
 			btnBook.textContent = "Book this room";
+		} else {
+			btnBook.textContent = "Take challenge online";
 		}
 		challenge_item.appendChild(btnBook);
 
-		btnBook.addEventListener("click", function () {
-			// referens till bokningsfunktion
-		});
+		console.log(btnBook.getAttribute("data-id"));
 
+		btnBook.addEventListener("click", openModal);
+		
 		challenge_list.appendChild(challenge_item);
 	}
 }

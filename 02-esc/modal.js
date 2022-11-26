@@ -1,5 +1,7 @@
-const openModalBtn = document.querySelector(".open-modal-btn");
-openModalBtn.addEventListener("click", openModal);
+
+/*const openModalBtn = document.querySelector('.open-modal-btn');
+openModalBtn.addEventListener("click", openModal);*/
+
 
 let customerName;
 let eMail;
@@ -15,15 +17,15 @@ let modalDiv;
 
 // -- MODAL STEP 1 --
 
-function openModal() { //(e)
-	const currentDate = new Date().toLocaleDateString();
-	idVariabelForModal = 4; //e.target.dataset.id
+export function openModal() { //(e)
+    idVariabelForModal = 4; //e.target.dataset.id 
     minParticipantsVaribelForModal = 2; // target.dataset?
     maxParticipantsVaribaleForModal = 8; // target.dataset?
-	let body = document.querySelector("body");
-	modalDiv = document.createElement("div");
-	modalDiv.className = "modal-div";
-	modalDiv.innerHTML = `
+    let body = document.querySelector('body');
+    let modalDiv = document.createElement('div');
+    modalDiv.className = 'modal-div';
+    modalDiv.innerHTML = `
+
         <div class="bookingStep1Content">
         <h1>Book room "Title of room" (step 1)</h1>
         <h2>What date would you like to come?</h2>

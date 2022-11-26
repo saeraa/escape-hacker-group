@@ -1,3 +1,8 @@
+.our-challenges-header {
+    text-align: center;
+    margin-top: 2rem;
+}
+
 .challenges {
     margin: 3rem 0;
 
@@ -9,19 +14,51 @@
 }
 
 .challenge-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     overflow-x: scroll;
+    margin-block: 0;
+    margin-inline: auto;
+
+    @media (min-width: $bp-medium) {
+        &.all {
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            overflow-x: auto;
+        }
+    }
+
+    .filter-error {
+        font-size: 24px;
+        padding: 1em;
+    }
 }
+
 
 .challenge-item {
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-width: 360px;
+    max-width: 400px;
 
     border-radius: 4px;
     margin: 1em;
+    -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    position: relative;
+
+
+    .room-image {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        width: clamp(50px, 3vw, 70px);
+    }
 
     .challenge-title,
     .challenge-description,

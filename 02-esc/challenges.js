@@ -32,7 +32,30 @@ let resultFromAPI = [];
 
 window.addEventListener("load", getChallengesAPI);
 
+function checkToApplyFilter() {
+	const inputs = document.querySelectorAll("input[type=checkbox]");
+
+	if (window.location.hash) {
+		const currentURL = window.location.hash;
+		if (currentURL.includes("online")) {
+			setTimeout(() => {
+				inputs[0].checked = true;
+				let event = new Event("change");
+				filterForm.dispatchEvent(event);
+			}, 200);
+		} else if (currentURL.includes("onsite")) {
+			setTimeout(() => {
+				inputs[1].checked = true;
+				let event = new Event("change");
+				filterForm.dispatchEvent(event);
+			}, 200);
+		}
+	}
+}
+
 async function getChallengesAPI() {
+	checkToApplyFilter();
+
 	let tagsCollection = new Set();
 	resultFromAPI.length = 0;
 	resultFromAPI = await getDataFromAPI();
@@ -159,7 +182,7 @@ function showAllChallenges(resultFromAPI) {
 		challenge_item.appendChild(setDescription);
 
 		let btnBook = document.createElement("button");
-		btnBook.classList.add("btnBook");
+		btnBook.classList.add("btnBook", "button", "primary");
 
 		btnBook.setAttribute("data-id", id);
 		btnBook.setAttribute("data-participants", minParticipants);
@@ -265,6 +288,7 @@ function getFormData() {
 }
 
 function useAllFilters(e) {
+	fixRatings();
 	let filteredData = []; // reset array so it can be repopulated after the filter is applied
 
 	const formData = getFormData();
@@ -295,4 +319,28 @@ function useAllFilters(e) {
 	});
 
 	showAllChallenges(filteredData);
+}
+
+let id;
+
+function fixRatings() {
+	// - på stjärnorna bör man inte kunna välja lägre på den högra skalan. till exempel 4 till 2 stjärnor.
+	const stars = document.querySelectorAll("input[type=radio]");
+	stars.forEach((star) => {
+		star.disabled = false;
+	});
+
+	id = null;
+
+	stars.forEach((star) => {
+		if (star.name.includes("min") && star.checked) {
+			id = star.value;
+		}
+		if (star.name.includes("max") && +star.value < +id) {
+			star.disabled = true;
+		}
+		if (star.name.includes("max") && +star.value < +id) {
+			star.checked = false;
+		}
+	});
 }

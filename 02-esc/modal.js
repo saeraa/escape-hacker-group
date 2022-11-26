@@ -11,7 +11,7 @@ let availableTimes;
 let modalDiv;
 
 
-// -- MODAL STEP 1 --
+// -- MODAL STEP 1 -- #8ACFE5
 
 function openModal() { //(e)
 	const currentDate = new Date().toLocaleDateString();
@@ -42,11 +42,11 @@ function openModal() { //(e)
         let dateInput = document.querySelector("#date");
         
         if (dateInput.value == "") {
-            dateInput.style.border = 'solid 3px red';
+            dateInput.style.outline = 'solid 2px red';
             dateInput.addEventListener("click", normalBorderColor);
             
             function normalBorderColor(){ 
-                dateInput.style.border = 'inset 2px rgb(133, 133, 133)';
+                dateInput.style.outline = 'none';
             }
 
         } if (dateInput.value !== "") {
@@ -120,18 +120,18 @@ function checkModalStepTwoInput(e) {
     let emailInput = document.querySelector("#e-mail");
 
     if (nameInput.value == "") {
-        nameInput.style.border = 'solid 3px red';
+        nameInput.style.outline = 'solid 2px red';
         nameInput.addEventListener("click", normalBorderColor);
         
         function normalBorderColor(){ 
-            nameInput.style.border = 'inset 2px rgb(133, 133, 133)';
+            nameInput.style.outline = 'none';
         }
     } else if (emailInput.value == "") {
-        emailInput.style.border = 'solid 3px red';
+        emailInput.style.outline = 'solid 2px red';
         emailInput.addEventListener("click", normalBorderColor);
         
         function normalBorderColor(){ 
-            emailInput.style.border = 'inset 2px rgb(133, 133, 133)';
+            emailInput.style.outline = 'none';
         }   
     } else {
         ok = true;

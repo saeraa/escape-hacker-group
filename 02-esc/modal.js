@@ -1,8 +1,3 @@
-
-/*const openModalBtn = document.querySelector('.open-modal-btn');
-openModalBtn.addEventListener("click", openModal);*/
-
-
 let customerName;
 let eMail;
 let time;
@@ -13,18 +8,17 @@ let minParticipantsVaribelForModal;
 let maxParticipantsVaribaleForModal;
 let modalDiv;
 
-
 // -- MODAL STEP 1 --
 
-export function openModal(e) { 
-    const currentDate = new Date().toLocaleDateString();
-    idVariabelForModal = parseInt(e.target.dataset.id); 
-    minParticipantsVaribelForModal = e.target.dataset.minparticipants;
-    maxParticipantsVaribaleForModal = e.target.dataset.maxparticipants;
-    let body = document.querySelector('body');
-    modalDiv = document.createElement('div');
-    modalDiv.className = 'modal-div';
-    modalDiv.innerHTML = `
+export function openModal(e) {
+	const currentDate = new Date().toLocaleDateString();
+	idVariabelForModal = parseInt(e.target.dataset.id);
+	minParticipantsVaribelForModal = e.target.dataset.minparticipants;
+	maxParticipantsVaribaleForModal = e.target.dataset.maxparticipants;
+	let body = document.querySelector("body");
+	modalDiv = document.createElement("div");
+	modalDiv.className = "modal-div";
+	modalDiv.innerHTML = `
         <div class="bookingStep1Content">
         <h1>Book room "Title of room" (step 1)</h1>
         <h2>What date would you like to come?</h2>
@@ -37,32 +31,32 @@ export function openModal(e) {
         </div>
     `;
 	body.appendChild(modalDiv);
-   
+
 	let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
 	openModalStepTwoBtn.addEventListener("click", checkModalStepOneInput);
 }
 
 function checkModalStepOneInput(e) {
-    e.preventDefault();
-    let ok = false;
-    let dateInput = document.querySelector("#date");
-    
-    if (dateInput.value == "") {
-        dateInput.style.outline = 'solid 2px red';
-        dateInput.addEventListener("click", normalBorderColor);
-        
-        function normalBorderColor(){ 
-            dateInput.style.outline = 'none';
-        }
+	e.preventDefault();
+	let ok = false;
+	let dateInput = document.querySelector("#date");
 
-    } if (dateInput.value !== "") {
-        ok = true;
-    } if (ok) {
-        getDateFromForm(e);
-        openModalStepTwo(e);
-    }
+	if (dateInput.value == "") {
+		dateInput.style.outline = "solid 2px red";
+		dateInput.addEventListener("click", normalBorderColor);
+
+		function normalBorderColor() {
+			dateInput.style.outline = "none";
+		}
+	}
+	if (dateInput.value !== "") {
+		ok = true;
+	}
+	if (ok) {
+		getDateFromForm(e);
+		openModalStepTwo(e);
+	}
 }
-
 
 function getDateFromForm() {
 	date = document.querySelector("#date").value;
@@ -89,26 +83,24 @@ function showAvailableTimes(slot) {
 }
 
 function possibleNumberOfParticipants(min, max) {
-    let numberOfOptions = max - min;
-    
-    for(let i=0; i <= numberOfOptions; i++) {
-        createOptionForParticipants()
-        min++;    
-    }
+	let numberOfOptions = max - min;
 
-    function createOptionForParticipants() {
-        let participantsOption = document.createElement("option");
-        participantsOption.innerHTML = `${min} participants`;
-        let participantsSelect = document.querySelector("#participants");
-        participantsSelect.appendChild(participantsOption);
+	for (let i = 0; i <= numberOfOptions; i++) {
+		createOptionForParticipants();
+		min++;
+	}
 
-    } 
-
+	function createOptionForParticipants() {
+		let participantsOption = document.createElement("option");
+		participantsOption.innerHTML = `${min} participants`;
+		let participantsSelect = document.querySelector("#participants");
+		participantsSelect.appendChild(participantsOption);
+	}
 }
 
 function openModalStepTwo(e) {
-    e.preventDefault();
-    modalDiv.innerHTML = `
+	e.preventDefault();
+	modalDiv.innerHTML = `
         <div class="bookingStep2Content">
         <h1>Book room "Title of room" (step 2)</h1>
         <form action="">
@@ -126,48 +118,51 @@ function openModalStepTwo(e) {
         </form>
         </div>
     `;
-    
-    possibleNumberOfParticipants(minParticipantsVaribelForModal, maxParticipantsVaribaleForModal);
 
-    let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
-    openModalStepThreeBtn.addEventListener("click", checkModalStepTwoInput);
+	possibleNumberOfParticipants(
+		minParticipantsVaribelForModal,
+		maxParticipantsVaribaleForModal
+	);
+
+	let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
+	openModalStepThreeBtn.addEventListener("click", checkModalStepTwoInput);
 }
 
 function checkModalStepTwoInput(e) {
-    e.preventDefault();
-    let ok = false;
-    let nameInput = document.querySelector("#name");
-    let emailInput = document.querySelector("#e-mail");
+	e.preventDefault();
+	let ok = false;
+	let nameInput = document.querySelector("#name");
+	let emailInput = document.querySelector("#e-mail");
 
-    if (nameInput.value == "") {
-        nameInput.style.outline = 'solid 2px red';
-        nameInput.addEventListener("click", normalBorderColor);
-        
-        function normalBorderColor(){ 
-            nameInput.style.outline = 'none';
-        }
-    } else if (emailInput.value == "") {
-        emailInput.style.outline = 'solid 2px red';
-        emailInput.addEventListener("click", normalBorderColor);
-        
-        function normalBorderColor(){ 
-            emailInput.style.outline = 'none';
-        }   
-    } else {
-        ok = true;
-    } if (ok) {
-        getBookingInformationFromForm(e);
-        makeBooking(e);
-        openModalStepThree(e);
-    }
+	if (nameInput.value == "") {
+		nameInput.style.outline = "solid 2px red";
+		nameInput.addEventListener("click", normalBorderColor);
+
+		function normalBorderColor() {
+			nameInput.style.outline = "none";
+		}
+	} else if (emailInput.value == "") {
+		emailInput.style.outline = "solid 2px red";
+		emailInput.addEventListener("click", normalBorderColor);
+
+		function normalBorderColor() {
+			emailInput.style.outline = "none";
+		}
+	} else {
+		ok = true;
+	}
+	if (ok) {
+		getBookingInformationFromForm(e);
+		makeBooking(e);
+		openModalStepThree(e);
+	}
 }
-
 
 // -- MODAL STEP 3 --
 
 function openModalStepThree(e) {
-    e.preventDefault();
-    modalDiv.innerHTML = `
+	e.preventDefault();
+	modalDiv.innerHTML = `
 <div class="bookingStep3Content">
     <h1>Thank you!</h1>
     <a href="challenges.html">Back to challenges</a>

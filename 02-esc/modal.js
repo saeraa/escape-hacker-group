@@ -1,5 +1,5 @@
-const openModalBtn = document.querySelector('.open-modal-btn');
-openModalBtn.addEventListener("click", openModal);
+/*const openModalBtn = document.querySelector('.open-modal-btn');
+openModalBtn.addEventListener("click", openModal);*/
 
 let customerName;
 let eMail;
@@ -9,7 +9,10 @@ let date;
 let idVariabelForModal;
 let availableTimes;
 
-function openModal() { //(e)
+
+
+
+export function openModal() { //(e)
     idVariabelForModal = 4; //e.target.dataset.id 
     let body = document.querySelector('body');
     let modalDiv = document.createElement('div');

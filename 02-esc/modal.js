@@ -8,14 +8,16 @@ let participants;
 let date;
 let idVariabelForModal;
 let availableTimes;
+let modalDiv;
 
-function openModal() {
+
+// -- MODAL STEP 1 --
+
+function openModal() { //(e)
 	const currentDate = new Date().toLocaleDateString();
-
-	//(e)
 	idVariabelForModal = 4; //e.target.dataset.id
 	let body = document.querySelector("body");
-	let modalDiv = document.createElement("div");
+	modalDiv = document.createElement("div");
 	modalDiv.className = "modal-div";
 	modalDiv.innerHTML = `
         <div class="bookingStep1Content">
@@ -32,83 +34,26 @@ function openModal() {
 	body.appendChild(modalDiv);
 
 	let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
-
 	openModalStepTwoBtn.addEventListener("click", checkModalStepOneInput);
 
 	function checkModalStepOneInput(e) {
 		e.preventDefault();
 		let ok = false;
+        let dateInput = document.querySelector("#date");
+        
+        if (dateInput.value == "") {
+            dateInput.style.border = 'solid 3px red';
+            dateInput.addEventListener("click", normalBorderColor);
+            
+            function normalBorderColor(){ 
+                dateInput.style.border = 'inset 2px rgb(133, 133, 133)';
+            }
 
-		if (document.querySelector("#date").value !== "") {
+        } if (dateInput.value !== "") {
 			ok = true;
-		}
-
-		if (ok) {
+		} if (ok) {
 			getDateFromForm(e);
 			openModalStepTwo(e);
-		}
-	}
-
-	function openModalStepTwo(e) {
-		e.preventDefault();
-		modalDiv.innerHTML = `
-            <div class="bookingStep2Content">
-            <h1>Book room "Title of room" (step 2)</h1>
-            <form action="">
-                <label for="name">Name</label>
-                <input class="input-field" type="text" id="name" name="name">
-                <label for="e-mail">E-mail</label>
-                <input class="input-field" type="email" id="e-mail" name="e-mail">
-                <label for="time">What time?</label>
-                <select class="input-field" name="time" id="time">
-                </select>
-                <label for="participants">How many participants?</label>
-                <select class="input-field" name="participants" id="participants">
-                    <option value="2">2 participants</option>
-                    <option value="3">3 participants</option>
-                    <option value="4">4 participants</option>
-                    <option value="5">5 participants</option>
-                    <option value="6">6 participants</option>
-                </select>
-                <input class="button primary open-modal-step-3" type="submit" value="Submit booking">
-            </form>
-            </div>
-        `;
-
-		let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
-
-		openModalStepThreeBtn.addEventListener("click", checkModalStepTwoInput);
-
-		function checkModalStepTwoInput(e) {
-			e.preventDefault();
-			let ok = false;
-
-			let nameInput = document.querySelector("#name");
-			let emailInput = document.querySelector("#e-mail");
-
-			if (nameInput.value == "" || emailInput.value == "") {
-				alert("You gotta fill some stuff out");
-			} else if (nameInput.value == "" && emailInput.value == "") {
-				alert("You gotta fill some stuff out");
-			} else {
-				ok = true;
-			}
-
-			if (ok) {
-				getBookingInformationFromForm(e);
-				makeBooking(e);
-				openModalStepThree(e);
-			}
-		}
-
-		function openModalStepThree(e) {
-			e.preventDefault();
-			modalDiv.innerHTML = `
-        <div class="bookingStep3Content">
-            <h1>Thank you!</h1>
-            <a href="">Back to challenges</a>
-         </div>
-        `;
 		}
 	}
 }
@@ -128,12 +73,86 @@ async function checkAvailableTimes(selectedDate, challengeId) {
 	});
 }
 
+// -- MODAL STEP 2 --
+
 function showAvailableTimes(slot) {
 	slot = slot;
 	let option = document.createElement("option");
 	option.innerHTML = slot;
 	let select = document.querySelector("#time");
 	select.appendChild(option);
+}
+
+function openModalStepTwo(e) {
+    e.preventDefault();
+    modalDiv.innerHTML = `
+        <div class="bookingStep2Content">
+        <h1>Book room "Title of room" (step 2)</h1>
+        <form action="">
+            <label for="name">Name</label>
+            <input class="input-field" type="text" id="name" name="name">
+            <label for="e-mail">E-mail</label>
+            <input class="input-field" type="email" id="e-mail" name="e-mail">
+            <label for="time">What time?</label>
+            <select class="input-field" name="time" id="time">
+            </select>
+            <label for="participants">How many participants?</label>
+            <select class="input-field" name="participants" id="participants">
+                <option value="2">2 participants</option>
+                <option value="3">3 participants</option>
+                <option value="4">4 participants</option>
+                <option value="5">5 participants</option>
+                <option value="6">6 participants</option>
+            </select>
+            <input class="button primary open-modal-step-3" type="submit" value="Submit booking">
+        </form>
+        </div>
+    `;
+
+    let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
+    openModalStepThreeBtn.addEventListener("click", checkModalStepTwoInput);
+}
+
+function checkModalStepTwoInput(e) {
+    e.preventDefault();
+    let ok = false;
+    let nameInput = document.querySelector("#name");
+    let emailInput = document.querySelector("#e-mail");
+
+    if (nameInput.value == "") {
+        nameInput.style.border = 'solid 3px red';
+        nameInput.addEventListener("click", normalBorderColor);
+        
+        function normalBorderColor(){ 
+            nameInput.style.border = 'inset 2px rgb(133, 133, 133)';
+        }
+    } else if (emailInput.value == "") {
+        emailInput.style.border = 'solid 3px red';
+        emailInput.addEventListener("click", normalBorderColor);
+        
+        function normalBorderColor(){ 
+            emailInput.style.border = 'inset 2px rgb(133, 133, 133)';
+        }   
+    } else {
+        ok = true;
+    } if (ok) {
+        getBookingInformationFromForm(e);
+        makeBooking(e);
+        openModalStepThree(e);
+    }
+}
+
+
+// -- MODAL STEP 3 --
+
+function openModalStepThree(e) {
+    e.preventDefault();
+    modalDiv.innerHTML = `
+<div class="bookingStep3Content">
+    <h1>Thank you!</h1>
+    <a href="challenges.html">Back to challenges</a>
+    </div>
+`;
 }
 
 function getBookingInformationFromForm() {

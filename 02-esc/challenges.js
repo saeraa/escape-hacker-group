@@ -1,4 +1,11 @@
 import { getDataFromAPI } from "./getDataFromAPI.js";
+import { openModal } from "./modal.js";
+import {
+	filterRating,
+	filterSearch,
+	filterType,
+	filterLabels
+} from "./filters.js";
 
 const challenge_list = document.querySelector(".challenge-list");
 const openFilterBtn = document.querySelector("#btnFilterChallenges");
@@ -65,7 +72,6 @@ async function getChallengesAPI() {
 	});
 	showAllChallenges(resultFromAPI);
 	addLabelsToDOM(tagsCollection);
-	//  challenges_visiility.style.display = 'block';
 }
 
 function addLabelsToDOM(tagsCollection) {
@@ -109,9 +115,9 @@ function showAllChallenges(resultFromAPI) {
 		let setRoomImage = document.createElement("img");
 		setRoomImage.classList.add("room-image");
 		if (type == "onsite") {
-			setRoomImage.src = "static/iconOnline.svg";
-		} else {
 			setRoomImage.src = "static/iconOnsite.svg";
+		} else {
+			setRoomImage.src = "static/iconOnline.svg";
 		}
 		challenge_item.append(setRoomImage);
 
@@ -184,17 +190,17 @@ function showAllChallenges(resultFromAPI) {
 		btnBook.classList.add("btnBook", "button", "primary");
 
 		btnBook.setAttribute("data-id", id);
+		btnBook.setAttribute("data-minparticipants", minParticipants);
+		btnBook.setAttribute("data-maxparticipants", maxParticipants);
 
 		if (type == "onsite") {
-			btnBook.textContent = "Take challenge online";
-		} else {
 			btnBook.textContent = "Book this room";
+		} else {
+			btnBook.textContent = "Take challenge online";
 		}
 		challenge_item.appendChild(btnBook);
 
-		btnBook.addEventListener("click", function () {
-			// referens till bokningsfunktion
-		});
+		btnBook.addEventListener("click", openModal);
 
 		challenge_list.appendChild(challenge_item);
 	}
@@ -209,66 +215,6 @@ function clearFilter() {
 	// this function should restore all filters and use the original array to display the rooms
 	filterForm.reset();
 	showAllChallenges(resultFromAPI);
-}
-
-function filterRating(entry, formData) {
-	if (
-		(formData.hasOwnProperty("rating:min") &&
-			+entry.rating < +formData["rating:min"]) ||
-		(formData.hasOwnProperty("rating:max") &&
-			+entry.rating > +formData["rating:max"])
-	) {
-		return false;
-	} else return true;
-}
-
-function filterLabels(entry, key) {
-	if (
-		key.includes("tags:") &&
-		!entry.labels.includes(key.substring(5))
-		// only check the "javascript" part of "tags:javascript", for example
-	) {
-		return false;
-	} else {
-		return true;
-	}
-}
-
-function filterType(entry, formData) {
-	if (
-		formData.hasOwnProperty("type:onsite") &&
-		formData.hasOwnProperty("type:online")
-	) {
-		return true;
-	} else if (formData.hasOwnProperty("type:online") && entry.type != "online") {
-		return false;
-	} else if (formData.hasOwnProperty("type:onsite") && entry.type != "onsite") {
-		return false;
-	} else return true;
-}
-
-function filterSearch(entry, value) {
-	const titleAndDescription = entry.title
-		.concat(" ", entry.description)
-		.toLowerCase()
-		.split(/[ ,]+/);
-	const valueArray = value.toLowerCase().split(/[ ,]+/);
-
-	const trueOrFalse = valueArray.every((value) => {
-		const match = titleAndDescription.find((element) => {
-			if (element.includes(value)) {
-				//Check if the element contains the substring
-				return true;
-			}
-		});
-		return match;
-	});
-
-	if (trueOrFalse) {
-		return true;
-	} else {
-		return false;
-	}
 }
 
 function getFormData() {

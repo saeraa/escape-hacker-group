@@ -524,6 +524,9 @@ header h1 {
 .usps .usp .usp-image {
   object-fit: cover;
 }
+.usps .usp a {
+  display: inline-block;
+}
 .usps .usp .usp-title,
 .usps .usp .usp-intro,
 .usps .usp .button,

@@ -522,7 +522,11 @@ header h1 {
   margin: 0 0 2rem;
 }
 .usps .usp .usp-image {
+  -o-object-fit: cover;
   object-fit: cover;
+}
+.usps .usp a {
+  display: inline-block;
 }
 .usps .usp .usp-title,
 .usps .usp .usp-intro,

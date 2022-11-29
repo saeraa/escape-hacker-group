@@ -19,6 +19,7 @@ export function openModal(e) {
 	modalDiv = document.createElement("div");
 	modalDiv.className = "modal-div";
 	modalDiv.innerHTML = `
+		<div class="modalContents">
         <div class="bookingStep1Content">
         <h1>Book room "Title of room" (step 1)</h1>
         <h2>What date would you like to come?</h2>
@@ -29,6 +30,7 @@ export function openModal(e) {
             <input id="firstButton" type="submit" value="Search available times" class="button primary open-modal-step-2">
         </form>
         </div>
+		</div>
     `;
 	body.appendChild(modalDiv);
 
@@ -101,22 +103,27 @@ function possibleNumberOfParticipants(min, max) {
 function openModalStepTwo(e) {
 	e.preventDefault();
 	modalDiv.innerHTML = `
+		<div class="modalContents">
         <div class="bookingStep2Content">
         <h1>Book room "Title of room" (step 2)</h1>
         <form action="">
-            <label for="name">Name</label>
+            <label for="name">Name:</label>
             <input class="input-field" type="text" id="name" name="name">
-            <label for="e-mail">E-mail</label>
+			<br>
+            <label for="e-mail">E-mail:</label>
             <input class="input-field" type="email" id="e-mail" name="e-mail">
-            <label for="time">What time?</label>
+			<br>
+            <label for="time">What time?:</label>
             <select class="input-field" name="time" id="time">
             </select>
-            <label for="participants">How many participants?</label>
+			<br>
+            <label for="participants">How many participants?:</label>
             <select class="input-field" name="participants" id="participants">
             </select>
-            <input class="button primary open-modal-step-3" type="submit" value="Submit booking">
+            <input id="secondButton" class="button primary open-modal-step-3" type="submit" value="Submit booking">
         </form>
         </div>
+		</div>
     `;
 
 	possibleNumberOfParticipants(
@@ -163,10 +170,12 @@ function checkModalStepTwoInput(e) {
 function openModalStepThree(e) {
 	e.preventDefault();
 	modalDiv.innerHTML = `
-<div class="bookingStep3Content">
+	<div class="modalContents">
+	<div class="bookingStep3Content">
     <h1>Thank you!</h1>
     <a href="challenges.html">Back to challenges</a>
     </div>
+	</div>
 `;
 }
 

@@ -10,6 +10,15 @@
 }
 //Make modal cover page -- start
 .modal-div {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modalContents {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +33,7 @@
     z-index: 1001;
 }
 
+
 .bookingStep1Content {
     margin-left: 30px;
     margin-right: 10px;
@@ -34,8 +44,15 @@
 }
 
 .bookingStep2Content {
+    display: flex;
+    flex-direction: column;
+    line-height: 40px;
     margin-left: 30px;
     margin-right: 10px;
+}
+
+#secondButton {
+    margin-top: 40px;
 }
 
 .bookingStep3Content {

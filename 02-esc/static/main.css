@@ -189,20 +189,10 @@ header h1 {
   .main-nav.open .main-menu {
     z-index: 1;
     background-color: #011827;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.4);
     position: absolute;
     top: 1em;
@@ -210,32 +200,16 @@ header h1 {
     right: 1em;
     bottom: 1em;
     z-index: 1000;
-    -webkit-animation: main-menu_reveal 0.3s 0.2s;
     animation: main-menu_reveal 0.3s 0.2s;
-    -webkit-animation-fill-mode: backwards;
     animation-fill-mode: backwards;
-  }
-  @-webkit-keyframes main-menu_reveal {
-    from {
-      opacity: 0;
-      -webkit-transform: scale(0.8);
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
   }
   @keyframes main-menu_reveal {
     from {
       opacity: 0;
-      -webkit-transform: scale(0.8);
       transform: scale(0.8);
     }
     to {
       opacity: 1;
-      -webkit-transform: scale(1);
       transform: scale(1);
     }
   }
@@ -259,11 +233,7 @@ header h1 {
   }
   .main-menu {
     margin: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: space-evenly;
-    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
   }
   .main-menu-item {
@@ -275,8 +245,6 @@ header h1 {
     font-weight: bold;
     text-decoration: none;
     padding: 0.8em 1.5em;
-    -webkit-transition: color 0.2s;
-    -o-transition: color 0.2s;
     transition: color 0.2s;
   }
   .main-menu-item a:hover {
@@ -856,6 +824,15 @@ footer a:hover {
 }
 
 .modal-div {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modalContents {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -880,8 +857,15 @@ footer a:hover {
 }
 
 .bookingStep2Content {
+  display: flex;
+  flex-direction: column;
+  line-height: 40px;
   margin-left: 30px;
   margin-right: 10px;
+}
+
+#secondButton {
+  margin-top: 40px;
 }
 
 .bookingStep3Content {
@@ -929,3 +913,5 @@ footer a:hover {
 .booking-step-3 a {
   color: white;
 }
+
+/*# sourceMappingURL=main.css.map */

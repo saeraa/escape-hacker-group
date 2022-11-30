@@ -99,15 +99,8 @@ function showAllChallenges(resultFromAPI) {
 	}
 
 	for (let i = 0; i < resultFromAPI.length; i++) {
-		let id = resultFromAPI[i].id;
-		let type = resultFromAPI[i].type;
-		let rating = resultFromAPI[i].rating;
-		let title = resultFromAPI[i].title;
-		let description = resultFromAPI[i].description;
-		let minParticipants = resultFromAPI[i].minParticipants;
-		let maxParticipants = resultFromAPI[i].maxParticipants;
-		let image = resultFromAPI[i].image;
-		let labels = resultFromAPI[i].labels;
+	
+		const {id, type, rating, title, description, minParticipants, maxParticipants, image, labels,} = resultFromAPI[i]; 
 
 		let challenge_item = document.createElement("li");
 		challenge_item.classList.add("challenge-item");
@@ -134,7 +127,6 @@ function showAllChallenges(resultFromAPI) {
 		let setRating = document.createElement("ul");
 		setRating.classList.add("rating");
 
-		/* I måpn av tid på slutet, fixa loop */
 		let setRating_star_1 = document.createElement("li");
 		setRating_star_1.classList.add("rating-star");
 		setRating.appendChild(setRating_star_1);

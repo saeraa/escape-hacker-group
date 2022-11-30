@@ -42,6 +42,7 @@
     background-color: $c-darkblue;
     color: white;
     position:fixed;
+    padding: 15px;
     top: 1rem;
     left: 1rem;
     bottom: 1rem;
@@ -91,7 +92,6 @@
     .bookingStep2Content {
         margin-left: 0px;
     }
-    
 }
 @media screen and (max-width: 458px) {
     #date {

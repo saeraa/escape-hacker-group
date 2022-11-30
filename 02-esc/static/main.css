@@ -814,13 +814,33 @@ footer a:hover {
   font-size: 18px;
 }
 
-.modal {
-  background-color: #011827;
-  color: white;
+.modalInputLabels {
+  font-weight: 500;
 }
-.modal .input-field {
+
+.input-field {
+  font-size: 1.2em;
   height: 2rem;
   border-radius: 5px;
+  margin-bottom: 30px;
+  width: 400px;
+  overflow: visible;
+}
+
+#date {
+  font-size: 1.2em;
+}
+
+#time {
+  height: 3rem;
+  width: 230px;
+  font-size: 1.3em;
+}
+
+#participants {
+  height: 3rem;
+  width: 230px;
+  font-size: 1.3em;
 }
 
 .modal-div {
@@ -835,8 +855,6 @@ footer a:hover {
 .modalContents {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #011827;
   color: white;
   position: fixed;
@@ -848,70 +866,56 @@ footer a:hover {
 }
 
 .bookingStep1Content {
-  margin-left: 30px;
+  margin-top: 20px;
+  margin-left: 60px;
   margin-right: 10px;
 }
 
 #firstButton {
-  margin-top: 40px;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
 }
 
 .bookingStep2Content {
   display: flex;
   flex-direction: column;
-  line-height: 40px;
   margin-left: 30px;
   margin-right: 10px;
 }
 
 #secondButton {
-  margin-top: 40px;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
 }
 
 .bookingStep3Content {
-  margin-left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40vh;
 }
 
-.booking-step-1 {
-  margin-left: 1.5rem;
-  font-weight: bold;
+@media screen and (max-width: 530px) {
+  .bookingStep1Content {
+    margin-left: 0px;
+  }
+  .bookingStep2Content {
+    margin-left: 0px;
+  }
 }
-.booking-step-1 h2 {
-  font-weight: 400;
-}
-.booking-step-1 .booking-date-label {
-  display: block;
-}
-.booking-step-1 .button, .booking-step-1 #btnFilterChallenges {
-  position: relative;
-  margin-top: 20vh;
-  margin-left: 40vw;
-}
-
-.booking-step-2 {
-  margin-left: 1.5rem;
-  font-weight: bold;
-}
-.booking-step-2 label {
-  display: block;
-  margin: 1rem 0 0 0;
-}
-.booking-step-2 input {
-  display: block;
-}
-.booking-step-2 .button, .booking-step-2 #btnFilterChallenges {
-  position: relative;
-  margin-top: 20vh;
-  margin-left: 40vw;
-}
-
-.booking-step-3 {
-  text-align: center;
-  padding: 50vh 0;
-  font-weight: bold;
-}
-.booking-step-3 a {
-  color: white;
+@media screen and (max-width: 458px) {
+  #date {
+    width: 100%;
+  }
+  #name {
+    width: 100%;
+  }
+  #e-mail {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

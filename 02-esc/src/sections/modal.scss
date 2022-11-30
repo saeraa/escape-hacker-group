@@ -1,14 +1,32 @@
-.modal {
-    background-color: $c-darkblue;
-    color: white;
+.modalInputLabels {
+    font-weight: 500;
+}
 
-    .input-field {
+.input-field {
+        font-size: 1.2em;
         height: 2rem;
         border-radius: 5px;
+        margin-bottom:30px;
+        width: 400px;
+        overflow:visible;
     }
-
+    
+#date {
+    font-size: 1.2em;
 }
-//Make modal cover page -- start
+
+#time {
+    height: 3rem;
+    width: 230px;
+    font-size: 1.3em;
+}
+
+#participants {
+    height: 3rem;
+    width: 230px;
+    font-size: 1.3em;
+}
+
 .modal-div {
     position: fixed;
     top: 0px;
@@ -21,8 +39,6 @@
 .modalContents {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: $c-darkblue;
     color: white;
     position:fixed;
@@ -35,83 +51,56 @@
 
 
 .bookingStep1Content {
-    margin-left: 30px;
+    
+    margin-top: 20px;
+    margin-left: 60px;
     margin-right: 10px;
 }
 
 #firstButton {
-   margin-top: 40px; 
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
 }
 
 .bookingStep2Content {
     display: flex;
     flex-direction: column;
-    line-height: 40px;
     margin-left: 30px;
     margin-right: 10px;
 }
 
 #secondButton {
-    margin-top: 40px;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
 }
 
 .bookingStep3Content {
-    margin-left: 0px;
-}
-//Make modal cover page -- end
-
-.booking-step-1 {
-    // display: none;
-    margin-left: 1.5rem;
-    font-weight: bold;
-    
-
-    h2 {
-        font-weight: 400;
-    }
-    
-    .booking-date-label {
-        display: block;
-    }
-
-    .button {
-        position: relative;
-        margin-top: 20vh;
-        margin-left: 40vw;
-    }
-
-  }
-
-.booking-step-2 {
-    //display: none;
-    margin-left: 1.5rem;
-    font-weight: bold;
-    
-    label {
-        display: block;
-        margin: 1rem 0 0 0;
-    }
-
-    input {
-        display: block;
-    }
-
-    .button {
-        position: relative;
-        margin-top: 20vh;
-        margin-left: 40vw; 
-    }
-
- 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40vh;
 }
 
-.booking-step-3 {
-    text-align: center;
-    padding: 50vh 0;
-    font-weight: bold;
-    // display: none;
-
-    a {
-        color: white;
+@media screen and (max-width: 530px) {
+    .bookingStep1Content {
+        margin-left: 0px;
+    }
+    .bookingStep2Content {
+        margin-left: 0px;
+    }
+    
+}
+@media screen and (max-width: 458px) {
+    #date {
+        width: 100%;
+    }
+    #name {
+        width: 100%;
+    }
+    #e-mail {
+        width: 100%;
     }
 }

@@ -7,6 +7,7 @@ let idVariabelForModal;
 let minParticipantsVaribelForModal;
 let maxParticipantsVaribaleForModal;
 let modalDiv;
+let roomTitleforModal;
 
 // -- MODAL STEP 1 --
 
@@ -15,16 +16,18 @@ export function openModal(e) {
 	idVariabelForModal = parseInt(e.target.dataset.id);
 	minParticipantsVaribelForModal = e.target.dataset.minparticipants;
 	maxParticipantsVaribaleForModal = e.target.dataset.maxparticipants;
+	roomTitleforModal = e.target.dataset.title;
 	let body = document.querySelector("body");
 	modalDiv = document.createElement("div");
 	modalDiv.className = "modal-div";
 	modalDiv.innerHTML = `
 		<div class="modalContents">
         <div class="bookingStep1Content">
-        <h1>Book room "Title of room" (step 1)</h1>
+        <h1>Book room "${roomTitleforModal}" (step 1)</h1>
         <h2>What date would you like to come?</h2>
         <form action="">
-            <label class="booking-date-label" for="date">Date</label>
+            <label class="modalInputLabels" for="date">Date</label>
+			<br>
             <input id="date" class="input-field" type="date" name="date"
             min="${currentDate}">
             <input id="firstButton" type="submit" value="Search available times" class="button primary open-modal-step-2">
@@ -36,7 +39,14 @@ export function openModal(e) {
 
 	let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
 	openModalStepTwoBtn.addEventListener("click", checkModalStepOneInput);
+
+
+	if (document.querySelector(".modal-div").style.position = "fixed") {
+		document.querySelector("body").style.overflow = "hidden"
+	}
+
 }
+
 
 function checkModalStepOneInput(e) {
 	e.preventDefault();
@@ -105,19 +115,23 @@ function openModalStepTwo(e) {
 	modalDiv.innerHTML = `
 		<div class="modalContents">
         <div class="bookingStep2Content">
-        <h1>Book room "Title of room" (step 2)</h1>
+        <h1>Book room "${roomTitleforModal}" (step 2)</h1>
         <form action="">
-            <label for="name">Name:</label>
+            <label class="modalInputLabels" for="name">Name</label>
+			<br>
             <input class="input-field" type="text" id="name" name="name">
 			<br>
-            <label for="e-mail">E-mail:</label>
+            <label class="modalInputLabels" for="e-mail">E-mail</label>
+			<br>
             <input class="input-field" type="email" id="e-mail" name="e-mail">
 			<br>
-            <label for="time">What time?:</label>
+            <label class="modalInputLabels" for="time">What time?</label>
+			<br>
             <select class="input-field" name="time" id="time">
             </select>
 			<br>
-            <label for="participants">How many participants?:</label>
+            <label class="modalInputLabels" for="participants">How many participants?</label>
+			<br>
             <select class="input-field" name="participants" id="participants">
             </select>
             <input id="secondButton" class="button primary open-modal-step-3" type="submit" value="Submit booking">

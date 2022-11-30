@@ -197,6 +197,7 @@ function showAllChallenges(resultFromAPI) {
 		btnBook.setAttribute("data-id", id);
 		btnBook.setAttribute("data-minparticipants", minParticipants);
 		btnBook.setAttribute("data-maxparticipants", maxParticipants);
+		btnBook.setAttribute("data-title", title);
 
 		if (type == "onsite") {
 			btnBook.textContent = "Book this room";

@@ -7,6 +7,14 @@ import {
 	filterLabels
 } from "./filters.js";
 
+document.querySelector(".main-nav-toggle").addEventListener("click", () => {
+	document.querySelector(".main-nav").classList.toggle("open");
+});
+
+document.querySelector("h1").addEventListener("click", () => {
+	window.location.href = "index.html";
+});
+
 const challenge_list = document.querySelector(".challenge-list");
 const openFilterBtn = document.querySelector("#btnFilterChallenges");
 const closeFilterBtn = document.querySelector(".filter-close");
@@ -99,8 +107,17 @@ function showAllChallenges(resultFromAPI) {
 	}
 
 	for (let i = 0; i < resultFromAPI.length; i++) {
-	
-		const {id, type, rating, title, description, minParticipants, maxParticipants, image, labels,} = resultFromAPI[i]; 
+		const {
+			id,
+			type,
+			rating,
+			title,
+			description,
+			minParticipants,
+			maxParticipants,
+			image,
+			labels
+		} = resultFromAPI[i];
 
 		let challenge_item = document.createElement("li");
 		challenge_item.classList.add("challenge-item");

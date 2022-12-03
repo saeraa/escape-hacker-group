@@ -6,13 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="static/main.css">
-    <script src="index.js" type="module" defer></script>
+    <script src="challenge.js" defer></script>
     <title>[ESC] Hacker Escape Rooms</title>
 </head>
 
 <body>
-    <header>
-        <h1>Hacker Escape Rooms</h1>
+    <header> 
+    
+        
+        <h1>[ESC] Hacker Escape Rooms</h1>
     </header>
     <nav class="main-nav">
         <button class="main-nav-toggle"></button>
@@ -79,10 +81,13 @@
         <button type="button" class="filter-clear button primary">Clear filters</button>
     </form>
 
-    <section class="challenges">
-        <ul class="challenge-list all">
-        </ul>
-    </section>
+        <h2>Our Challenges</h2>
+        <button class="btnFilterChallenges" id="btnFilterChallenges">Filter Challenges</button>
+
+        <section class="challenges hide_card">
+            <ul class="challenge-list all">
+            </ul>
+        </section>
 
     <footer>
         <div class="footer-summary">
@@ -112,7 +117,6 @@
             </menu>
         </nav>
     </footer>
-    <script src="challenges.js" type="module"></script>
 </body>
 
 </html>

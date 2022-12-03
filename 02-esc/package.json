@@ -3,11 +3,11 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
-	"type": "module",
 	"scripts": {
 		"sass": "sass --no-source-map src/main.scss static/main.css",
 		"watch": "sass --no-source-map --watch src/main.scss static/main.css",
-		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+		"build": "webpack"
 	},
 	"author": "",
 	"license": "ISC",
@@ -16,6 +16,8 @@
 	},
 	"devDependencies": {
 		"jest": "^29.3.1",
-		"jest-environment-jsdom": "^29.3.1"
+		"jest-environment-jsdom": "^29.3.1",
+		"webpack": "^5.75.0",
+		"webpack-cli": "^5.0.0"
 	}
 }

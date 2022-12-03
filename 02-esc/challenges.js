@@ -1,6 +1,5 @@
 import { getDataFromAPI } from "./getDataFromAPI.js";
 import { showAllChallenges } from "./showAllChallenges.js";
-import { openModal } from "./modal.js";
 import {
 	filterRating,
 	filterSearch,
@@ -8,33 +7,40 @@ import {
 	filterLabels
 } from "./filters.js";
 
-const challenge_list = document.querySelector(".challenge-list");
+document.querySelector(".main-nav-toggle").addEventListener("click", () => {
+	document.querySelector(".main-nav").classList.toggle("open");
+});
+
+const menuItems = document.querySelectorAll(".main-menu-item");
+menuItems.forEach((item) => {
+	item.addEventListener("click", () => {
+		document.querySelector(".main-nav").classList.remove("open");
+	});
+});
+
+document.querySelector("h1").addEventListener("click", () => {
+	window.location.href = "index.html";
+});
+
+const challenges_list = document.querySelector(".challenge-list");
 const openFilterBtn = document.querySelector("#btnFilterChallenges");
 const closeFilterBtn = document.querySelector(".filter-close");
 
-openFilterBtn.addEventListener("click", () => {
+function toggleFilter() {
 	filterForm.classList.toggle("open");
 	if (filterForm.classList.contains("open")) {
 		openFilterBtn.style.display = "none";
-	}
-});
-
-closeFilterBtn.addEventListener("click", () => {
-	filterForm.classList.toggle("open");
-	if (!filterForm.classList.contains("open")) {
+	} else {
 		openFilterBtn.style.display = "block";
 	}
-});
+}
+
+openFilterBtn.addEventListener("click", toggleFilter);
+closeFilterBtn.addEventListener("click", toggleFilter);
 
 const filterForm = document.querySelector(".filter-form");
 const searchFilterInput = document.querySelector("input[type='search']");
 const clearFilterBtn = document.querySelector(".filter-clear");
-
-async function getChallengesAPI() {
-    resultFromAPI = await getDataFromAPI();
-
-    showAllChallenges(resultFromAPI, challenge_list);
-};
 
 clearFilterBtn.addEventListener("click", clearFilter);
 filterForm.addEventListener("submit", doNotReload);
@@ -82,7 +88,7 @@ async function getChallengesAPI() {
 			tagsCollection.add(label);
 		});
 	});
-	showAllChallenges(resultFromAPI);
+	showAllChallenges(resultFromAPI, challenges_list);
 	addLabelsToDOM(tagsCollection);
 }
 
@@ -103,7 +109,7 @@ function doNotReload(e) {
 
 function clearFilter() {
 	filterForm.reset();
-	showAllChallenges(resultFromAPI);
+	showAllChallenges(resultFromAPI, challenges_list);
 }
 
 function getFormData() {
@@ -147,7 +153,7 @@ function useAllFilters(e) {
 		}
 	});
 
-	showAllChallenges(filteredData);
+	showAllChallenges(filteredData, challenges_list);
 }
 
 let id;

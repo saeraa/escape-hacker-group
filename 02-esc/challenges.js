@@ -11,6 +11,13 @@ document.querySelector(".main-nav-toggle").addEventListener("click", () => {
 	document.querySelector(".main-nav").classList.toggle("open");
 });
 
+const menuItems = document.querySelectorAll(".main-menu-item");
+menuItems.forEach((item) => {
+	item.addEventListener("click", () => {
+		document.querySelector(".main-nav").classList.remove("open");
+	});
+});
+
 document.querySelector("h1").addEventListener("click", () => {
 	window.location.href = "index.html";
 });
@@ -19,19 +26,17 @@ const challenges_list = document.querySelector(".challenge-list");
 const openFilterBtn = document.querySelector("#btnFilterChallenges");
 const closeFilterBtn = document.querySelector(".filter-close");
 
-openFilterBtn.addEventListener("click", () => {
+function toggleFilter() {
 	filterForm.classList.toggle("open");
 	if (filterForm.classList.contains("open")) {
 		openFilterBtn.style.display = "none";
-	}
-});
-
-closeFilterBtn.addEventListener("click", () => {
-	filterForm.classList.toggle("open");
-	if (!filterForm.classList.contains("open")) {
+	} else {
 		openFilterBtn.style.display = "block";
 	}
-});
+}
+
+openFilterBtn.addEventListener("click", toggleFilter);
+closeFilterBtn.addEventListener("click", toggleFilter);
 
 const filterForm = document.querySelector(".filter-form");
 const searchFilterInput = document.querySelector("input[type='search']");

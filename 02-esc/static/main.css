@@ -853,8 +853,17 @@ footer a:hover {
 }
 
 .modalContents {
+  overflow-x: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   background-color: #011827;
   color: white;
   position: fixed;
@@ -864,6 +873,27 @@ footer a:hover {
   bottom: 1rem;
   right: 1rem;
   z-index: 1001;
+  min-height: 80vh;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.modalContents .bookingStep1Content,
+.modalContents .bookingStep2Content {
+  display: contents;
+}
+.modalContents form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100%;
+}
+.modalContents form #firstButton,
+.modalContents form #secondButton {
+  margin: auto 0 15px auto;
 }
 
 .bookingStep1Content {
@@ -872,29 +902,31 @@ footer a:hover {
   margin-right: 10px;
 }
 
-#firstButton {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-}
-
 .bookingStep2Content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin-left: 30px;
   margin-right: 10px;
 }
 
-#secondButton {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-}
-
 .bookingStep3Content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin-top: 40vh;
 }
@@ -918,5 +950,3 @@ footer a:hover {
     width: 100%;
   }
 }
-
-/*# sourceMappingURL=main.css.map */

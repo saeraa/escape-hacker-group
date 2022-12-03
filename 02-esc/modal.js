@@ -1,111 +1,223 @@
-const openModalBtn = document.querySelector('.open-modal-btn');
-openModalBtn.addEventListener("click", openModal);
-
 let customerName;
 let eMail;
 let time;
 let participants;
+let date;
+let idVariabelForModal;
+let minParticipantsVaribelForModal;
+let maxParticipantsVaribaleForModal;
+let modalDiv;
+let roomTitleforModal;
 
+// -- MODAL STEP 1 --
 
-
-function openModal() {
-    let body = document.querySelector('body');
-    let modalDiv = document.createElement('div');
-    modalDiv.className = 'modal-div';
-    modalDiv.innerHTML = `
+export function openModal(e) {
+	const currentDate = new Date().toLocaleDateString();
+	idVariabelForModal = parseInt(e.target.dataset.id);
+	minParticipantsVaribelForModal = e.target.dataset.minparticipants;
+	maxParticipantsVaribaleForModal = e.target.dataset.maxparticipants;
+	roomTitleforModal = e.target.dataset.title;
+	let body = document.querySelector("body");
+	modalDiv = document.createElement("div");
+	modalDiv.className = "modal-div";
+	modalDiv.innerHTML = `
+		<div class="modalContents">
         <div class="bookingStep1Content">
-        <h1>Book room "Title of room" (step 1)</h1>
+        <h1>Book room "${roomTitleforModal}" (step 1)</h1>
         <h2>What date would you like to come?</h2>
         <form action="">
-            <label class="booking-date-label" for="date">Date</label>
-            <input class="input-field" type="date" name="date">
+            <label class="modalInputLabels" for="date">Date</label>
+			<br>
+            <input id="date" class="input-field" type="date" name="date"
+            min="${currentDate}">
             <input id="firstButton" type="submit" value="Search available times" class="button primary open-modal-step-2">
         </form>
         </div>
+		</div>
     `;
-    body.appendChild(modalDiv);
+	body.appendChild(modalDiv);
+
+	let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
+	openModalStepTwoBtn.addEventListener("click", checkModalStepOneInput);
 
 
-    let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
-    openModalStepTwoBtn.addEventListener("click", 
-    openModalStepTwo);
+	if (document.querySelector(".modal-div").style.position = "fixed") {
+		document.querySelector("body").style.overflow = "hidden"
+	}
 
-    function openModalStepTwo(e) {
-
-        e.preventDefault();
-
-        modalDiv.innerHTML = `
-            <div class="bookingStep2Content">
-            <h1>Book room "Title of room" (step 2)</h1>
-            <form action="">
-                <label for="name">Name</label>
-                <input class="input-field" type="text" id="name" name="name">
-                <label for="e-mail">E-mail</label>
-                <input class="input-field" type="email" id="e-mail" name="e-mail">
-                <label for="time">What time?</label>
-                <input class="input-field" type="time" name="time" id="time">
-                <label for="participants">How many participants?</label>
-                <select class="input-field" name="participants" id="participants">
-                    <option value="2">2 participants</option>
-                    <option value="3">3 participants</option>
-                    <option value="4">4 participants</option>
-                    <option value="5">5 participants</option>
-                    <option value="6">6 participants</option>
-                </select>
-                <input class="button primary open-modal-step-3" type="submit" value="Submit booking">
-            </form>
-            </div>
-        `;
-    
-    function getBookingInformationFromForm() {
-
-        customerName = document.querySelector('#name').value;
-        eMail = document.querySelector('#e-mail').value;
-        time = document.querySelector('#time').value;
-        participants = parseInt(document.querySelector('#participants').value);
-    }
-    
-         
-    let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
-    openModalStepThreeBtn.addEventListener("click", getBookingInformationFromForm);
-    openModalStepThreeBtn.addEventListener("click", makeBooking);
-    
-    openModalStepThreeBtn.addEventListener("click", openModalStepThree);
-
-    function openModalStepThree(e) {
-
-        e.preventDefault();
-
-        modalDiv.innerHTML = `
-        <div class="bookingStep3Content">
-            <h1>Thank you!</h1>
-            <a href="">Back to challenges</a>
-         </div>
-        `;
-
-    }
-}
 }
 
+
+function checkModalStepOneInput(e) {
+	e.preventDefault();
+	let ok = false;
+	let dateInput = document.querySelector("#date");
+
+	if (dateInput.value == "") {
+		dateInput.style.outline = "solid 2px red";
+		dateInput.addEventListener("click", normalBorderColor);
+
+		function normalBorderColor() {
+			dateInput.style.outline = "none";
+		}
+	}
+	if (dateInput.value !== "") {
+		ok = true;
+	}
+	if (ok) {
+		getDateFromForm(e);
+		openModalStepTwo(e);
+	}
+}
+
+function getDateFromForm() {
+	date = document.querySelector("#date").value;
+	checkAvailableTimes(date, idVariabelForModal);
+}
+
+async function checkAvailableTimes(selectedDate, challengeId) {
+	const res = await fetch(
+		`https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${selectedDate}&challenge=${challengeId}`
+	);
+	const data = await res.json();
+	data.slots.forEach((slot) => {
+		showAvailableTimes(slot);
+	});
+}
+
+// -- MODAL STEP 2 --
+
+function showAvailableTimes(slot) {
+	let option = document.createElement("option");
+	option.innerHTML = slot;
+	let select = document.querySelector("#time");
+	select.appendChild(option);
+}
+
+function possibleNumberOfParticipants(min, max) {
+	let numberOfOptions = max - min;
+
+	for (let i = 0; i <= numberOfOptions; i++) {
+		createOptionForParticipants();
+		min++;
+	}
+
+	function createOptionForParticipants() {
+		let participantsOption = document.createElement("option");
+		participantsOption.innerHTML = `${min} participants`;
+		let participantsSelect = document.querySelector("#participants");
+		participantsSelect.appendChild(participantsOption);
+	}
+}
+
+function openModalStepTwo(e) {
+	e.preventDefault();
+	modalDiv.innerHTML = `
+		<div class="modalContents">
+        <div class="bookingStep2Content">
+        <h1>Book room "${roomTitleforModal}" (step 2)</h1>
+        <form action="">
+            <label class="modalInputLabels" for="name">Name</label>
+			<br>
+            <input class="input-field" type="text" id="name" name="name">
+			<br>
+            <label class="modalInputLabels" for="e-mail">E-mail</label>
+			<br>
+            <input class="input-field" type="email" id="e-mail" name="e-mail">
+			<br>
+            <label class="modalInputLabels" for="time">What time?</label>
+			<br>
+            <select class="input-field" name="time" id="time">
+            </select>
+			<br>
+            <label class="modalInputLabels" for="participants">How many participants?</label>
+			<br>
+            <select class="input-field" name="participants" id="participants">
+            </select>
+            <input id="secondButton" class="button primary open-modal-step-3" type="submit" value="Submit booking">
+        </form>
+        </div>
+		</div>
+    `;
+
+	possibleNumberOfParticipants(
+		minParticipantsVaribelForModal,
+		maxParticipantsVaribaleForModal
+	);
+
+	let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
+	openModalStepThreeBtn.addEventListener("click", checkModalStepTwoInput);
+}
+
+function checkModalStepTwoInput(e) {
+	e.preventDefault();
+	let ok = false;
+	let nameInput = document.querySelector("#name");
+	let emailInput = document.querySelector("#e-mail");
+
+	if (nameInput.value == "") {
+		nameInput.style.outline = "solid 2px red";
+		nameInput.addEventListener("click", normalBorderColor);
+
+		function normalBorderColor() {
+			nameInput.style.outline = "none";
+		}
+	} else if (emailInput.value == "") {
+		emailInput.style.outline = "solid 2px red";
+		emailInput.addEventListener("click", normalBorderColor);
+
+		function normalBorderColor() {
+			emailInput.style.outline = "none";
+		}
+	} else {
+		ok = true;
+	}
+	if (ok) {
+		getBookingInformationFromForm(e);
+		makeBooking(e);
+		openModalStepThree(e);
+	}
+}
+
+// -- MODAL STEP 3 --
+
+function openModalStepThree(e) {
+	e.preventDefault();
+	modalDiv.innerHTML = `
+	<div class="modalContents">
+	<div class="bookingStep3Content">
+    <h1>Thank you!</h1>
+    <a href="challenges.html">Back to challenges</a>
+    </div>
+	</div>
+`;
+}
+
+function getBookingInformationFromForm() {
+	customerName = document.querySelector("#name").value;
+	eMail = document.querySelector("#e-mail").value;
+	time = document.querySelector("#time").value;
+	participants = parseInt(document.querySelector("#participants").value);
+}
 
 async function makeBooking() {
-
-const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        challenge: 12,
-        name: customerName,
-        email: eMail,
-        date: "2022-12-12",
-        time: time,
-        participants: participants,
-    }),
-});
-const data = await res.json();
-console.log(data);
-
+	const res = await fetch(
+		"https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				challenge: idVariabelForModal,
+				name: customerName,
+				email: eMail,
+				date: date,
+				time: time,
+				participants: participants
+			})
+		}
+	);
+	const data = await res.json();
+	console.log(data);
 }
-

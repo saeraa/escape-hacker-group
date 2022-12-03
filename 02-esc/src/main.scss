@@ -1,6 +1,7 @@
 @import "variables.scss";
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     font-family: Roboto;
@@ -15,6 +16,15 @@ img {
     max-width: 100%;
 }
 
+.btnFilterChallenges {
+    background-color: #ffff;
+    color: #87CEFA;
+    border: 1px solid lightblue;
+    padding: 0.5rem 0.5rem;
+    margin: 1rem auto;
+    display: block;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 @import "misc.scss";
@@ -27,4 +37,5 @@ img {
 @import "sections/story.scss";
 @import "sections/usps.scss";
 @import "sections/footer.scss";
+@import "sections/filter.scss";
 @import "sections/modal.scss";

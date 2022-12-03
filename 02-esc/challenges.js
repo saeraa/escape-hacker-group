@@ -1,6 +1,5 @@
 import { getDataFromAPI } from "./getDataFromAPI.js";
 import { showAllChallenges } from "./showAllChallenges.js";
-import { openModal } from "./modal.js";
 import {
 	filterRating,
 	filterSearch,
@@ -16,7 +15,7 @@ document.querySelector("h1").addEventListener("click", () => {
 	window.location.href = "index.html";
 });
 
-const challenge_list = document.querySelector(".challenge-list");
+const challenges_list = document.querySelector(".challenge-list");
 const openFilterBtn = document.querySelector("#btnFilterChallenges");
 const closeFilterBtn = document.querySelector(".filter-close");
 
@@ -37,12 +36,6 @@ closeFilterBtn.addEventListener("click", () => {
 const filterForm = document.querySelector(".filter-form");
 const searchFilterInput = document.querySelector("input[type='search']");
 const clearFilterBtn = document.querySelector(".filter-clear");
-
-async function getChallengesAPI() {
-	resultFromAPI = await getDataFromAPI();
-
-	showAllChallenges(resultFromAPI, challenge_list);
-}
 
 clearFilterBtn.addEventListener("click", clearFilter);
 filterForm.addEventListener("submit", doNotReload);
@@ -90,7 +83,7 @@ async function getChallengesAPI() {
 			tagsCollection.add(label);
 		});
 	});
-	showAllChallenges(resultFromAPI);
+	showAllChallenges(resultFromAPI, challenges_list);
 	addLabelsToDOM(tagsCollection);
 }
 
@@ -111,7 +104,7 @@ function doNotReload(e) {
 
 function clearFilter() {
 	filterForm.reset();
-	showAllChallenges(resultFromAPI);
+	showAllChallenges(resultFromAPI, challenges_list);
 }
 
 function getFormData() {
@@ -155,7 +148,7 @@ function useAllFilters(e) {
 		}
 	});
 
-	showAllChallenges(filteredData);
+	showAllChallenges(filteredData, challenges_list);
 }
 
 let id;

@@ -40,13 +40,10 @@ export function openModal(e) {
 	let openModalStepTwoBtn = document.querySelector(".open-modal-step-2");
 	openModalStepTwoBtn.addEventListener("click", checkModalStepOneInput);
 
-
-	if (document.querySelector(".modal-div").style.position = "fixed") {
-		document.querySelector("body").style.overflow = "hidden"
+	if ((document.querySelector(".modal-div").style.position = "fixed")) {
+		document.querySelector("body").style.overflow = "hidden";
 	}
-
 }
-
 
 function checkModalStepOneInput(e) {
 	e.preventDefault();
@@ -219,5 +216,4 @@ async function makeBooking() {
 		}
 	);
 	const data = await res.json();
-	console.log(data);
 }

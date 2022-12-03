@@ -1,3 +1,5 @@
+import { openModal } from "./modal.js";
+
 export function showAllChallenges(resultFromAPI, challenge_list) {
 	challenge_list.innerHTML = "";
 	if (resultFromAPI.length == 0) {
@@ -7,8 +9,16 @@ export function showAllChallenges(resultFromAPI, challenge_list) {
 	}
 
 	for (let i = 0; i < resultFromAPI.length; i++) {
-	
-		const { id, type, rating, title, description, minParticipants, maxParticipants, image } = resultFromAPI[i]; 
+		const {
+			id,
+			type,
+			rating,
+			title,
+			description,
+			minParticipants,
+			maxParticipants,
+			image
+		} = resultFromAPI[i];
 
 		let challenge_item = document.createElement("li");
 		challenge_item.classList.add("challenge-item");

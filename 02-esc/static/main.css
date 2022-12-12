@@ -49,7 +49,7 @@ li {
 }
 .button.secondary, .secondary#btnFilterChallenges {
   background-color: #8ACFE5;
-  color: #011827;
+  color: #021928;
 }
 
 .rating {
@@ -71,7 +71,7 @@ li {
 }
 
 header {
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 1em;
 }
@@ -188,7 +188,7 @@ header h1 {
   }
   .main-nav.open .main-menu {
     z-index: 1;
-    background-color: #011827;
+    background-color: #021928;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -228,7 +228,7 @@ header h1 {
 @media (min-width: 800px) {
   .main-nav {
     display: block;
-    background-color: #011827;
+    background-color: #021928;
     padding-top: 2rem;
   }
   .main-menu {
@@ -466,7 +466,7 @@ header h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 3rem 1rem;
 }
@@ -528,7 +528,7 @@ header h1 {
 }
 
 footer {
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 1rem 1rem 3rem;
 }
@@ -630,7 +630,7 @@ footer a:hover {
   width: 3em;
   height: 0.4em;
   border-radius: 0.2em;
-  background-color: #011827;
+  background-color: #021928;
   position: absolute;
   margin: 0;
   border-width: 0;
@@ -647,7 +647,7 @@ footer a:hover {
   width: 3em;
   height: 0.4em;
   border-radius: 0.2em;
-  background-color: #011827;
+  background-color: #021928;
   position: relative;
   top: 0;
   -webkit-transform: rotate(90deg);
@@ -715,7 +715,7 @@ footer a:hover {
   transform: scale(1);
 }
 .filter-form .filter-type input:focus {
-  outline: max(2px, 0.15em) solid #011827;
+  outline: max(2px, 0.15em) solid #021928;
   outline-offset: max(2px, 0.15em);
 }
 .filter-form .filter-rating {
@@ -853,18 +853,9 @@ footer a:hover {
 }
 
 .modalContents {
-  overflow-x: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   position: fixed;
   padding: 15px;
@@ -873,27 +864,6 @@ footer a:hover {
   bottom: 1rem;
   right: 1rem;
   z-index: 1001;
-  min-height: 80vh;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.modalContents .bookingStep1Content,
-.modalContents .bookingStep2Content {
-  display: contents;
-}
-.modalContents form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-height: 100%;
-}
-.modalContents form #firstButton,
-.modalContents form #secondButton {
-  margin: auto 0 15px auto;
 }
 
 .bookingStep1Content {
@@ -902,31 +872,29 @@ footer a:hover {
   margin-right: 10px;
 }
 
+#firstButton {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
 .bookingStep2Content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   margin-left: 30px;
   margin-right: 10px;
 }
 
+#secondButton {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
 .bookingStep3Content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   margin-top: 40vh;
 }
@@ -950,3 +918,5 @@ footer a:hover {
     width: 100%;
   }
 }
+
+/*# sourceMappingURL=main.css.map */

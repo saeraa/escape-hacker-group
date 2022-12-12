@@ -7,7 +7,8 @@
 		"sass": "sass --no-source-map src/main.scss static/main.css",
 		"watch": "sass --no-source-map --watch src/main.scss static/main.css",
 		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-		"build": "webpack"
+		"build": "webpack",
+		"webwatch": "webpack --watch"
 	},
 	"author": "",
 	"license": "ISC",

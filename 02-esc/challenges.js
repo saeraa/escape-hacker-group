@@ -49,14 +49,26 @@ searchFilterInput.addEventListener("keyup", useAllFilters);
 
 let resultFromAPI = [];
 
-window.addEventListener("hashchange", checkToApplyFilter);
 window.addEventListener("load", getChallengesAPI);
+
+let previousUrl = "";
+
+let observer = new MutationObserver(function (m) {
+	if (location.href !== previousUrl) {
+		previousUrl = location.href;
+	}
+});
+
+observer.observe(document.querySelector("body"), {
+	childList: true,
+	subtree: true
+});
 
 function checkToApplyFilter() {
 	const inputs = document.querySelectorAll("input[type=checkbox]");
 
-	if (window.location.hash) {
-		const currentURL = window.location.hash;
+	if (window.location.search) {
+		const currentURL = window.location.search;
 		let event = new Event("change");
 		if (currentURL.includes("all")) {
 			filterForm.reset();

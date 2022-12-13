@@ -99,3 +99,41 @@
     @include responsive-ctas;
     margin: 4rem 3rem;
 }
+
+a:hover{
+
+    text-decoration: underline;
+
+
+}
+
+.btnFilterChallenges:hover{
+
+    text-shadow: 2px 2px;
+
+}
+
+.button:hover{
+
+    box-shadow: 5px 5px;
+}
+
+.primary:hover{
+
+    box-shadow: 5px 5px;
+}
+
+
+
+.btnBook:hover{
+
+    box-shadow: 5px 5px;
+    text-decoration: underline;
+}
+
+.onsite{
+
+    box-shadow: 5px 5px;
+}
+
+

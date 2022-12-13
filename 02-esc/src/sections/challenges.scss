@@ -8,6 +8,10 @@
 
     @include section;
 
+    @media (min-width: $bp-xtra-large) {
+        max-width: 1800px;
+    }
+
     h2 {
         text-align: center;
     }

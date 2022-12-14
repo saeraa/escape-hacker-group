@@ -103,3 +103,8 @@
     @include responsive-ctas;
     margin: 4rem 3rem;
 }
+
+.challenge-item:hover{
+
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.3);
+}

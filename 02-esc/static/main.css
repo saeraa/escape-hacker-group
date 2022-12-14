@@ -49,7 +49,7 @@ li {
 }
 .button.secondary, .secondary#btnFilterChallenges {
   background-color: #8ACFE5;
-  color: #011827;
+  color: #021928;
 }
 
 .rating {
@@ -71,7 +71,7 @@ li {
 }
 
 header {
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 1em;
 }
@@ -188,7 +188,7 @@ header h1 {
   }
   .main-nav.open .main-menu {
     z-index: 1;
-    background-color: #011827;
+    background-color: #021928;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -228,7 +228,7 @@ header h1 {
 @media (min-width: 800px) {
   .main-nav {
     display: block;
-    background-color: #011827;
+    background-color: #021928;
     padding-top: 2rem;
   }
   .main-menu {
@@ -351,6 +351,11 @@ header h1 {
   margin-left: auto;
   margin-right: auto;
 }
+@media (min-width: 1300px) {
+  .challenges {
+    max-width: 1800px;
+  }
+}
 .challenges h2 {
   text-align: center;
 }
@@ -462,11 +467,41 @@ header h1 {
   }
 }
 
+
+.challenge-item:hover {
+  box-shadow: 0 0 2em rgba(0, 0, 0, 0.3);
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btnFilterChallenges:hover {
+  text-shadow: 2px 2px;
+}
+
+.button:hover, #btnFilterChallenges:hover {
+  box-shadow: 5px 5px;
+}
+
+.primary:hover {
+  box-shadow: 5px 5px;
+}
+
+.btnBook:hover {
+  box-shadow: 5px 5px;
+  text-decoration: underline;
+}
+
+.onsite {
+  box-shadow: 5px 5px;
+
+}
+
 .story {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 3rem 1rem;
 }
@@ -528,7 +563,7 @@ header h1 {
 }
 
 footer {
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 1rem 1rem 3rem;
 }
@@ -630,7 +665,7 @@ footer a:hover {
   width: 3em;
   height: 0.4em;
   border-radius: 0.2em;
-  background-color: #011827;
+  background-color: #021928;
   position: absolute;
   margin: 0;
   border-width: 0;
@@ -647,7 +682,7 @@ footer a:hover {
   width: 3em;
   height: 0.4em;
   border-radius: 0.2em;
-  background-color: #011827;
+  background-color: #021928;
   position: relative;
   top: 0;
   -webkit-transform: rotate(90deg);
@@ -715,7 +750,7 @@ footer a:hover {
   transform: scale(1);
 }
 .filter-form .filter-type input:focus {
-  outline: max(2px, 0.15em) solid #011827;
+  outline: max(2px, 0.15em) solid #021928;
   outline-offset: max(2px, 0.15em);
 }
 .filter-form .filter-rating {
@@ -855,7 +890,9 @@ footer a:hover {
 .modalContents {
   display: flex;
   flex-direction: column;
-  background-color: #011827;
+
+  background-color: #021928;
+
   color: white;
   position: fixed;
   padding: 15px;
@@ -893,9 +930,21 @@ footer a:hover {
 
 .bookingStep3Content {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+
+
+
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+
+
   margin-top: 40vh;
 }
 

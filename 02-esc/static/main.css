@@ -567,6 +567,31 @@ header h1 {
   }
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
+.btnFilterChallenges:hover {
+  text-shadow: 2px 2px;
+}
+
+.button:hover, #btnFilterChallenges:hover {
+  box-shadow: 5px 5px;
+}
+
+.primary:hover {
+  box-shadow: 5px 5px;
+}
+
+.btnBook:hover {
+  box-shadow: 5px 5px;
+  text-decoration: underline;
+}
+
+.onsite {
+  box-shadow: 5px 5px;
+}
+
 .story {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1062,8 +1087,6 @@ footer a:hover {
 }
 
 .bookingStep2Content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -1080,9 +1103,8 @@ footer a:hover {
 }
 
 .bookingStep3Content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
+
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;

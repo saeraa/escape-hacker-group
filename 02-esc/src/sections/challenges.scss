@@ -104,6 +104,10 @@
     margin: 4rem 3rem;
 }
 
+.challenge-item:hover{
+
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.3);
+}
 a:hover{
 
     text-decoration: underline;
@@ -139,5 +143,4 @@ a:hover{
 
     box-shadow: 5px 5px;
 }
-
 

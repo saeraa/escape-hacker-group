@@ -102,6 +102,8 @@ function openModalStepTwo(e) {
 						<input class="input-field" type="text" id="name" name="name">
 						<label class="modalInputLabels" for="e-mail">E-mail</label>
 						<input class="input-field" type="email" id="e-mail" name="e-mail">
+						<label class="modalInputLabels" for="phoneNumber">Phone</label>
+						<input class="input-field" type="number" id="phoneNumber" name="phoneNumber">
 						<label class="modalInputLabels" for="time">What time?</label>
 						<select class="input-field" name="time" id="time">
             </select>
@@ -121,6 +123,7 @@ function openModalStepTwo(e) {
 function checkModalStepTwoInput(e) {
 	e.preventDefault();
 	let ok = false;
+	let phoneInput = document.querySelector("#phoneNumber")
 	let participantsInput = document.querySelector("#participants")
 	let nameInput = document.querySelector("#name");
 	let emailInput = document.querySelector("#e-mail");
@@ -138,6 +141,13 @@ function checkModalStepTwoInput(e) {
 
 		function normalBorderColor() {
 			emailInput.style.outline = "none";
+		}
+	} else if (phoneInput.value == "" || phoneInput.value.length !== 10) {
+		phoneInput.style.outline = "solid 2px red";
+		phoneInput.addEventListener("click", normalBorderColor);
+
+		function normalBorderColor() {
+			phoneInput.style.outline = "none";
 		}
 	} else if (participantsInput.value < parseInt(minParticipantsVariableForModal)){
 		participantsInput.style.outline = "solid 2px red";

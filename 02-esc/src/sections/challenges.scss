@@ -29,6 +29,10 @@
 
     @include section;
 
+    @media (min-width: $bp-xtra-large) {
+        max-width: 1800px;
+    }
+
     h2 {
         text-align: center;
     }
@@ -120,3 +124,44 @@
     @include responsive-ctas;
     margin: 4rem 3rem;
 }
+
+.challenge-item:hover{
+
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.3);
+}
+a:hover{
+
+    text-decoration: underline;
+
+
+}
+
+.btnFilterChallenges:hover{
+
+    text-shadow: 2px 2px;
+
+}
+
+.button:hover{
+
+    box-shadow: 5px 5px;
+}
+
+.primary:hover{
+
+    box-shadow: 5px 5px;
+}
+
+
+
+.btnBook:hover{
+
+    box-shadow: 5px 5px;
+    text-decoration: underline;
+}
+
+.onsite{
+
+    box-shadow: 5px 5px;
+}
+

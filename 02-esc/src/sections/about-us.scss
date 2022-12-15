@@ -1,0 +1,71 @@
+.story-heading {
+  text-align: center;
+}
+
+.story-text {
+  text-align: center;
+  padding-left: 15%;
+  padding-right: 15%;
+
+  @media screen and (max-width: 740px) {
+    max-height: 680px;
+    overflow: scroll;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media screen and (min-width: 1000px) {
+  }
+}
+
+.we-are-heading {
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.about-card-container {
+  display: flex;
+  gap: 37px;
+  margin-bottom: 47px;
+  margin-top: 44px;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px 0px;
+    height: 446px;
+    margin: 10px;
+    max-width: 363px;
+    min-width: 363px;
+    text-align: center;
+
+    .about-card-img {
+      width: 50%;
+      margin-top: 1rem;
+    }
+
+    .card-heading {
+      font-size: 28px;
+      font-weight: 400;
+      margin: 0.5rem 0 0 0;
+    }
+
+    .card-subtitle {
+      margin: 0 0 1rem 0;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    .card-text {
+      font-size: 18px;
+      margin: 0.5rem 1rem;
+    }
+  }
+}

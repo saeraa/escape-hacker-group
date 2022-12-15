@@ -4,8 +4,8 @@ let time;
 let participants;
 let date;
 let idVariabelForModal;
-let minParticipantsVaribelForModal;
-let maxParticipantsVaribaleForModal;
+let minParticipantsVariableForModal;
+let maxParticipantsVariableForModal;
 let modalDiv;
 let roomTitleforModal;
 
@@ -14,8 +14,8 @@ let roomTitleforModal;
 export function openModal(e) {
 	const currentDate = new Date().toLocaleDateString();
 	idVariabelForModal = parseInt(e.target.dataset.id);
-	minParticipantsVaribelForModal = e.target.dataset.minparticipants;
-	maxParticipantsVaribaleForModal = e.target.dataset.maxparticipants;
+	minParticipantsVariableForModal = e.target.dataset.minparticipants;
+	maxParticipantsVariableForModal = e.target.dataset.maxparticipants;
 	roomTitleforModal = e.target.dataset.title;
 	let body = document.querySelector("body");
 	modalDiv = document.createElement("div");
@@ -91,22 +91,6 @@ function showAvailableTimes(slot) {
 	select.appendChild(option);
 }
 
-function possibleNumberOfParticipants(min, max) {
-	let numberOfOptions = max - min;
-
-	for (let i = 0; i <= numberOfOptions; i++) {
-		createOptionForParticipants();
-		min++;
-	}
-
-	function createOptionForParticipants() {
-		let participantsOption = document.createElement("option");
-		participantsOption.innerHTML = `${min} participants`;
-		let participantsSelect = document.querySelector("#participants");
-		participantsSelect.appendChild(participantsOption);
-	}
-}
-
 function openModalStepTwo(e) {
 	e.preventDefault();
 	modalDiv.innerHTML = `
@@ -121,19 +105,14 @@ function openModalStepTwo(e) {
 						<label class="modalInputLabels" for="time">What time?</label>
 						<select class="input-field" name="time" id="time">
             </select>
-						<label class="modalInputLabels" for="participants">How many participants?</label>
-						<select class="input-field" name="participants" id="participants">
-            </select>
+						<label class="modalInputLabels" for="participants">How many participants? (${minParticipantsVariableForModal} - ${maxParticipantsVariableForModal})</label>
+						<input class="input-field" type="number" name="participants" id="participants">
+            </input>
             <input id="secondButton" class="button primary open-modal-step-3" type="submit" value="Submit booking">
         </form>
         </div>
 		</div>
     `;
-
-	possibleNumberOfParticipants(
-		minParticipantsVaribelForModal,
-		maxParticipantsVaribaleForModal
-	);
 
 	let openModalStepThreeBtn = document.querySelector(".open-modal-step-3");
 	openModalStepThreeBtn.addEventListener("click", checkModalStepTwoInput);
@@ -142,6 +121,7 @@ function openModalStepTwo(e) {
 function checkModalStepTwoInput(e) {
 	e.preventDefault();
 	let ok = false;
+	let participantsInput = document.querySelector("#participants")
 	let nameInput = document.querySelector("#name");
 	let emailInput = document.querySelector("#e-mail");
 
@@ -158,6 +138,20 @@ function checkModalStepTwoInput(e) {
 
 		function normalBorderColor() {
 			emailInput.style.outline = "none";
+		}
+	} else if (participantsInput.value < parseInt(minParticipantsVariableForModal)){
+		participantsInput.style.outline = "solid 2px red";
+		participantsInput.addEventListener("click", normalBorderColor);
+		
+		function normalBorderColor() {
+			participantsInput.style.outline = "none";
+		}
+	} else if (participantsInput.value > parseInt(maxParticipantsVariableForModal)){
+		participantsInput.style.outline = "solid 2px red";
+		participantsInput.addEventListener("click", normalBorderColor);
+		
+		function normalBorderColor() {
+			participantsInput.style.outline = "none";
 		}
 	} else {
 		ok = true;
